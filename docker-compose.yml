@@ -1,0 +1,14 @@
+version: "3"
+services:
+
+  frontend:
+    build:
+      context: frontend
+    ports:
+      - "8080:80"
+
+  api:
+    build:
+      context: api
+    ports:
+      - "8081:8000"
