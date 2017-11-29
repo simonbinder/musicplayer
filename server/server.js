@@ -1,12 +1,9 @@
 const http = require('http');
 const port = 8000;
+const router = require('./routes/router');
 
 const server = http.createServer((request, response) => {
-  response.statusCode = 200;
-  response.setHeader('Content-Type', 'application/json');
-  response.end(JSON.stringify({
-    success: true,
-  }));
+  router.dispatch(request, response);
 });
 
 server.listen(port, () => {
