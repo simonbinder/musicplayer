@@ -4,18 +4,21 @@ import ReactDOM from 'react-dom';
 import App from './app';
 import Utils from './utils';
 import Actions from './actions';
+import RootRouter from './router';
 
-// init
-document.addEventListener(
-  'DOMContentLoaded',
-  function() {
-    const store = Utils.createStore();
-    Actions.loadCourses(store);
-
-    ReactDOM.render(
-      React.createElement(App, { store: store }),
-      document.getElementById('app'),
-    );
-  },
-  false,
+ReactDOM.render(
+  <RootRouter />,
+  document.getElementById('app')
 );
+
+// // init
+// document.addEventListener(
+//   'DOMContentLoaded',
+//   function() {
+//     ReactDOM.render(
+//       React.createElement(App),
+//       document.getElementById('app'),
+//     );
+//   },
+//   false,
+// );
