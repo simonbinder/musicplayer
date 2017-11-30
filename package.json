@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webapp:dev": "./node_modules/.bin/webpack-dev-server --content-base build/ ./webpack.config.js",
+    "webapp:dev": "./node_modules/.bin/webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --content-base build/ ./webpack.config.js",
     "server:dev": "./node_modules/.bin/nodemon ./server/server.js"
   },
   "author": "Simon Binder, Tim Tenckhoff, Jannik Lorenz",
