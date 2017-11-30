@@ -40,6 +40,7 @@ module.exports.dispatch = (req, res) => {
               error: err ? err : 'user == null',
             }));
           } else {
+
             res.writeHead(200, headers);
             res.end(JSON.stringify({
               success: true,
@@ -56,6 +57,66 @@ module.exports.dispatch = (req, res) => {
       }
 
     });
+    return;
+  }
+
+  //POST = /login
+  if(req.method === 'POST' && req.url === '/login') {
+    console.log('Login');
+
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+
+    req.on('end', () => {
+
+      const data = JSON.parse(body);
+
+      const {
+        email,
+        password
+      } = data;
+
+      let valid = email !== '' && email != null
+                  password !== '' && password != null;
+
+      if(valid) {
+
+        User.findOne({
+          email: email,
+          password: password,
+        }, (err, user) => {
+          if(err || user == null) {
+            res.writeHead(200, headers);
+            res.end(JSON.stringify({
+              error: err ? err : `No user found with email ${email}`,
+            }));
+          } else {
+
+            //generate token
+            let token = 'testToken';
+
+            res.writeHead(200, headers);
+            res.end(JSON.stringify({
+              success: true,
+              token: token,
+            }));
+
+          }
+
+        });
+
+      } else {
+        res.writeHead(400, headers);
+        res.end(JSON.stringify({
+          error: 'Invalid request',
+        }));
+      }
+
+    });
+
+
     return;
   }
 
