@@ -1,3 +1,4 @@
+const testUtils = require('./testUtils');
 
 describe('registerRoutes', () => {
 

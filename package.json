@@ -12,6 +12,7 @@
   "author": "Simon Binder, Tim Tenckhoff, Jannik Lorenz",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.13.5",
     "react": "^16.1.1",
