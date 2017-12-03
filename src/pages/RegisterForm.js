@@ -12,18 +12,44 @@ export default class RegisterForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  checkValid(key){
+    if(key == 'username'){
+      if(this.state[key] && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(this.state[key])){
+        document.getElementById('errors-username').innerHTML="Please enter a correct address";
+        return false;
+      }else if (this.state[key].length > 0){
+        document.getElementById('errors-username').innerHTML="";
+        return true;
+      }
+    }
+    if(key == 'confirmPassword'){
+      if(this.state[key] == this.state.password && this.state[key].length > 0){
+        document.getElementById('errors-confirm-password').innerHTML="";
+        return true;
+      }else if (this.state[key].length > 0){
+        document.getElementById('errors-confirm-password').innerHTML="Passwords don't match";
+        return false;
+      }
+    }
+    if(key == 'password'){
+      // Password must be between 4 and 8 digits long and include at least one numeric digit.
+      if(this.state[key] && /^(?=.*\d).{4,8}/.test(this.state[key])){
+        document.getElementById('errors-password').innerHTML="";
+        return true;
+      }else if(this.state[key].length > 0){
+        document.getElementById('errors-password').innerHTML="Password must be between 4 and 8 digits long and include at least one numeric digit.";
+        return false;
+      }
+    }
+  }
+
   handleChange(key) {
+    this.checkValid(key);
     return function(e) {
       var state = {};
       state[key] = e.target.value;
       this.setState(state);
     }.bind(this);
-  }
-
-  checkPasswordsMatch(value) {
-    var match = this.refs.password.getValue() === value;
-    this.setState({valid: match, password: value});
-    return match;
   }
 
   handleSubmit(event) {
@@ -32,20 +58,24 @@ export default class RegisterForm extends React.Component {
   }
 
   render() {
-    return (<form onSubmit={this.handleSubmit}>
+    return (<form onSubmit={this.checkValid}>
       <label>
         Username:
-        <input type="text" placeholder="Bitte den Usernamen eingeben" value={this.state.username} onChange={this.handleChange('username')}/>
+        <input type="text" placeholder="Bitte den Usernamen eingeben" value={this.state.username} onChange={this.handleChange('username')}>
+        </input>
+        <div id="errors-username"></div>
       </label>
       <br/>
       <label>
         Passwort:
         <input type="password" value={this.state.password} onChange={this.handleChange('password')}/>
+        <div id="errors-password"></div>
       </label>
       <br/>
       <label>
         Passwort wiederholen:
-        <input type="password" value={this.state.confirmPassword} errorMessage="Passwords do not match" validate={this.checkPasswordsMatch} onChange={this.handleChange('confirmPassword')}/>
+        <input type="password" value={this.state.confirmPassword} onChange={this.handleChange('confirmPassword')}/>
+        <div id="errors-confirm-password"></div>
       </label>
       <br/>
       <input type="submit" value="Submit"/>
