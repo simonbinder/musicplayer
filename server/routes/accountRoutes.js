@@ -106,4 +106,10 @@ router.post('/login', (req, res) => {
   }
 });
 
+router.post('/verfiyToken', (req, res) => {
+  return res.json({
+    success: true,
+  });
+});
+
 module.exports = router;
