@@ -2,6 +2,7 @@ import React from 'react';
 import './RegisterForm.scss';
 import InputFieldError from '../components/InputFieldError';
 import InputField from '../components/InputField';
+import { registerRequest } from '../services/accountService';
 
 export default class RegisterForm extends React.Component {
   constructor(props) {
@@ -82,6 +83,17 @@ export default class RegisterForm extends React.Component {
       password
     } = this.state;
 
+    if((email != null || email != '') && (password != null || password != null)) {
+      registerRequest(email, password)
+      .then(success => {
+        console.log('Success', success);
+      })
+      .catch(error => {
+        console.log('Error', error);
+      })
+    } else {
+      console.log('Form not valid');
+    }
   };
 
   render() {

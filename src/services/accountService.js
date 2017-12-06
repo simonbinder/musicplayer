@@ -1,7 +1,7 @@
 
 export const loginRequest = (email, password) => {
   return new Promise((resolve, reject) => {
-    fetch('http://localhost:8000/account/login', {
+    fetch('http://localhost:4000/account/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -18,14 +18,14 @@ export const loginRequest = (email, password) => {
       } else {
         reject(response.error);
       }
-    }
+    })
     .catch(err => reject(err));
   });
 };
 
 export const registerRequest = (email, password) => {
   return new Promise((resolve, reject) => {
-    fetch('http://localhost:8000/account/register', {
+    fetch('http://localhost:4000/account/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const registerRequest = (email, password) => {
 
 export const verifyToken = token => {
   return new Promise((resolve, reject) => {
-    fetch('http://localhost:8000/account/verifyToken', {
+    fetch('http://localhost:4000/account/verifyToken', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
