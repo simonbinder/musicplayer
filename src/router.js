@@ -7,20 +7,37 @@ import {
 import IndexPage from "./pages/IndexPage";
 import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
+import { verifyToken } from './services/accountService';
 
-const onAuth = (nextState, replace) => {
-  verfiyToken(token)
+const onAuth = (nextState, replace, callback) => {
+
+  var token = sessionStorage.getItem('token');
+  console.log('Token', token);
+
+  if(token == null) {
+    console.log('Token is null');
+    replace({
+      pathname: '/login',
+    });
+    return;
+  }
+
+  console.log('Token is there');
+  verifyToken(token)
     .then(response => {
-
-      store.user = response.user;
-      //go to requested page
+      console.log('Token verify response', response);
+      //set token
+      sessionStorage.setItem('token', response.token);
+      //set user (WIP)
+      sessionStorage.setItem('user', JSON.parse(response.user));
       callback();
     })
     .catch(err => {
       replace({
         pathname: '/login',
       });
-    })
+      return;
+    });
 };
 
 const RootRouter = () => {

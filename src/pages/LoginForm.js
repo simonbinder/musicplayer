@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from '../components/InputField';
 import InputFieldError from '../components/InputFieldError';
+import { loginRequest } from '../services/accountService';
 
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class LoginForm extends React.Component {
         password: '',
         passwordError: '',
       };
+      this.handleSubmit = this.handleSubmit.bind(this);
     };
 
     checkValid(key, checkValue) {
@@ -44,13 +46,32 @@ export default class LoginForm extends React.Component {
       })
     };
 
-    handleSubmit(ev) {
-      const {
-        email,
-        password
-      } = this.state;
+  handleSubmit(ev) {
 
-    };
+    const {
+      email,
+      password
+    } = this.state;
+
+    var valid = (email != '' || email != null)
+      && (password != '' || password != null);
+
+    if(valid) {
+      loginRequest(email, password)
+      .then(response => {
+        console.log('Login response', response);
+        //save token
+        sessionStorage.setItem('token', response.token);
+        //go to indexpage
+        this.props.router.push('/');
+      })
+      .catch(error => {
+        console.log('Error', error);
+      })
+    } else {
+      console.log('Form not valid');
+    }
+  };
 
   render() {
     return <div>

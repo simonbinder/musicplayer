@@ -14,7 +14,7 @@ const generateToken = user => {
 };
 
 //
-router.post('/verfiyToken', (req, res) => {
+router.post('/verifyToken', (req, res) => {
   if(utils.isEmptyObject(req.body)) {
     return res.status(401).json({
       error: 'No body specified',

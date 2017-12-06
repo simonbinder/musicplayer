@@ -14,7 +14,7 @@ export const loginRequest = (email, password) => {
     .then(response => response.json())
     .then(response => {
       if(response.success) {
-        resolve(response.success);
+        resolve(response);
       } else {
         reject(response.error);
       }
@@ -47,7 +47,7 @@ export const registerRequest = (email, password) => {
   });
 };
 
-export const verifyToken = token => {
+export function verifyToken(token) {
   return new Promise((resolve, reject) => {
     fetch('http://localhost:4000/account/verifyToken', {
       method: 'POST',
@@ -61,7 +61,7 @@ export const verifyToken = token => {
     .then(response => response.json())
     .then(response => {
       if(response.success) {
-        resolve(response.token);
+        resolve(response);
       } else {
         reject(response.error);
       }
