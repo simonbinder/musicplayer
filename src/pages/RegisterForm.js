@@ -66,7 +66,7 @@ export default class RegisterForm extends React.Component {
   };
 
   render() {
-    return <div>
+    return <div className="c-register-container">
       <div className="form-group">
         <label>
           Username:
