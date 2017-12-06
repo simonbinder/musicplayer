@@ -1,6 +1,3 @@
-// const http = require('http');
-// const port = 8000;
-// const router = require('./routes/router');
 const express = require('express');
 const app = express();
 const port = 8000;
@@ -19,6 +16,15 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
+
+app.listen(port, () => {
+  console.log('Server is listening on port', port);
+});
+
+app.use(express.static(__dirname + '/build'));
+
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/build/index.html');
 });
 
 app.use('/account', accountRoutes);
