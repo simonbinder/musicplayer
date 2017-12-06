@@ -13,33 +13,35 @@ export default class LoginForm extends React.Component {
       };
     };
 
-    checkValid(key) {
+    checkValid(key, checkValue) {
       switch(key) {
         case 'email': {
-          if(this.state[key] != null && this.state[key] != '') {
+          if(checkValue) {
             return '';
-          } else {
+          }else {
             return 'Please enter a valid Username';
           }
           break;
         }
         case 'password':
-          if(this.state[key] != null && this.state[key] != ''){
+          if(checkValue){
             return '';
-          } else{
-            return 'Please enter your password'
+          }else{
+            return 'Please enter your password';
           }
       }
     }
 
     handleChange(ev, key) {
       var errorKey = key + 'Error';
-      var error = this.checkValid(key);
-
       this.setState({
         [key]: ev.currentTarget.value,
-        [errorKey]: error,
       });
+      var error = this.checkValid(key, ev.currentTarget.value);
+
+      this.setState({
+        [errorKey]:error,
+      })
     };
 
     handleSubmit(ev) {
