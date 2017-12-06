@@ -9,9 +9,18 @@ import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
 
 const onAuth = (nextState, replace) => {
-  replace({
-    pathname: '/login',
-  });
+  verfiyToken(token)
+    .then(response => {
+
+      store.user = response.user;
+      //go to requested page
+      callback();
+    })
+    .catch(err => {
+      replace({
+        pathname: '/login',
+      });
+    })
 };
 
 const RootRouter = () => {
