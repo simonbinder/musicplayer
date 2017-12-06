@@ -15,6 +15,7 @@ export default class RegisterForm extends React.Component {
       confirmPassword: '',
       confirmPasswordError: '',
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   // checkValid(key) {
@@ -61,11 +62,6 @@ export default class RegisterForm extends React.Component {
     }
   }
 
-  // handleSubmit(event) {
-  //   alert('A name was submitted: ' + this.state.username + ' an address: ' + this.state.password);
-  //   event.preventDefault();
-  // };
-
   handleChange(ev, key) {
     var errorKey = key + 'Error';
     var error = this.checkValid(key);
@@ -85,8 +81,12 @@ export default class RegisterForm extends React.Component {
 
     if((email != null || email != '') && (password != null || password != null)) {
       registerRequest(email, password)
-      .then(success => {
-        console.log('Success', success);
+      .then(response => {
+        console.log('Response', response);
+        //store token
+        sessionStorage.setItem('token', response.token);
+        //push to indexpage
+        this.props.router.push('/');
       })
       .catch(error => {
         console.log('Error', error);

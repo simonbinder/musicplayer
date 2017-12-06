@@ -35,10 +35,10 @@ export const registerRequest = (email, password) => {
         password: password
       })
     })
-    .then(response => reponse.json())
+    .then(response => response.json())
     .then(response => {
       if(response.success) {
-        resolve(response.success);
+        resolve(response);
       } else {
         reject(response.error);
       }

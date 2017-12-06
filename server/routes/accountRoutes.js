@@ -52,6 +52,7 @@ router.post('/verfiyToken', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
+  console.log('Req body', req.body);
 
   if(utils.isEmptyObject(req.body)) {
     return res.status(400).end();
