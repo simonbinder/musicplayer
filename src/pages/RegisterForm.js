@@ -1,5 +1,5 @@
 import React from 'react';
-import './RegisterForm.scss';
+import '../assets/RegisterForm.scss';
 import InputFieldError from '../components/InputFieldError';
 import InputField from '../components/InputField';
 import { registerRequest } from '../services/accountService';
@@ -18,44 +18,29 @@ export default class RegisterForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   };
 
-  // checkValid(key) {
-  //   if (key == 'username') {
-  //     if (this.state[key] && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(this.state[key])) {
-  //       document.getElementById('errors-username').innerHTML = "Please enter a correct address";
-  //       return false;
-  //     } else if (this.state[key].length > 0) {
-  //       document.getElementById('errors-username').innerHTML = "";
-  //       return true;
-  //     }
-  //   }
-  //   if (key == 'confirmPassword') {
-  //     if (this.state[key] == this.state.password && this.state[key].length > 0) {
-  //       document.getElementById('errors-confirm-password').innerHTML = "";
-  //       return true;
-  //     } else if (this.state[key].length > 0) {
-  //       document.getElementById('errors-confirm-password').innerHTML = "Passwords don't match";
-  //       return false;
-  //     }
-  //   }
-  //   if (key == 'password') {
-  //     // Password must be between 4 and 8 digits long and include at least one numeric digit.
-  //     if (this.state[key] && /^(?=.*\d).{4,8}/.test(this.state[key])) {
-  //       document.getElementById('errors-password').innerHTML = "";
-  //       return true;
-  //     } else if (this.state[key].length > 0) {
-  //       document.getElementById('errors-password').innerHTML = "Password must be between 4 and 8 digits long and include at least one numeric digit.";
-  //       return false;
-  //     }
-  //   }
-  // };
-
-  checkValid(key) {
+  checkValid(key, checkValue) {
     switch(key) {
       case 'email': {
-        if(this.state[key] != null && this.state[key] != '') {
+        if(checkValue && checkValue != '' && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(checkValue)) {
+          return 'Email is not valid';
+        } else {
+          return '';
+        }
+        break;
+      }
+      case 'password': {
+        if(checkValue && /^(?=.*\d).{4,8}/.test(checkValue)) {
           return '';
         } else {
-          return 'Email is not valid';
+          return 'Password must be between 4 and 8 digits long and include at least one numeric digit.';
+        }
+        break;
+      }
+      case 'confirmPassword': {
+        if(checkValue == this.state.password && checkValue.length > 0) {
+          return '';
+        } else {
+          return "Passwords don't match";
         }
         break;
       }
@@ -64,16 +49,17 @@ export default class RegisterForm extends React.Component {
 
   handleChange(ev, key) {
     var errorKey = key + 'Error';
-    var error = this.checkValid(key);
-
     this.setState({
       [key]: ev.currentTarget.value,
-      [errorKey]: error,
     });
+    var error = this.checkValid(key, ev.currentTarget.value);
+
+    this.setState({
+      [errorKey]: error,
+    })
   };
 
   handleSubmit(ev) {
-
     const {
       email,
       password
