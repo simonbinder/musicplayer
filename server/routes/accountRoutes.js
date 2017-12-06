@@ -3,14 +3,53 @@ const router = express.Router();
 const User = require('../models/User');
 const utils = require('../utils');
 const jwt = require('jsonwebtoken');
+const jwtSecret = 'musicplayer';
 
 const generateToken = user => {
   return jwt.sign({
     _id: user._id,
     email: user.email,
     created: user.created,
-  }, 'musicplayer', { expiresIn: '24h' });
+  }, jwtSecret, { expiresIn: '24h' });
 };
+
+//
+router.post('/verfiyToken', (req, res) => {
+  if(utils.isEmptyObject(req.body)) {
+    return res.status(401).json({
+      error: 'No body specified',
+    });
+  }
+
+  const {
+    token,
+  } = req.body;
+
+  console.log('Received token', token);
+
+  if(!token || token === 'undefined') {
+    return res.status(401).json({
+      error: 'Pass token',
+    });
+  } else {
+
+    jwt.verify(token, jwtSecret, (err, user) => {
+      if(err) {
+        console.log('Verify err', err);
+        return res.status(401).json({
+          error: err,
+        });
+      } else {
+        return res.status(200).json({
+          success: true,
+          token: token,
+          user: user,
+        });
+      }
+    });
+
+  }
+});
 
 router.post('/register', (req, res) => {
 
