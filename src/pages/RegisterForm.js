@@ -1,5 +1,5 @@
 import React from 'react';
-import './RegisterForm.scss';
+import '../assets/RegisterForm.scss';
 import InputFieldError from '../components/InputFieldError';
 import InputField from '../components/InputField';
 

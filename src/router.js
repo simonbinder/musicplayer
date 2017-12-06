@@ -6,7 +6,7 @@ import {
 } from 'react-router';
 import IndexPage from "./pages/IndexPage";
 import LoginForm from "./pages/LoginForm";
-import RegisterForm from "./pages/RegisterForm";
+import RegisterPage from "./pages/RegisterPage";
 
 const onAuth = (nextState, replace) => {
   replace({
@@ -18,7 +18,7 @@ const RootRouter = () => {
   return <Router history={browserHistory}>
     <Route path="/" onEnter={ onAuth } component={IndexPage} />
     <Route path="/login" component={LoginForm} />
-    <Route path="/register" component={RegisterForm} />
+    <Route path="/register" component={RegisterPage} />
   </Router>
 };
 
