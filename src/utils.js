@@ -3,9 +3,11 @@ const utils = {};
 // create a new store
 utils.createStore = function() {
   return {
-    courses: [],
-    addFormOpen: false,
-    subscribers: [],
+    //the user account object
+    user: null,
+    //search value entered in the searchfield in the header
+    searchValue: '',
+    //functions
     subscribe: function(s) {
       this.subscribers.push(s);
     },

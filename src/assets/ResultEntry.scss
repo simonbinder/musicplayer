@@ -1,0 +1,26 @@
+.o-result-entry {
+  border: 1px solid #ccc;
+  background-color: white;
+  height: 100px;
+  line-height: 100px;
+  margin-bottom: 25px;
+  transition: background-color 0.8s;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
+
+  &--soundcloud {
+    background-color: #ffb380;
+    &:hover {
+      background-color: red;
+    }
+  }
+
+  &--youtube {
+    background-color: #ff5c33;
+    &:hover {
+      background-color: red;
+    }
+  }
+}

@@ -7,9 +7,12 @@ import {
 import IndexPage from "./pages/IndexPage";
 import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
-import { verifyToken } from './services/accountService';
 import RegisterPage from "./pages/RegisterPage";
 import Layout from './pages/Layout';
+import SettingsPage from './pages/SettingsPage';
+import {
+  verifyToken
+} from './services/accountService';
 
 const onAuth = (nextState, replace, callback) => {
   callback();
@@ -49,6 +52,7 @@ const RootRouter = () => {
       <Route path="/" onEnter={ onAuth } component={IndexPage} />
       <Route path="/login" component={LoginForm} />
       <Route path="/register" component={RegisterPage} />
+      <Route path="/settings" onEnter={ onAuth } component={SettingsPage} />
     </Route>
   </Router>
 };

@@ -5,7 +5,10 @@ import Utils from './utils';
 import Actions from './actions';
 import RootRouter from './router';
 
+const store = Utils.createStore();
+console.log('Created store', store);
+
 ReactDOM.render(
-  <RootRouter />,
+  <RootRouter store={store} />,
   document.getElementById('app')
 );
