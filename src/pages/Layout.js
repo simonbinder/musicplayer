@@ -7,13 +7,30 @@ export default class Layout extends React.Component {
     super(props);
   };
 
-  onAccountClicked(ev) {
-    
-  }
+  logout() {
+    console.log('logout');
+  };
 
   render() {
+
+    const content = [{
+      title: 'Jannik Lorenz',
+      childs: [{
+        type: 'link',
+        title: 'Account',
+        to: '/settings',
+      }, {
+        type: 'action',
+        title: 'Logout',
+        onClick: this.logout,
+      }],
+    }];
+
     return <div>
-      <HeaderBar />
+      <HeaderBar
+        onLogoTo='/'
+        content={content}
+      />
 
       <div className="main">
         {this.props.children}

@@ -1,3 +1,5 @@
+@import 'variables.scss';
+
 .c-header {
   position: fixed;
   top: 0;
@@ -5,27 +7,43 @@
   right: 0;
   background-color: white;
   border-bottom: 1px solid #ccc;
-  height: 100px;
-  line-height: 100px;
-  padding: 0 60px;
+  height: 70px;
+  line-height: 70px;
+  padding: 10px;
   display: flex;
+
+  @media screen and (min-width: $screen-lg) {
+    padding: 0 60px;
+    height: 100px;
+    line-height: 100px;
+  }
 
   &__logo {
     display: inline-block;
+    margin: auto 0;
   }
 
   &__search {
+    display: none;
     flex: 1;
     height: 60px;
     margin: auto 20px;
     font-size: 20px;
-    padding: 10px;
+    padding: 10px 10px 10px 60px;
     border: none;
     border: 2px solid #f2f2f2;
     margin: auto 25%;
 
-    &:after {
+    @media screen and (min-width: $screen-md) {
+      display: block;
+    }
 
+    &::-webkit-input-placeholder {
+      font-size: 16px;
+    }
+
+    &:after {
+      //search icon
     }
   }
 
@@ -39,11 +57,16 @@
   }
 
   &__dropdown {
+    float: right;
     position: relative;
     line-height: 25px;
     margin: auto 0;
     display: inline-block;
     color: #66cc00;
+
+    @media screen and (min-width: $screen-md) {
+      float: none;
+    }
 
     &:hover {
       .c-header__dropdown__content {
@@ -70,10 +93,13 @@
       color: #66cc00;
       background-color: white;
       transition: background-color 0.8s, color 0.8s;
+      text-decoration: none;
+      cursor: pointer;
 
       &:hover {
         color: #99ff33;
         background-color: #f2f2f2;
+        text-decoration: none;
       }
     }
   }
