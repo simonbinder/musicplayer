@@ -13,6 +13,7 @@ import SettingsPage from './pages/SettingsPage';
 import {
   verifyToken
 } from './services/accountService';
+import SpotifyPage from './pages/SpotifyPage';
 
 const onAuth = (nextState, replace, callback) => {
   callback();
@@ -53,6 +54,7 @@ const RootRouter = () => {
       <Route path="/login" component={LoginForm} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/settings" onEnter={ onAuth } component={SettingsPage} />
+      <Route path="/spotify" component={SpotifyPage} />
     </Route>
   </Router>
 };

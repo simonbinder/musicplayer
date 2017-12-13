@@ -4,6 +4,7 @@ const port = 4000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const accountRoutes = require('./routes/accountRoutes');
+const spotifyRoutes = require('./routes/spotifyRoutes');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,6 +19,8 @@ app.use((req, res, next) => {
 
 //routes
 app.use('/account', accountRoutes);
+app.use('/spotify', spotifyRoutes);
+app.use('/callback', spotifyRoutes);
 
 app.use(express.static(__dirname + '/build'));
 
