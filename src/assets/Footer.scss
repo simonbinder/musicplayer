@@ -1,26 +1,24 @@
 .c-footer {
-  position:fixed;
+    position:fixed;
     left:0px;
     bottom:0px;
-    height:75px;
     width:100%;
-    background:rgba(#000000, 0.65);
+    background:rgba(#000000, 0.1);
 }
 .c-audio-player-wrapper{
   text-align: center;
-  height: 100%;
-  background:rgba(#cccccc, 1);
+  margin: auto;
 }
 
 .c-audio-player-wrapper .c-track-title{
   color:rgb(0, 0, 0);
-  font-size: 15px;
+  font-size: 16px;
+  margin: 20px;
 }
 
-.c-audio-player-wrapper .c-slider,.c-progress {
-    width: 85%;
+.c-audio-player-wrapper .c-slider, .c-progress {
+    width: 80%;
     height: 10px;
-    background: #7d6e67;
     margin: 15px auto 0 auto;
     border-radius: 5px;
 
@@ -30,25 +28,45 @@
 .c-audio-player-wrapper .c-progress {
     background: #e08a5f;
     position: relative;
-
     -webkit-box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3);
     box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3);
 }
 
-.c-play-button-wrapper .c-button{
-  width: 80px;
-  height:80px;
-  padding:0 4px 0 0;
-  white-space:nowrap;
-  cursor: hand;
+
+//invisibleYTPlayer
+.c-play-button-wrapper .invisibleYTPlayer{
+  display: none;
 }
+
+//play Buttons
+.c-play-button-wrapper{
+  display: table;
+  height:100px;
+  float:left;
+  width: 400px;
+  margin: auto;
+}
+.c-play-button-wrapper .c-button{
+  display: table-cell;
+  background-size: contain;
+  resize: both;
+
+}
+
 .c-play-button-wrapper .c-button :hover{
 
 }
 .c-play-button-wrapper .c-button-play{
   background:url('assets/images/play-button.png')center right no-repeat;;
 }
-
 .c-play-button-wrapper .c-button-pause{
-  background:url('assets/images/pause-button.png') center right no-repeat;;
+  background:url('assets/images/pause-button.png')center right no-repeat;;
+}
+
+.c-play-button-wrapper .c-button-previous{
+  background:url('assets/images/previous-button.png') center right no-repeat;;
+}
+
+.c-play-button-wrapper .c-button-next{
+  background:url('assets/images/next-button.png')center right no-repeat;;
 }

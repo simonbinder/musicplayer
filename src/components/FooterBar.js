@@ -26,21 +26,16 @@ export default class FooterBar extends React.Component {
         height: '0',
         width: '0',
         videoId: 'E1nfGw8qD70',
+        playerVars: {
+          autoplay: 'true',
+        },
 
       })
     })
   }
 
-  onPlayerStateChange(event){
-     if (typeof this.props.onStateChange === 'function') {
-       this.props.onStateChange(e)
-     }
-   }
-
 
   toggleButton(play){
-   // var img = play ? "play-button.png" : "pause-button.png";
-   // icon.setAttribute("src",img);
    if(play){
      this.setState({
        'play': 'Play',
@@ -53,11 +48,12 @@ export default class FooterBar extends React.Component {
  };
 
   switchPlayState(){
-    console.log("clicked");
    if(this.state.play === 'Play') {
+         console.log("clicked play");
         this.player.playVideo();
        this.toggleButton(false);
      }else{
+       console.log("clicked pause");
        this.player.pauseVideo();
        this.toggleButton(true);
      }
@@ -68,25 +64,24 @@ export default class FooterBar extends React.Component {
 
 render(){
   return <div className="c-footer">
-    <div className="c-audio-player-wrapper col-md-10">
-      <div className="c-slider-wrapper col-md-9">
+    <div className="c-audio-player-wrapper row">
+      <div className="c-slider-wrapper col-md-9 col-sm-9">
           <div className="c-track-title">Trackname - Artist (Remix)</div>
           <div className="c-slider">
             <div className="c-progress-bar"></div>
           </div>
       </div>
-    <div className="c-play-button-wrapper col-lg-3">
-    <div ref={(r) => { this.youtubePlayerAnchor = r }}></div>
-          <PlayButton
-             changePlayState={ev => this.switchPlayState(ev)}
-             play={this.state.play}/>
-        </div>
+
+     <div className="c-play-button-wrapper col-lg-3 col-sm-3">
+        <div className="invisibleYTPlayer"ref={(r) => { this.youtubePlayerAnchor = r }}></div>
+        <div className="c-button c-button-previous"></div>
+            <PlayButton
+               changePlayState={ev => this.switchPlayState(ev)}
+               play={this.state.play}/>
+        <div className="c-button c-button-next"></div>
+          </div>
       </div>
 
-
-    <div className="c-playlist-menu-wrapper col-md-2">
-        <div className="c-track-title">Playlist</div>
-    </div>
   </div>
 };
 };
