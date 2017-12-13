@@ -27,7 +27,8 @@ module.exports = [
           use: [{
                 loader: "style-loader" // creates style nodes from JS strings
             }, {
-                loader: "css-loader"
+                loader: "css-loader",
+                options: {url:false}
             },{
             loader: "sass-loader" // compiles Sass to CSS
           }]
