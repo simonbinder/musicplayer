@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderBar from '../components/HeaderBar';
-import '../assets/Main.scss';
+import '../assets/index.scss';
 
 export default class Layout extends React.Component {
   constructor(props) {
