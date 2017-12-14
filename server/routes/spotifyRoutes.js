@@ -45,6 +45,7 @@ router.get('/callback', function(req, res) {
   if (state === null || state !== storedState) {
     res.redirect('http://localhost:8080/settings?' +
       querystring.stringify({
+        api: 'spotify',
         error: 'state_mismatch'
       }));
   } else {
@@ -81,17 +82,31 @@ router.get('/callback', function(req, res) {
 
         // we can also pass the token to the browser to make requests from there
         res.redirect('http://localhost:8080/settings?' + querystring.stringify({
+          api: 'spotify',
           access_token: access_token,
           refresh_token: refresh_token
         }));
       } else {
         res.redirect('http://localhost:8080/settings?' +
           querystring.stringify({
+            api: 'spotify',
             error: 'invalid_token'
           }));
       }
     });
   }
+});
+
+router.get('/me', (req, res) => {
+  return res.json({
+    success: true,
+  });
+});
+
+router.get('/search', (req, res) => {
+  return res.json({
+    success: true,
+  });
 });
 
 module.exports = router;
