@@ -6,7 +6,8 @@ const HeaderBar = props => {
 
   const {
     onLogoTo,
-    content
+    content,
+    searchOnChange,
   } = props;
 
   return <div className="c-header">
@@ -18,6 +19,7 @@ const HeaderBar = props => {
       type="text"
       className="c-header__search"
       placeholder="Insert your song title"
+      onChange={ ev => searchOnChange(ev) }
     />
 
     { content.map((dropdown, key) => {

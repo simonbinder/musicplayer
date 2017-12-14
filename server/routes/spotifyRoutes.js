@@ -103,9 +103,30 @@ router.get('/me', (req, res) => {
   });
 });
 
-router.get('/search', (req, res) => {
-  return res.json({
-    success: true,
+router.post('/search', (req, res) => {
+  console.log('req body', req.body);
+
+  let access_token = req.body.access_token;
+
+  let options = {
+    url: 'https://api.spotify.com/v1/search',
+    headers: {
+      'Authorization': 'Bearer ' + access_token
+    },
+    json: true,
+    qs: {
+      'type': 'track',
+      'q': req.body.q,
+    },
+  };
+
+  request.get(options, (error, response, body) => {
+    console.log('Body', body);
+    if(error) {
+      return res.json(error);
+    } else {
+      return res.json(body);
+    }
   });
 });
 
