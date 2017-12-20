@@ -65,14 +65,18 @@ export default class FooterBar extends React.Component {
 render(){
   return <div className="c-footer">
     <div className="c-audio-player-wrapper row">
-      <div className="c-slider-wrapper col-md-9 col-sm-9">
+      <div className="c-slider-wrapper col-lg-8 col-md-8 col-sm-6">
           <div className="c-track-title">Trackname - Artist (Remix)</div>
           <div className="c-slider">
             <div className="c-progress-bar"></div>
+            <div className="c-progress"></div>
+
+
+
           </div>
       </div>
-
-     <div className="c-play-button-wrapper col-lg-3 col-sm-3">
+<div className="col-lg-4 col-md-4 col-sm-6">
+     <div className="c-play-button-wrapper">
         <div className="invisibleYTPlayer"ref={(r) => { this.youtubePlayerAnchor = r }}></div>
         <div className="c-button c-button-previous"></div>
             <PlayButton
@@ -81,7 +85,7 @@ render(){
         <div className="c-button c-button-next"></div>
           </div>
       </div>
-
+</div>
   </div>
 };
 };

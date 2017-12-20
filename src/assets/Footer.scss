@@ -17,40 +17,43 @@
 }
 
 .c-audio-player-wrapper .c-slider, .c-progress {
-    width: 80%;
+    width: 85%;
     height: 10px;
     margin: 15px auto 0 auto;
     border-radius: 5px;
-
     -webkit-box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3), 0 1px #cef3ee;
     box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3), 0 1px #cef3ee;
 }
 .c-audio-player-wrapper .c-progress {
-    background: #e08a5f;
+    margin: 15px 0 0 0;
+    width: 10%;
     position: relative;
-    -webkit-box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3);
-    box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3);
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3), 0 1px #cef3ee;
+    box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3), 0 1px #cef3ee;
+    background:rgba(#3df249, 0.4);
+
 }
 
 
 //invisibleYTPlayer
 .c-play-button-wrapper .invisibleYTPlayer{
   display: none;
+  width: 0px;
+  height: 0px;
 }
 
 //play Buttons
 .c-play-button-wrapper{
-  display: table;
-  height:100px;
-  float:left;
-  width: 400px;
-  margin: auto;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .c-play-button-wrapper .c-button{
-  display: table-cell;
   background-size: contain;
-  resize: both;
-
+  width: 100px;
+  height: 100px;
 }
 
 .c-play-button-wrapper .c-button :hover{
