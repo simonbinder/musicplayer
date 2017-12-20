@@ -8,18 +8,6 @@ import Layout from './pages/Layout';
 import SettingsPage from './pages/SettingsPage';
 import { verifyToken } from './services/accountService';
 import SpotifyPage from './pages/SpotifyPage';
-import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import searchReducer from './reducer/searchReducer';
-import { createLogger } from 'redux-logger';
-import logger from 'redux-logger';
-
-const store = createStore(
-  combineReducers({
-    search: searchReducer,
-  }),
-  applyMiddleware(logger)
-);
 
 const onAuth = (nextState, replace, callback) => {
   callback();
@@ -54,8 +42,7 @@ const onAuth = (nextState, replace, callback) => {
 };
 
 const RootRouter = () => {
-  return <Provider store={store}>
-    <Router history={browserHistory}>
+  return <Router history={browserHistory}>
       <Route component={Layout}>
         <Route path="/" onEnter={ onAuth } component={IndexPage} />
         <Route path="/login" component={LoginForm} />
@@ -64,7 +51,6 @@ const RootRouter = () => {
         <Route path="/spotify" component={SpotifyPage} />
       </Route>
     </Router>
-  </Provider>
 };
 
 export default RootRouter;

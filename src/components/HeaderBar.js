@@ -8,6 +8,7 @@ const HeaderBar = props => {
     onLogoTo,
     content,
     searchOnChange,
+    value
   } = props;
 
   return <div className="c-header">
@@ -19,6 +20,7 @@ const HeaderBar = props => {
       type="text"
       className="c-header__search"
       placeholder="Insert your song title"
+      value={value}
       onChange={ ev => searchOnChange(ev) }
     />
 
