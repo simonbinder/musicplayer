@@ -6,4 +6,9 @@ actions.storeUser = (store, user) => {
   store.notify();
 };
 
+actions.storeTracks = (store, tracks) => {
+  store.tracks = tracks;
+  store.notify();
+};
+
 export default actions;

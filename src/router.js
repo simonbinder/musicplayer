@@ -14,6 +14,13 @@ import {
   verifyToken
 } from './services/accountService';
 import SpotifyPage from './pages/SpotifyPage';
+import {
+  Provider
+} from 'react-redux';
+import {
+  createStore
+} from 'redux';
+
 
 const onAuth = (nextState, replace, callback) => {
   callback();
@@ -48,15 +55,17 @@ const onAuth = (nextState, replace, callback) => {
 };
 
 const RootRouter = () => {
-  return <Router history={browserHistory}>
-    <Route component={Layout}>
-      <Route path="/" onEnter={ onAuth } component={IndexPage} />
-      <Route path="/login" component={LoginForm} />
-      <Route path="/register" component={RegisterPage} />
-      <Route path="/settings" onEnter={ onAuth } component={SettingsPage} />
-      <Route path="/spotify" component={SpotifyPage} />
-    </Route>
-  </Router>
+  return <Provider>
+    <Router history={browserHistory}>
+      <Route component={Layout}>
+        <Route path="/" onEnter={ onAuth } component={IndexPage} />
+        <Route path="/login" component={LoginForm} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/settings" onEnter={ onAuth } component={SettingsPage} />
+        <Route path="/spotify" component={SpotifyPage} />
+      </Route>
+    </Router>
+  </Provider>
 };
 
 export default RootRouter;

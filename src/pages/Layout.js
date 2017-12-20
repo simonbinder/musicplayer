@@ -19,7 +19,7 @@ export default class Layout extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        access_token: 'BQDPY6Jv0Kolz_N9vo84Id7vmneTb1QBl6e6hci-SYQK8FSQSRF4-jG28GO4QfeXTUBksFRXOJyh2jEAJ96-uD_F_F1nJHy11GEa8copIqyQA0fw_aEfUNLlvAb-i2fVjLP08c_ko6eMoJMiM_6w7z3WYKezrxnTmQ',
+        access_token: 'BQADfXwi3s05_B8auLQCqmix49q8k41PcjFlUkHndr2UfHRIZDvHf7QQNH_10T8tgRSi6hQPctI-KacyjLfEU1q3YMYeNz1zLhV3gH6RYvCVuwqu6viAfTgTDgBbF1c4ABnlC3KChHNIWn46sPLHH5BJbE-cwaSeWw',
         q: 'New Rules',
       }),
     }).then(response => response.json())

@@ -97,6 +97,44 @@ router.get('/callback', function(req, res) {
   }
 });
 
+router.post('/refresh_token', (req, res) => {
+
+  let refresh_token = req.body.refresh_token;
+  let authOptions = {
+    url: 'https://accounts.spotify.com/api/token',
+    headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
+    form: {
+      grant_type: 'refresh_token',
+      refresh_token: refresh_token
+    },
+    json: true
+  };
+
+  request.post(authOptions, (error, response, body) => {
+
+    console.log('Body after requesting access token', body);
+
+    if(error) {
+      console.log('send error');
+      return res.status(501).json({
+        error: error,
+      });
+    } else {
+      if(body.error) {
+        return res.status(401).json({
+          error: body.error,
+          description: body.error_description,
+        });
+      } else {
+        let access_token = body.access_token;
+        return res.json({
+          'access_token': access_token,
+        });
+      }
+    }
+  });
+});
+
 router.get('/me', (req, res) => {
   return res.json({
     success: true,
@@ -125,7 +163,17 @@ router.post('/search', (req, res) => {
     if(error) {
       return res.json(error);
     } else {
-      return res.json(body);
+
+      return res.json({
+        tracks: body.tracks.items.map((track) => {
+          return {
+            name: track.name,
+            artists: track.artists.map((artist) => {
+              return artist.name;
+            }).join(', '),
+          };
+        }),
+      });
     }
   });
 });

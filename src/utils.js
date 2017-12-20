@@ -7,6 +7,8 @@ utils.createStore = function() {
     user: null,
     //search value entered in the searchfield in the header
     searchValue: '',
+    //
+    searchResults: [],
     //functions
     subscribe: function(s) {
       this.subscribers.push(s);

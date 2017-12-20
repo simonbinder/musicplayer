@@ -7,14 +7,25 @@ export default class IndexPage extends React.Component {
   };
 
   render() {
+    console.log('Store', this.props.store);
+
     return <div>
 
       <div className="container">
         <h1>Search results</h1>
 
         <div className="row">
-          <ResultEntry origin="youtube" />
-          <ResultEntry origin="soundcloud" />
+          <ResultEntry
+            origin="spotify"
+            title="New Rules"
+            artists="Dua Lipa"
+          />
+          <ResultEntry
+            origin="spotify"
+          />
+          <ResultEntry
+            origin="spotify"
+          />
         </div>
 
       </div>
