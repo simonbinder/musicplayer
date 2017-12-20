@@ -1,26 +1,25 @@
 import React from 'react';
-import {
-  Router,
-  Route,
-  browserHistory
-} from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import IndexPage from "./pages/IndexPage";
 import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
 import RegisterPage from "./pages/RegisterPage";
 import Layout from './pages/Layout';
 import SettingsPage from './pages/SettingsPage';
-import {
-  verifyToken
-} from './services/accountService';
+import { verifyToken } from './services/accountService';
 import SpotifyPage from './pages/SpotifyPage';
-import {
-  Provider
-} from 'react-redux';
-import {
-  createStore
-} from 'redux';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import searchReducer from './reducer/searchReducer';
+import { createLogger } from 'redux-logger';
+import logger from 'redux-logger';
 
+const store = createStore(
+  combineReducers({
+    search: searchReducer,
+  }),
+  applyMiddleware(logger)
+);
 
 const onAuth = (nextState, replace, callback) => {
   callback();
@@ -55,7 +54,7 @@ const onAuth = (nextState, replace, callback) => {
 };
 
 const RootRouter = () => {
-  return <Provider>
+  return <Provider store={store}>
     <Router history={browserHistory}>
       <Route component={Layout}>
         <Route path="/" onEnter={ onAuth } component={IndexPage} />
