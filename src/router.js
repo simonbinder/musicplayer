@@ -1,14 +1,13 @@
 import React from 'react';
-import {
-  Router,
-  Route,
-  browserHistory
-} from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import IndexPage from "./pages/IndexPage";
 import LoginForm from "./pages/LoginForm";
 import RegisterForm from "./pages/RegisterForm";
-import { verifyToken } from './services/accountService';
 import RegisterPage from "./pages/RegisterPage";
+import Layout from './pages/Layout';
+import SettingsPage from './pages/SettingsPage';
+import { verifyToken } from './services/accountService';
+import SpotifyPage from './pages/SpotifyPage';
 
 const onAuth = (nextState, replace, callback) => {
   callback();
@@ -44,10 +43,14 @@ const onAuth = (nextState, replace, callback) => {
 
 const RootRouter = () => {
   return <Router history={browserHistory}>
-    <Route path="/" onEnter={ onAuth } component={IndexPage} />
-    <Route path="/login" component={LoginForm} />
-    <Route path="/register" component={RegisterPage} />
-  </Router>
+      <Route component={Layout}>
+        <Route path="/" onEnter={ onAuth } component={IndexPage} />
+        <Route path="/login" component={LoginForm} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/settings" onEnter={ onAuth } component={SettingsPage} />
+        <Route path="/spotify" component={SpotifyPage} />
+      </Route>
+    </Router>
 };
 
 export default RootRouter;

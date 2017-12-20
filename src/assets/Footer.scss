@@ -1,0 +1,75 @@
+.c-footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    background:rgba(#000000, 0.1);
+}
+.c-audio-player-wrapper{
+  text-align: center;
+  margin: auto;
+}
+
+.c-audio-player-wrapper .c-track-title{
+  color:rgb(0, 0, 0);
+  font-size: 16px;
+  margin: 20px;
+}
+
+.c-audio-player-wrapper .c-slider, .c-progress {
+    width: 85%;
+    height: 10px;
+    margin: 15px auto 0 auto;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3), 0 1px #cef3ee;
+    box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3), 0 1px #cef3ee;
+}
+.c-audio-player-wrapper .c-progress {
+    margin: 15px 0 0 0;
+    width: 10%;
+    position: relative;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3), 0 1px #cef3ee;
+    box-shadow: inset 0 5px 10px -5px rgba(0,0,0,.3), 0 1px #cef3ee;
+    background:rgba(#3df249, 0.4);
+
+}
+
+
+//invisibleYTPlayer
+.c-play-button-wrapper .invisibleYTPlayer{
+  display: none;
+  width: 0px;
+  height: 0px;
+}
+
+//play Buttons
+.c-play-button-wrapper{
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.c-play-button-wrapper .c-button{
+  background-size: contain;
+  width: 100px;
+  height: 100px;
+}
+
+.c-play-button-wrapper .c-button :hover{
+
+}
+.c-play-button-wrapper .c-button-play{
+  background:url('assets/images/play-button.png')center right no-repeat;;
+}
+.c-play-button-wrapper .c-button-pause{
+  background:url('assets/images/pause-button.png')center right no-repeat;;
+}
+
+.c-play-button-wrapper .c-button-previous{
+  background:url('assets/images/previous-button.png') center right no-repeat;;
+}
+
+.c-play-button-wrapper .c-button-next{
+  background:url('assets/images/next-button.png')center right no-repeat;;
+}
