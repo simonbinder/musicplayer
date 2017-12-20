@@ -1,5 +1,6 @@
 import React from 'react';
 import HeaderBar from '../components/HeaderBar';
+import FooterBar from '../components/FooterBar';
 import '../assets/index.scss';
 
 export default class Layout extends React.Component {
@@ -48,18 +49,14 @@ export default class Layout extends React.Component {
 
     return <div>
       <HeaderBar
-        onLogoTo='/'
-        content={content}
-        searchOnChange={this.searchOnChange}
+      onLogoTo='/'
+      content={content}
+      searchOnChange={this.searchOnChange}
       />
-
       <div className="main">
-        {this.props.children}
-      </div>
-
-      <div className="footer">
-        Footer
-      </div>
+            {this.props.children}
+    </div>
+      <FooterBar />
     </div>
   };
 };
