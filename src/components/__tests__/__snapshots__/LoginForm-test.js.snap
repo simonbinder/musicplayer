@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm Component renders correctly 1`] = `
+<div>
+  <div
+    className="form-group"
+  >
+    <label>
+      Username:
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Bitte den Usernamen eingeben"
+      type="email"
+      value=""
+    />
+    <div
+      className="o-error"
+    >
+      
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label>
+      Password:
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Bitte das Passwort eingeben"
+      type="password"
+      value=""
+    />
+    <div
+      className="o-error"
+    >
+      
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <input
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="submit"
+      value="Submit"
+    />
+  </div>
+</div>
+`;
