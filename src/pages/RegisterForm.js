@@ -3,8 +3,10 @@ import '../assets/RegisterForm.scss';
 import InputFieldError from '../components/InputFieldError';
 import InputField from '../components/InputField';
 import { registerRequest } from '../services/accountService';
+import { connect } from 'react-redux';
+import { push} from 'react-router-redux';
 
-export default class RegisterForm extends React.Component {
+class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,9 +72,9 @@ export default class RegisterForm extends React.Component {
       .then(response => {
         console.log('Response', response);
         //store token
-        sessionStorage.setItem('token', response.token);
+        localStorage.setItem('token', response.token);
         //push to indexpage
-        this.props.router.push('/');
+        this.props.goToIndexPage();
       })
       .catch(error => {
         console.log('Error', error);
@@ -136,3 +138,13 @@ export default class RegisterForm extends React.Component {
     </div>
   };
 };
+
+function mapStateToProps(store, ownProps) {
+  return { };
+};
+
+const mapDispatchToProps = dispatch => ({
+  goToIndexPage: () => dispatch(push('/')),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);

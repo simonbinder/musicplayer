@@ -8,8 +8,38 @@ import Layout from './pages/Layout';
 import SettingsPage from './pages/SettingsPage';
 import { verifyToken } from './services/accountService';
 import SpotifyPage from './pages/SpotifyPage';
+import store from './store';
+import { push } from 'react-router-redux';
+import { saveUser } from './actions/credentialsActions';
 
 const onAuth = (nextState, replace, callback) => {
+  setTimeout(() => {
+    //store.dispatch(push('/login'));
+    let token = localStorage.getItem('token');
+
+    if(token == null) {
+      console.log('Token is null or not exists');
+      store.dispatch(push('/login'));
+      return;
+    }
+
+    console.log('Token is there');
+    verifyToken(token)
+      .then(response => {
+        console.log('Token verfify response', response);
+
+        localStorage.setItem('token', response.token);
+
+        store.dispatch(saveUser(response.user));
+
+        callback();
+      })
+      .catch(err => {
+        console.log('Error verifying the token', err);
+        store.dispatch(push('/login'));
+        return;
+      })
+  }, 500);
   callback();
 
   // var token = sessionStorage.getItem('token');
@@ -48,7 +78,6 @@ const RootRouter = () => {
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterPage} />
         <Route path="/settings" onEnter={ onAuth } component={SettingsPage} />
-        <Route path="/spotify" component={SpotifyPage} />
       </Route>
     </Router>
 };

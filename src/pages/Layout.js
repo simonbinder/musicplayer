@@ -4,35 +4,26 @@ import FooterBar from '../components/FooterBar';
 import '../assets/index.scss';
 import { connect } from 'react-redux';
 import { searchValueChanged } from '../actions/searchActions';
+import { resetCredentials } from '../actions/credentialsActions';
+import { push } from 'react-router-redux';
 
 class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.searchOnChange = this.searchOnChange.bind(this);
+    this.logout = this.logout.bind(this);
   };
 
   logout() {
     console.log('logout');
+    this.props.resetCredentials();
+    //
+    localStorage.removeItem('token');
+    //
+    this.props.goToLoginPage();
   };
 
   searchOnChange(ev) {
-    // fetch('http://localhost:4000/spotify/search', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     access_token: 'BQDcu5VLu3DEEKUDsD3UWbhCSl9K5x5f1DKGNsEP9bG5ca8TZdOOZb015v_SYa3o6-qIAMbdNYo-hqYzmZEgcULBBYh0DXrzZ3WLvwilCrEEiPWLS-XzepC5C5_NsAKrNAPtt_b-1gyhtvdKozwnxniMAuCKChejiA',
-    //     q: 'Christmas',
-    //   }),
-    // }).then(response => response.json())
-    // .then(response => {
-    //   console.log('Spotify response', response);
-    // })
-    // .catch(error => {
-    //   console.log('Spotify search error', error);
-    // });
     this.props.onSearchValueChanged(ev.currentTarget.value);
   }
 
@@ -78,6 +69,8 @@ function mapStateToProps(store) {
 
 const mapDispatchToProps = dispatch => ({
   onSearchValueChanged: value => dispatch(searchValueChanged(value)),
+  resetCredentials: () => dispatch(resetCredentials()),
+  goToLoginPage: () => dispatch(push('/login')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

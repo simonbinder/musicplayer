@@ -10,7 +10,6 @@ class IndexPage extends React.Component {
   };
 
   render() {
-    console.log(this.props.search);
 
     return <div>
 
@@ -18,17 +17,15 @@ class IndexPage extends React.Component {
         <h1>Search results</h1>
 
         <div className="row">
-          <ResultEntry
-            origin="spotify"
-            title="New Rules"
-            artists="Dua Lipa"
-          />
-          <ResultEntry
-            origin="spotify"
-          />
-          <ResultEntry
-            origin="spotify"
-          />
+          { this.props.search.tracks.map((track, key) => {
+            console.log(track);
+            return <ResultEntry
+              key={key}
+              title={track.name}
+              artists={track.artists}
+              imageUrl={track.image}
+            />
+          }) }
         </div>
 
       </div>

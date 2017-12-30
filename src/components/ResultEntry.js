@@ -6,7 +6,8 @@ const ResultEntry = props => {
   const {
     origin,
     title,
-    artists
+    artists,
+    imageUrl
   } = props;
 
   let classes = 'col-md-12 o-result-entry';
@@ -22,6 +23,7 @@ const ResultEntry = props => {
   }
 
   return <div className={classes}>
+    <img src={imageUrl} />
     <div className="o-result-entry__body">
       <p>{title}</p>
       <p>{artists}</p>

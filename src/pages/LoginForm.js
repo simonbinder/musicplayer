@@ -2,6 +2,7 @@ import React from 'react';
 import InputField from '../components/InputField';
 import InputFieldError from '../components/InputFieldError';
 import { loginRequest } from '../services/accountService';
+import { Link } from 'react-router';
 
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -109,6 +110,10 @@ export default class LoginForm extends React.Component {
             className="btn btn-primary"
             onClick={ this.handleSubmit }
             value="Submit" />
+          </div>
+
+          <div>
+            <Link to="/register">Don't have an account. Register here</Link>
           </div>
     </div>
   };

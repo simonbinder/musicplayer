@@ -116,7 +116,7 @@ router.post('/refresh_token', (req, res) => {
 
     if(error) {
       console.log('send error');
-      return res.status(501).json({
+      return res.status(200).json({
         error: error,
       });
     } else {
@@ -164,10 +164,18 @@ router.post('/search', (req, res) => {
       return res.json(error);
     } else {
 
+      body.tracks.items.forEach(track => {
+        console.log('Track', track);
+        if(track.images) {
+          console.log('Images', track.images);
+        }
+      });
+
       return res.json({
         tracks: body.tracks.items.map((track) => {
           return {
             name: track.name,
+            image: track.images ? track.images[0].url : '',
             artists: track.artists.map((artist) => {
               return artist.name;
             }).join(', '),
