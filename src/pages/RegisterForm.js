@@ -1,8 +1,8 @@
 import React from 'react';
-import '../assets/RegisterForm.scss';
 import InputFieldError from '../components/InputFieldError';
 import InputField from '../components/InputField';
 import { registerRequest } from '../services/accountService';
+import '../assets/RegisterForm.scss';
 
 export default class RegisterForm extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ export default class RegisterForm extends React.Component {
         break;
       }
       case 'password': {
-        if(checkValue && /^(?=.*\d).{4,8}/.test(checkValue)) {
+        if(checkValue && /^(?=.*\d).{4,8}$/.test(checkValue)) {
           return '';
         } else {
           return 'Password must be between 4 and 8 digits long and include at least one numeric digit.';

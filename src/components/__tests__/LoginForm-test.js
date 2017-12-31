@@ -25,4 +25,24 @@ describe('LoginForm Component', () => {
     const inputFieldError = (loginComponent.find(InputFieldError).first()).shallow();
     expect(inputFieldError.find('.o-error-active').length).toBe(1);
   })
+
+  test('Check if email is valid', () => {
+    const loginComponent = shallow(<LoginForm />);
+    expect(loginComponent.instance().checkValid('email', '')).toBe('Please enter a valid Username');
+  })
+
+  test('Correct email entered', () => {
+    const loginComponent = shallow(<LoginForm />);
+    expect(loginComponent.instance().checkValid('email', 'test@test.de')).toBe('');
+  })
+
+  test('Check if password is valid', () => {
+    const loginComponent = shallow(<LoginForm />);
+    expect(loginComponent.instance().checkValid('password', '')).toBe('Please enter your password');
+  })
+
+  test('Correct password entered', () => {
+    const loginComponent = shallow(<LoginForm />);
+    expect(loginComponent.instance().checkValid('password', '123adf')).toBe('');
+  })
 });
