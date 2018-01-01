@@ -15,7 +15,7 @@ export default function playlistReducer(state = initialState, action) {
       });
     case SAVE_PLAYLIST:
       return Object.assign({}, state, {
-        playlists: state.playlists.push(action.payload),
+        playlists: state.playlists.concat(action.payload),
       });
     default:
       return state;

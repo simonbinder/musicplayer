@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PlaylistBox from '../components/PlaylistBox';
 import { createNewPlaylist } from '../actions/playlistActions';
+import { Link } from 'react-router';
 
 class PlayListsOverviewPage extends React.Component {
   constructor(props) {
@@ -36,10 +37,12 @@ class PlayListsOverviewPage extends React.Component {
       <h2>Your playlists</h2>
 
       { this.props.playlist.playlists.map((playlist, key) => {
-        return <PlaylistBox
+        return <Link key={key} to={ '/playlist?id=' + playlist._id }>
+        <PlaylistBox
           key={key}
           name={playlist.name}
         />
+        </Link>
       })}
     </div>
   };

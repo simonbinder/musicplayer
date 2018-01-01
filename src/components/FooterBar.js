@@ -11,28 +11,28 @@ export default class FooterBar extends React.Component {
     var loadYT;
   };
 
-  componentDidMount () {
-   if (!this.loadYT) {
-     this.loadYT = new Promise((resolve) => {
-       const tag = document.createElement('script')
-       tag.src = 'https://www.youtube.com/iframe_api'
-       const firstScriptTag = document.getElementsByTagName('script')[0]
-       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-       window.onYouTubeIframeAPIReady = () => resolve(window.YT)
-     })
-   }
-   this.loadYT.then((YT) => {
-      this.player = new YT.Player(this.youtubePlayerAnchor, {
-        height: '0',
-        width: '0',
-        videoId: 'E1nfGw8qD70',
-        playerVars: {
-          autoplay: 'true',
-        },
-
-      })
-    })
-  }
+  // componentDidMount () {
+  //  if (!this.loadYT) {
+  //    this.loadYT = new Promise((resolve) => {
+  //      const tag = document.createElement('script')
+  //      tag.src = 'https://www.youtube.com/iframe_api'
+  //      const firstScriptTag = document.getElementsByTagName('script')[0]
+  //      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+  //      window.onYouTubeIframeAPIReady = () => resolve(window.YT)
+  //    })
+  //  }
+  //  this.loadYT.then((YT) => {
+  //     this.player = new YT.Player(this.youtubePlayerAnchor, {
+  //       height: '0',
+  //       width: '0',
+  //       videoId: 'E1nfGw8qD70',
+  //       playerVars: {
+  //         autoplay: 'true',
+  //       },
+  //
+  //     })
+  //   })
+  // }
 
 
   toggleButton(play){

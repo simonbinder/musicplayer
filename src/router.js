@@ -12,6 +12,7 @@ import store from './store';
 import { push } from 'react-router-redux';
 import { saveUser } from './actions/credentialsActions';
 import { savePlaylistsInitial } from './actions/playlistActions';
+import PlaylistPage from './pages/Playlistpage';
 
 const onAuth = (nextState, replace, callback) => {
   setTimeout(() => {
@@ -43,35 +44,6 @@ const onAuth = (nextState, replace, callback) => {
         return;
       })
   }, 500);
-  callback();
-
-  // var token = sessionStorage.getItem('token');
-  // console.log('Token', token);
-  //
-  // if(token == null) {
-  //   console.log('Token is null');
-  //   replace({
-  //     pathname: '/login',
-  //   });
-  //   return;
-  // }
-  //
-  // console.log('Token is there');
-  // verifyToken(token)
-  //   .then(response => {
-  //     console.log('Token verify response', response);
-  //     //set token
-  //     sessionStorage.setItem('token', response.token);
-  //     //set user (WIP)
-  //     sessionStorage.setItem('user', JSON.parse(response.user));
-  //     callback();
-  //   })
-  //   .catch(err => {
-  //     replace({
-  //       pathname: '/login',
-  //     });
-  //     return;
-  //   });
 };
 
 const RootRouter = () => {
@@ -82,6 +54,7 @@ const RootRouter = () => {
         <Route path="/register" component={RegisterPage} />
         <Route path="/settings" onEnter={ onAuth } component={SettingsPage} />
         <Route path="/playlists" onEnter={ onAuth } component={PlayListsOverviewPage} />
+        <Route path="/playlist" onEnter={ onAuth } component={PlaylistPage} />
       </Route>
     </Router>
 };
