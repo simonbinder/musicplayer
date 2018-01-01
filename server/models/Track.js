@@ -6,7 +6,7 @@ const trackSchema = new Schema({
     type: String,
     enum: ['spotify', 'soundcloud', 'youtube'],
   },
-  id: {
+  source: {
     type: String
   },
   title: {

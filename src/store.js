@@ -19,7 +19,9 @@ const store = createStore(
 );
 
 store.dispatch(verifySpotifyRefreshToken());
-
+//
 window.store = store;
+//
+window.audioManager = new Audio();
 
 export default store;

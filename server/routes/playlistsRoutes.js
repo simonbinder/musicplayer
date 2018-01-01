@@ -109,10 +109,10 @@ router.post('/:id', (req, res) => {
     console.log('Origin', req.body.origin);
     console.log('Title', req.body.title);
     console.log('Artists', req.body.artists);
-    console.log('id', req.body.id);
+    console.log('source', req.body.source);
 
     var track = new Track({
-      id: req.body.id,
+      source: req.body.source,
       title: req.body.title,
       artists: req.body.artists,
       origin: req.body.origin,

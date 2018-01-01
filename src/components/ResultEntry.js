@@ -4,7 +4,7 @@ import Tooltip from './Tooltip';
 
 const ResultEntry = props => {
 
-  const { origin, title, artists, imageUrl } = props;
+  const { origin, title, artists, imageUrl, source } = props;
 
   let classes = 'col-md-12 o-result-entry';
   if(origin === 'soundcloud') {
@@ -20,7 +20,7 @@ const ResultEntry = props => {
 
   const items = props.playlists.map(playlist => {
     return {
-      onClick: () => props.onTrackAdd(playlist._id, title, artists, origin),
+      onClick: () => props.onTrackAdd(playlist._id, title, artists, origin, source),
       title: playlist.name,
     };
   })

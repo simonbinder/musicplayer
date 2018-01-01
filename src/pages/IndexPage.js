@@ -3,7 +3,8 @@ import {
   connect
 } from 'react-redux';
 import ResultEntry from '../components/ResultEntry';
-import { requestSaveTrack } from '../actions/playlistActions';
+import { requestSaveTrack, pauseCurrentSong } from '../actions/playlistActions';
+
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -11,9 +12,9 @@ class IndexPage extends React.Component {
     this.onTrackAdd = this.onTrackAdd.bind(this);
   };
 
-  onTrackAdd(playlistId, title, artists, origin, id) {
-    //console.log(playlistId, title, artists, origin, id);
-    this.props.onTrackSave(playlistId, title, artists, origin, id);
+  onTrackAdd(playlistId, title, artists, origin, source) {
+    //console.log(playlistId, title, artists, origin, source);
+    this.props.onTrackSave(playlistId, title, artists, origin, source);
   };
 
   render() {
@@ -22,7 +23,7 @@ class IndexPage extends React.Component {
 
     return <div>
 
-      <div className="container">
+      <div className="container" >
         <p>
           Lorem ipsum dolor sit amet, in qui dico eros. In est error eloquentiam necessitatibus, sed dicant aperiri ex, eu duo postea equidem. Usu no eius movet omnium. Feugiat qualisque te ius. Vis justo urbanitas vulputate at.
           Eu est lorem facilisis rationibus, pro libris constituam te. Omnes exerci fabulas sea cu, an vis dicit assentior referrentur. Nam at constituto efficiantur, te nam tamquam volumus dignissim. Unum virtute temporibus et ius, mei et summo fabulas, est tation ceteros cotidieque no. Ea nibh primis argumentum sed.
@@ -41,6 +42,7 @@ class IndexPage extends React.Component {
                 origin={track.origin}
                 playlists={this.props.playlists}
                 onTrackAdd={this.onTrackAdd}
+                source={track.source}
               />
             }) }
           </div>
@@ -62,7 +64,7 @@ function mapStateToProps(store, ownProps) {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onTrackSave: (playlistId, title, artists, origin, id) => dispatch(requestSaveTrack(playlistId, title, artists, origin, id)),
+  onTrackSave: (playlistId, title, artists, origin, source) => dispatch(requestSaveTrack(playlistId, title, artists, origin, source)),
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(IndexPage);

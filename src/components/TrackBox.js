@@ -6,11 +6,12 @@ const TrackBox = props => {
   const {
     title,
     artists,
+    onPlay
   } = props;
 
-  return <div className="o-track-box">
-    <p>{title}</p>
-    <p>{artists}</p>
+  return <div className="o-track-box" onClick={ onPlay }>
+    <span>{title}</span>
+    <span>{artists}</span>
   </div>
 };
 

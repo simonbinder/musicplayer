@@ -180,6 +180,8 @@ router.post('/search', (req, res) => {
             artists: track.artists.map((artist) => {
               return artist.name;
             }).join(', '),
+            id: track.id,
+            source: track.preview_url,
           };
         }),
       });

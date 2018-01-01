@@ -4,4 +4,9 @@
   border: 1px solid #ccc;
   margin-bottom: 5px;
   color: white;
+  display: flex;
+
+  span {
+    flex: 1;
+  }
 }

@@ -3,7 +3,33 @@ import {
   SAVE_PLAYLIST,
   REMOVE_PLAYLIST,
   UPDATE_PLAYLIST,
+  PLAY_TRACK
 } from '../consts/playlistConsts';
+//
+export function pauseCurrentSong() {
+  window.audioManager.pause();
+};
+//
+export function setNewActiveSong(track) {
+  return {
+    type: PLAY_TRACK,
+    payload: track,
+  };
+};
+
+export function startNewSong(track) {
+  return (dispatch, getState) => {
+    //set new ative track
+    dispatch(setNewActiveSong(track));
+
+    console.log('source', track.source);
+    console.log('track', track);
+
+    window.audioManager.src = track.source;
+    window.audioManager.play();
+  };
+};
+
 //
 export function savePlaylistsInitial(playlists) {
   return {
@@ -84,7 +110,7 @@ export function createNewPlaylist(userId, name) {
 };
 
 //save track in playlist
-export function requestSaveTrack(playlistId, title, artists, origin, trackId) {
+export function requestSaveTrack(playlistId, title, artists, origin, source) {
   return (dispatch, getState) => {
     fetch('http://localhost:4000/playlists/' + playlistId, {
       method: 'POST',
@@ -96,7 +122,7 @@ export function requestSaveTrack(playlistId, title, artists, origin, trackId) {
         origin: origin,
         title: title,
         artists: artists,
-        id: trackId,
+        source: source,
       })
     })
     .then(response => response.json())

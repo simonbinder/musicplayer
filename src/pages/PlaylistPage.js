@@ -2,22 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectPlaylist } from '../selector/playlistSelector';
 import TrackBox from '../components/TrackBox';
+import { startNewSong } from '../actions/playlistActions';
 
 class PlaylistPage extends React.Component {
   constructor(props) {
     super(props);
+    this.onSongPlay = this.onSongPlay.bind(this);
+  };
+
+  onSongPlay(track) {
+    this.props.onSongPlay(track);
   };
 
   render() {
 
     console.log('Playlist', this.props.playlist);
     console.log('ownProps', this.props.ownProps);
-
-    const tracks = [
-      'New Rules',
-      'New Rules 1',
-      'New Rules 2',
-    ];
 
     if(!this.props.playlist) {
       return <div className="container">
@@ -32,6 +32,7 @@ class PlaylistPage extends React.Component {
             title={track.title}
             artists={track.artists}
             key={key}
+            onPlay={ () => this.onSongPlay(track) }
           />
         })}
       </div>
@@ -48,7 +49,7 @@ function mapStateToProps(store, ownProps) {
 };
 
 const mapDispatchToProps = dispatch => ({
-
+  onSongPlay: track => dispatch(startNewSong(track)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistPage);
