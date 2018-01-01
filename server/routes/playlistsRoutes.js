@@ -15,6 +15,31 @@ router.get('/', (req, res) => {
   });
 });
 
+//deletes are playlist
+router.delete('/', (req, res) => {
+  if(!req.body) {
+    return res.status(400).json({
+      error: 'No body specified',
+    });
+  } else {
+
+    Playlist.findOneAndRemove({
+      '_id': req.body.id,
+    }, (err, playlist) => {
+      if(err || playlist == null) {
+        return res.status(501).json({
+          error: err ? err : 'playlist not found',
+        });
+      } else {
+        return res.json({
+          success: true,
+          playlist: playlist,
+        });
+      }
+    });
+  }
+});
+
 //creates a new playlist
 router.post('/', (req, res) => {
   if(!req.body) {

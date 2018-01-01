@@ -3,12 +3,16 @@ const Schema = mongoose.Schema;
 
 const playlistSchema = new Schema({
   name: {
-    type: String 
+    type: String
   },
   tracks: [{
     type: Schema.Types.ObjectId,
     ref: 'Track',
   }],
+  created: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 const Playlist = mongoose.model('Playlist', playlistSchema);

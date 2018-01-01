@@ -1,6 +1,7 @@
 import {
   SAVE_PLAYLISTS_INITIAL,
   SAVE_PLAYLIST,
+  REMOVE_PLAYLIST
 } from '../consts/playlistConsts';
 
 const initialState = {
@@ -16,6 +17,12 @@ export default function playlistReducer(state = initialState, action) {
     case SAVE_PLAYLIST:
       return Object.assign({}, state, {
         playlists: state.playlists.concat(action.payload),
+      });
+    case REMOVE_PLAYLIST:
+      return Object.assign({}, state, {
+        playlists: state.playlists.filter(playlist => {
+          return playlist._id != action.payload; //its an id
+        }),
       });
     default:
       return state;
