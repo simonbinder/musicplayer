@@ -3,6 +3,7 @@ import {
   SEARCH_TRACKS_SUCCESS,
   SEARCH_TRACKS_ERROR,
 } from '../consts/searchConsts';
+import { push } from 'react-router-redux';
 
 export function searchSuccess(tracks) {
   return {
@@ -25,6 +26,9 @@ export function searchValueChanged(value) {
       type: SEARCH_VALUE_CHANGED,
       payload: value,
     });
+
+    //go to indexpage
+    dispatch(push('/'));
 
     const accessToken = getState().credentials.spotifyAccessToken;
     fetch('http://localhost:4000/spotify/search', {

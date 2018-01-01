@@ -139,7 +139,7 @@ class RegisterForm extends React.Component {
   };
 };
 
-function mapStateToProps(store, ownProps) {
+function mapStateToProps(store) {
   return { };
 };
 

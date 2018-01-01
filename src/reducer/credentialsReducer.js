@@ -6,17 +6,19 @@ import {
 
 const initialState = {
   spotifyAccessToken: null,
-  user: {},
+  user: null,
 };
 
 export default function credentialsReducer(state = initialState, action) {
   switch(action.type) {
     case SAVE_SPOTIFY_ACCESS_TOKEN:
-      state.spotifyAccessToken = action.payload;
-      return state;
+      return Object.assign({}, state, {
+        spotifyAccessToken: action.payload,
+      });
     case SAVE_USER:
-      state.user = action.payload;
-      return state;
+      return Object.assign({}, state, {
+        user: action.payload,
+      });
     case RESET_CREDENTIALS:
       return initialState;
     default:

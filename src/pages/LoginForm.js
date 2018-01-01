@@ -3,8 +3,10 @@ import InputField from '../components/InputField';
 import InputFieldError from '../components/InputFieldError';
 import { loginRequest } from '../services/accountService';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -62,9 +64,10 @@ export default class LoginForm extends React.Component {
       .then(response => {
         console.log('Login response', response);
         //save token
-        sessionStorage.setItem('token', response.token);
+        localStorage.setItem('token', response.token);
         //go to indexpage
         this.props.router.push('/');
+
       })
       .catch(error => {
         console.log('Error', error);
@@ -75,7 +78,7 @@ export default class LoginForm extends React.Component {
   };
 
   render() {
-    return <div>
+    return <div className="container">
     <div className="form-group">
       <label>
         Username:
@@ -118,3 +121,14 @@ export default class LoginForm extends React.Component {
     </div>
   };
 };
+
+function mapStateToProps(state) {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => ({
+  goToIndexPage: () => dispatch(push('/')),
+  saveUser: user => dispatch
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

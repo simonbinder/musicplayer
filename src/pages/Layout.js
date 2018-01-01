@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { searchValueChanged } from '../actions/searchActions';
 import { resetCredentials } from '../actions/credentialsActions';
 import { push } from 'react-router-redux';
+import { isEmpty } from '../utils';
 
 class Layout extends React.Component {
   constructor(props) {
@@ -29,22 +30,24 @@ class Layout extends React.Component {
 
   render() {
 
-    const {
-      searchValue,
-    } = this.props.search;
+    const { searchValue } = this.props.search;
+    const { user } = this.props.credentials;
+    let content = [];
 
-    const content = [{
-      title: 'Jannik Lorenz',
-      childs: [{
-        type: 'link',
-        title: 'Account',
-        to: '/settings',
-      }, {
-        type: 'action',
-        title: 'Logout',
-        onClick: this.logout,
-      }],
-    }];
+    if(user) {
+      content = [{
+        title: user.email,
+        childs: [{
+          type: 'link',
+          title: 'Account',
+          to: '/settings',
+        }, {
+          type: 'action',
+          title: 'Logout',
+          onClick: this.logout,
+        }],
+      }];
+    }
 
     return <div>
       <HeaderBar
@@ -64,6 +67,7 @@ class Layout extends React.Component {
 function mapStateToProps(store) {
   return {
     search: store.search,
+    credentials: store.credentials,
   };
 };
 

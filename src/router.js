@@ -7,7 +7,6 @@ import RegisterPage from "./pages/RegisterPage";
 import Layout from './pages/Layout';
 import SettingsPage from './pages/SettingsPage';
 import { verifyToken } from './services/accountService';
-import SpotifyPage from './pages/SpotifyPage';
 import store from './store';
 import { push } from 'react-router-redux';
 import { saveUser } from './actions/credentialsActions';

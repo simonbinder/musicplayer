@@ -11,22 +11,32 @@ class IndexPage extends React.Component {
 
   render() {
 
+    const { tracks } = this.props.search;
+
     return <div>
 
       <div className="container">
-        <h1>Search results</h1>
+        <p>
+          Lorem ipsum dolor sit amet, in qui dico eros. In est error eloquentiam necessitatibus, sed dicant aperiri ex, eu duo postea equidem. Usu no eius movet omnium. Feugiat qualisque te ius. Vis justo urbanitas vulputate at.
+          Eu est lorem facilisis rationibus, pro libris constituam te. Omnes exerci fabulas sea cu, an vis dicit assentior referrentur. Nam at constituto efficiantur, te nam tamquam volumus dignissim. Unum virtute temporibus et ius, mei et summo fabulas, est tation ceteros cotidieque no. Ea nibh primis argumentum sed.
+        </p>
 
-        <div className="row">
-          { this.props.search.tracks.map((track, key) => {
-            console.log(track);
-            return <ResultEntry
-              key={key}
-              title={track.name}
-              artists={track.artists}
-              imageUrl={track.image}
-            />
-          }) }
-        </div>
+
+        { tracks.length > 0 ?
+          <div className="row">
+
+            <h2>Search results:</h2>
+            { this.props.search.tracks.map((track, key) => {
+              return <ResultEntry
+                key={key}
+                title={track.name}
+                artists={track.artists}
+                imageUrl={track.image}
+              />
+            }) }
+          </div>
+          : null
+        }
 
       </div>
 
@@ -37,6 +47,7 @@ class IndexPage extends React.Component {
 function mapStateToProps(store, ownProps) {
   return {
     search: store.search,
+    credentials: store.credentials,
   };
 };
 
