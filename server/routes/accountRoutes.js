@@ -40,11 +40,22 @@ router.post('/verifyToken', (req, res) => {
           error: err,
         });
       } else {
-        return res.status(200).json({
-          success: true,
-          token: token,
-          user: user,
+
+        User.findOne({ '_id': user._id }).populate("playlists").exec((err, user) => {
+          if(err || user == null) {
+            return res.status(501).json({
+              error: err ? err : 'user not found',
+            });
+          } else {
+            return res.status(200).json({
+              success: true,
+              token: token,
+              user: user,
+              playlists: user.playlists,
+            });
+          }
         });
+
       }
     });
 
@@ -118,10 +129,12 @@ router.post('/login', (req, res) => {
 
   if(valid) {
 
-    User.findOne({
+    let query = User.findOne({
       email: email,
       password: password,
-    }, (err, user) => {
+    }).populate("playlists");
+
+    query.exec((err, user) => {
       if(err || user == null) {
         return res.json({
           error: err ? err : `No user with ${email} found`,
@@ -133,6 +146,7 @@ router.post('/login', (req, res) => {
         return res.json({
           success: true,
           token: token,
+          playlists: user.playlists,
         });
       }
 

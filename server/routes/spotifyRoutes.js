@@ -174,6 +174,7 @@ router.post('/search', (req, res) => {
       return res.json({
         tracks: body.tracks.items.map((track) => {
           return {
+            origin: 'spotify',
             name: track.name,
             image: track.images ? track.images[0].url : '',
             artists: track.artists.map((artist) => {

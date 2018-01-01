@@ -32,6 +32,7 @@ class IndexPage extends React.Component {
                 title={track.name}
                 artists={track.artists}
                 imageUrl={track.image}
+                origin={track.origin}
               />
             }) }
           </div>

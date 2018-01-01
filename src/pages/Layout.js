@@ -42,6 +42,10 @@ class Layout extends React.Component {
           title: 'Account',
           to: '/settings',
         }, {
+          type: 'link',
+          title: 'My playlists',
+          to: '/playlists',
+        }, {
           type: 'action',
           title: 'Logout',
           onClick: this.logout,

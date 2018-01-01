@@ -5,6 +5,7 @@ import { loginRequest } from '../services/accountService';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { savePlaylistsInitial } from '../actions/playlistActions';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -65,6 +66,8 @@ class LoginForm extends React.Component {
         console.log('Login response', response);
         //save token
         localStorage.setItem('token', response.token);
+        //
+        this.props.savePlaylistsInitial(response.playlists);
         //go to indexpage
         this.props.router.push('/');
 
@@ -128,7 +131,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => ({
   goToIndexPage: () => dispatch(push('/')),
-  saveUser: user => dispatch
+  savePlaylistsInitial: playlists => dispatch(savePlaylistsInitial(playlists)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

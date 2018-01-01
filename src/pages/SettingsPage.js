@@ -13,9 +13,7 @@ class SettingsPage extends React.Component {
   componentDidMount() {
     console.log('Settingspage mount');
 
-    const {
-      api
-    } = this.props.location.query;
+    const { api } = this.props.location.query;
 
     switch(api) {
       case "spotify":
@@ -42,7 +40,7 @@ class SettingsPage extends React.Component {
         <h1 className="title">Activate and deactive our supported APIs</h1>
         <div className="row">
 
-          <div className="col-md-12 o-settings-block">
+          <div style={{ display: 'none' }} className="col-md-12 o-settings-block">
             <p>Connect to your soundcloud account:</p>
             <img src="assets/images/soundcloud-connect.png" />
           </div>

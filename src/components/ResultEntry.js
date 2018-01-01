@@ -29,7 +29,8 @@ const ResultEntry = props => {
       <p>{artists}</p>
     </div>
     <div className="o-result-entry__controls">
-      Controls
+      <div className="o-result-entry__icon o-result-entry__play"></div>
+      <div className="o-result-entry__icon o-result-entry__add"></div>
     </div>
   </div>
 };
