@@ -32,6 +32,7 @@ class Layout extends React.Component {
 
     const { searchValue } = this.props.search;
     const { user } = this.props.credentials;
+    const { activeTrack } = this.props.playlist;
     let content = [];
 
     if(user) {
@@ -60,10 +61,14 @@ class Layout extends React.Component {
         searchOnChange={this.searchOnChange}
         searchValue={searchValue}
       />
+
       <div className="main">
         {this.props.children}
       </div>
-      <FooterBar />
+
+      <FooterBar
+        activeTrack={activeTrack}
+      />
     </div>
   };
 };
@@ -72,6 +77,7 @@ function mapStateToProps(store) {
   return {
     search: store.search,
     credentials: store.credentials,
+    playlist: store.playlist,
   };
 };
 
