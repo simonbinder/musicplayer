@@ -2,6 +2,7 @@ import {
   SAVE_PLAYLISTS_INITIAL,
   SAVE_PLAYLIST,
   REMOVE_PLAYLIST,
+  UPDATE_PLAYLIST,
 } from '../consts/playlistConsts';
 //
 export function savePlaylistsInitial(playlists) {
@@ -22,6 +23,13 @@ export function removePlaylist(id) {
   return {
     type: REMOVE_PLAYLIST,
     payload: id,
+  };
+};
+//
+export function updatePlaylist(playlist) {
+  return {
+    type: UPDATE_PLAYLIST,
+    payload: playlist,
   };
 };
 //
@@ -71,6 +79,34 @@ export function createNewPlaylist(userId, name) {
     })
     .catch(error => {
       console.log('Error creating new playlist', error);
+    })
+  };
+};
+
+//save track in playlist
+export function requestSaveTrack(playlistId, title, artists, origin, trackId) {
+  return (dispatch, getState) => {
+    fetch('http://localhost:4000/playlists/' + playlistId, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        origin: origin,
+        title: title,
+        artists: artists,
+        id: trackId,
+      })
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.success) {
+        //TODO
+      }
+    })
+    .catch(error => {
+      console.log('Error saving track', error);
     })
   };
 };

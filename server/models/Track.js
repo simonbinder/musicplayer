@@ -4,10 +4,16 @@ const Schema = mongoose.Schema;
 const trackSchema = new Schema({
   origin: {
     type: String,
-    enum: ['spotify'],
+    enum: ['spotify', 'soundcloud', 'youtube'],
   },
   id: {
     type: String
+  },
+  title: {
+    type: String,
+  },
+  artists: {
+    type: String,
   },
 });
 

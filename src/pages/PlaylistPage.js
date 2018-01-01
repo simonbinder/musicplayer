@@ -19,10 +19,18 @@ class PlaylistPage extends React.Component {
       'New Rules 2',
     ];
 
+    if(!this.props.playlist) {
+      return <div className="container">
+        <h2>Playlist does not exist</h2>
+      </div>
+    }
+
     return <div className="container">
       <div className="row">
-        { tracks.map((track, key) => {
+        { this.props.playlist.tracks.map((track, key) => {
           return <TrackBox
+            title={track.title}
+            artists={track.artists}
             key={key}
           />
         })}
@@ -33,7 +41,8 @@ class PlaylistPage extends React.Component {
 
 function mapStateToProps(store, ownProps) {
   return {
-    //playlist: selectPlaylist(store.playlist.playlists, ownProps.query.id),
+    //playlist: store.playlist,
+    playlist: selectPlaylist(store.playlist.playlists, ownProps.location.query.id),
     //ownProps: ownProps,
   };
 };

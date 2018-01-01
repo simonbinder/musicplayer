@@ -41,7 +41,12 @@ router.post('/verifyToken', (req, res) => {
         });
       } else {
 
-        User.findOne({ '_id': user._id }).populate("playlists").exec((err, user) => {
+        User.findOne({ '_id': user._id }).populate({
+          path: 'playlists',
+          populate: {
+            path: 'tracks',
+          },
+        }).exec((err, user) => {
           if(err || user == null) {
             return res.status(501).json({
               error: err ? err : 'user not found',

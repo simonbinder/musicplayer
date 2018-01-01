@@ -3,10 +3,17 @@ import {
   connect
 } from 'react-redux';
 import ResultEntry from '../components/ResultEntry';
+import { requestSaveTrack } from '../actions/playlistActions';
 
 class IndexPage extends React.Component {
   constructor(props) {
     super(props);
+    this.onTrackAdd = this.onTrackAdd.bind(this);
+  };
+
+  onTrackAdd(playlistId, title, artists, origin, id) {
+    //console.log(playlistId, title, artists, origin, id);
+    this.props.onTrackSave(playlistId, title, artists, origin, id);
   };
 
   render() {
@@ -21,7 +28,6 @@ class IndexPage extends React.Component {
           Eu est lorem facilisis rationibus, pro libris constituam te. Omnes exerci fabulas sea cu, an vis dicit assentior referrentur. Nam at constituto efficiantur, te nam tamquam volumus dignissim. Unum virtute temporibus et ius, mei et summo fabulas, est tation ceteros cotidieque no. Ea nibh primis argumentum sed.
         </p>
 
-
         { tracks.length > 0 ?
           <div className="row">
 
@@ -33,6 +39,8 @@ class IndexPage extends React.Component {
                 artists={track.artists}
                 imageUrl={track.image}
                 origin={track.origin}
+                playlists={this.props.playlists}
+                onTrackAdd={this.onTrackAdd}
               />
             }) }
           </div>
@@ -49,9 +57,12 @@ function mapStateToProps(store, ownProps) {
   return {
     search: store.search,
     credentials: store.credentials,
+    playlists: store.playlist.playlists,
   };
 };
 
-const mapDispatchToProps = dispatch => ({ });
+const mapDispatchToProps = dispatch => ({
+  onTrackSave: (playlistId, title, artists, origin, id) => dispatch(requestSaveTrack(playlistId, title, artists, origin, id)),
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(IndexPage);

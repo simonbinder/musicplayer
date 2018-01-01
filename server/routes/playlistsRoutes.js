@@ -98,6 +98,57 @@ router.post('/', (req, res) => {
   }
 });
 
+router.post('/:id', (req, res) => {
+  if(!req.body) {
+    return res.status(400).json({
+      error: 'No body specified',
+    });
+  } else {
+
+    console.log('Playlist id', req.params.id);
+    console.log('Origin', req.body.origin);
+    console.log('Title', req.body.title);
+    console.log('Artists', req.body.artists);
+    console.log('id', req.body.id);
+
+    var track = new Track({
+      id: req.body.id,
+      title: req.body.title,
+      artists: req.body.artists,
+      origin: req.body.origin,
+    });
+
+    track.save(err => {
+      if(err) {
+        return res.status(501).json({
+          error: err,
+        });
+      } else {
+        Playlist.findOneAndUpdate({
+          '_id': req.params.id,
+        }, {
+          $push: {
+            'tracks': track._id,
+          },
+        }, {
+          new: true,
+        }, (err, playlist) => {
+          if(err || playlist == null) {
+            return res.status(501).json({
+              error: err ? err : 'playlist not found',
+            });
+          } else {
+            return res.json({
+              success: true,
+              playlist: playlist,
+            });
+          }
+        });
+      }
+    });
+  }
+});
+
 //adds a track to a playlist
 router.put('/:id', (req, res) => {
   return res.json({
