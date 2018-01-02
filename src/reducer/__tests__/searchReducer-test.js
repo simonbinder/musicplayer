@@ -6,5 +6,24 @@ describe('search reducer', () => {
     expect(searchReducer(undefined, {})).toEqual({searchValue: '', tracks: [], error: ''})
   })
 
-  
+  it('search entered', () => {
+    expect(searchReducer({}, {
+      type: SEARCH_VALUE_CHANGED,
+      payload: "Test"
+    })).toEqual({searchValue: 'Test'})
+  })
+
+  it('search successful', () => {
+    expect(searchReducer({}, {
+      type: SEARCH_TRACKS_SUCCESS,
+      payload: "Test"
+    })).toEqual({tracks: 'Test'})
+  })
+
+  it('search error', () => {
+    expect(searchReducer({}, {
+      type: SEARCH_TRACKS_ERROR,
+      payload: "Test"
+    })).toEqual({error: 'Test'})
+  })
 })
