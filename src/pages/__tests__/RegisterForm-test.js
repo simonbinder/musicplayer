@@ -1,6 +1,6 @@
 import React from 'react';
-import RegisterForm from '../../pages/RegisterForm';
-import InputFieldError from '../InputFieldError';
+import {RegisterForm} from '../../pages/RegisterForm';
+import InputFieldError from '../../components/InputFieldError';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';

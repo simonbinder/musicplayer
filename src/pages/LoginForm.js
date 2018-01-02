@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { savePlaylistsInitial } from '../actions/playlistActions';
 
-class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
@@ -134,4 +134,5 @@ const mapDispatchToProps = dispatch => ({
   savePlaylistsInitial: playlists => dispatch(savePlaylistsInitial(playlists)),
 });
 
+//TODO: rename export
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

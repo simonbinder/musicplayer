@@ -6,7 +6,7 @@ import '../assets/RegisterForm.scss';
 import { connect } from 'react-redux';
 import { push} from 'react-router-redux';
 
-class RegisterForm extends React.Component {
+export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -147,4 +147,5 @@ const mapDispatchToProps = dispatch => ({
   goToIndexPage: () => dispatch(push('/')),
 });
 
+//TODO: rename export
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
