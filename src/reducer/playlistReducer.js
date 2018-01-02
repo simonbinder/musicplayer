@@ -6,6 +6,7 @@ import {
 } from '../consts/playlistConsts';
 
 const initialState = {
+  playStatus: 'paused',
   activeTrack: null,
   playlists: [],
 };
