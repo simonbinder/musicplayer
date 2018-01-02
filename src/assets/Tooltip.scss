@@ -1,0 +1,12 @@
+.o-tooltip {
+  position: absolute;
+  background-color: #666666;
+  z-index: 100000;
+  width: 100px;
+
+  &__item {
+    display: block;
+    padding: 10px;
+    color: white;
+  }
+}
