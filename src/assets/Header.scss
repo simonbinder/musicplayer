@@ -32,11 +32,9 @@
 	      box-shadow:0 0 0;
 	      border-color:#ccc;
         height: 55px;
-        &:hover{
-          box-shadow: -1px 0 9px 1px rgba(61, 111, 242, 0.5);
-        }
+
         &:hover + .input-group-addon{
-          background-color: rgba(202, 245, 229, 1);
+          background-color: rgba(231, 254, 232, 1);
         }
 
         &:focus{
