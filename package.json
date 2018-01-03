@@ -51,6 +51,6 @@
     "moduleNameMapper": {
       "\\.(css|scss)$": "<rootDir>/__mocks__/styleMock.js"
     },
-    "setupTestFrameworkScriptFile": "<rootDir>/__mocks__/localStorageMock.js"      
+    "setupTestFrameworkScriptFile": "<rootDir>/__mocks__/localStorageMock.js"
   }
 }

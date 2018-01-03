@@ -1,5 +1,4 @@
 import playlistReducer from '../playlistReducer'
-import
 import {SAVE_PLAYLISTS_INITIAL, SAVE_PLAYLIST, REMOVE_PLAYLIST, PLAY_TRACK} from '../../consts/playlistConsts';
 
 describe('search reducer', () => {
