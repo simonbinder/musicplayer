@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PlaylistBox from '../components/PlaylistBox';
+import '../assets/PlayListsOverviewPage.scss';
 import { createNewPlaylist, requestRemovePlaylist } from '../actions/playlistActions';
 import { Link } from 'react-router';
 
@@ -36,11 +37,28 @@ class PlayListsOverviewPage extends React.Component {
 
   render() {
     return <div className="container">
-      <h2>Create a new playlist:</h2>
-      <input type="text" value={this.state.playlistName} onChange={ ev => this.onPlaylistNameChange(ev) } />
-      <button onClick={ this.onPlaylistCreateSubmit }>Create</button>
+    <div className="c-add-playlist-wrapper">
+      <div className="input-group c-add-playlist-box">
+        <input
+          type="text"
+          placeholder="create a playlist"
+          value={this.state.playlistName}
+          onChange={ ev => this.onPlaylistNameChange(ev) }
+          className="form-control"
+          />
+          <span className="input-group-addon">
+            <button
+              type="submit"
+              onClick={ this.onPlaylistCreateSubmit }>
+                <span className="glyphicon glyphicon-plus"></span>
+            </button>
+           </span>
+      </div>
 
-      <h2>Your playlists</h2>
+    </div>
+
+<div className="c-playlist-box-container">
+  <h1>My playlists</h1>
 
       { this.props.playlist.playlists.map((playlist, key) => {
         return <PlaylistBox
@@ -50,6 +68,7 @@ class PlayListsOverviewPage extends React.Component {
           onDelete={ () => this.onPlaylistDelete(playlist._id) }
         />
       })}
+    </div>
     </div>
   };
 };

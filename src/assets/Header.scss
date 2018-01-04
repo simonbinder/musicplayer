@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   width:100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background: $background-header;
   border-bottom: 1px solid #ccc;
   margin: 0;
   z-index: 99;
@@ -26,7 +26,7 @@
 }
 
   &__search{
-          padding: 24px;
+        padding: 24px;
         .form-control{
         border-right:0;
 	      box-shadow:0 0 0;
@@ -34,38 +34,24 @@
         height: 55px;
 
         &:hover + .input-group-addon{
-          background-color: rgba(231, 254, 232, 1);
+          background-color: $formbackgroundgreen;
         }
 
         &:focus{
-          box-shadow: -1px 0 9px 1px rgba(61, 242, 73, 0.5);
+          box-shadow: $boxshadowgreen;
         }
         &:focus + .input-group-addon{
-          background-color: rgba(202, 245, 204, 1);
-          box-shadow: -1px 0 9px 1px rgba(61, 242, 73, 0.8);
+          background-color: $formbackgroundgreen;
+          box-shadow: $boxshadowgreen;
         }
-
     }
-
     .input-group-addon{
-      background-color: rgba(231, 254, 232, 1);
+      background-color: $formbackgroundgreen_light;
 
     }
     button{
         border:0;
         background:transparent;
-    }
-
-
-  }
-
-
-  &__element {
-    color: #66cc00;
-    transition: color 0.8s;
-
-    &:hover {
-      color: #99ff33;
     }
   }
 
