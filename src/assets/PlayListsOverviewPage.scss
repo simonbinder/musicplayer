@@ -1,12 +1,12 @@
 @import 'variables.scss';
 
 .c-add-playlist{
-  &-wrapper{
-  padding: 50px;
+  &__wrapper{
+  padding: 15px;
   width: 100%;
   text-align: center;
   }
-  &-box{
+  &__box{
       border-radius: 5px;
       margin: auto;
       .form-control{
@@ -25,7 +25,7 @@
         background-color: $formbackgroundgreen;
         box-shadow: $boxshadowgreen_light;
       }
-    }
+     }
       .input-group-addon{
         background-color: $formbackgroundgreen_light;
         width: 80px;
@@ -38,7 +38,20 @@
           background:transparent;
           font-size: 25px;
       }
-  }
+    }
+    &__goback{
+      margin-top:18px;
+      font-size: 15px;
+      a{
+        color:black;
+        text-decoration: none;
+        &:hover{
+          color: $gobackgrey;
+        }
+      }
+
+
+    }
 }
 .c-playlist-box-container{
   width: 100%;

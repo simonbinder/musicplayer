@@ -27,12 +27,6 @@ const PlaylistBox = props => {
           </div>
 
         </div>
-
-
-
-
-
-
     <h2 className="o-playlist-box__title">{name}</h2>
 
   </div>

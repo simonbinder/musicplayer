@@ -37,15 +37,15 @@ class PlayListsOverviewPage extends React.Component {
 
   render() {
     return <div className="container">
-    <div className="c-add-playlist-wrapper">
-      <div className="input-group c-add-playlist-box">
-        <input
-          type="text"
-          placeholder="create a playlist"
-          value={this.state.playlistName}
-          onChange={ ev => this.onPlaylistNameChange(ev) }
-          className="form-control"
-          />
+    <div className="c-add-playlist__wrapper">
+      <div className="input-group c-add-playlist__box">
+          <input
+            type="text"
+            placeholder="create a playlist"
+            value={this.state.playlistName}
+            onChange={ ev => this.onPlaylistNameChange(ev) }
+            className="form-control"
+            />
           <span className="input-group-addon">
             <button
               type="submit"
@@ -53,13 +53,16 @@ class PlayListsOverviewPage extends React.Component {
                 <span className="glyphicon glyphicon-plus"></span>
             </button>
            </span>
-      </div>
-
+         </div>
+          <div className="c-add-playlist__goback">
+            <Link to={ '/'}>
+                <span className="glyphicon glyphicon-menu-left"></span>go back
+            </Link>
+          </div>
     </div>
 
 <div className="c-playlist-box-container">
   <h1>My playlists</h1>
-
       { this.props.playlist.playlists.map((playlist, key) => {
         return <PlaylistBox
           key={key}
