@@ -1,7 +1,8 @@
 .o-result-entry {
   border: 1px solid #ccc;
-  background-color: white;
-  height: 100px;
+  border-radius: 3px;
+  border: 0.2px solid rgba(0, 0, 0, 0.05);
+  height: 130px;
   margin-bottom: 25px;
   transition: background-color 0.8s;
   padding: 25px 25px 25px 100px;
@@ -9,7 +10,8 @@
   flex-direction: row;
 
   &:hover {
-    background-color: #f2f2f2;
+    background-color: rgba(0, 0, 0, 0.08);
+
   }
 
   &__body {
@@ -21,37 +23,32 @@
     flex: 0 0 auto;
   }
 
-  &__icon {
-    position: relative;
-    height: 50px;
-    width: 50px;
-    border-radius: 25px;
-    border: 1px solid #ccc;
-    display: inline-block;
-    margin-left: 10px;
-    transition: background-color 0.8s, border-color 0.8s;
+  &__buttoncontainer{
+    margin: auto;
+      .o-result-entry-button{
+        margin: 3px;
+        height: 64px;
+        width: 64px;
+        float: left;
+        background-size: cover;
+        &:hover{
+          cursor:pointer;
+        }
+      }
+      .o-result-entry-button-play{
 
-    &:hover {
-      border-color: black;
-      background-color: #ccc;
-    }
-
-    &::after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      font-size: 24px;
-      line-height: 50px;
-    }
-  }
-
-  &__add::after {
-    content: "\2295";
-  }
-
-  &__play::after {
-    content: "\25B7";
+        margin-right: 50px;
+        background:url('assets/images/play-button.png')center left no-repeat;
+        &:hover{
+          background:url('assets/images/play-button-green.png')center left no-repeat;
+        }
+      }
+      .o-result-entry-button-add{
+        background:url('assets/images/add-button.png')center left no-repeat;
+        &:hover{
+          background:url('assets/images/add-button-green.png')center left no-repeat;
+        }
+      }
   }
 
   &--soundcloud {

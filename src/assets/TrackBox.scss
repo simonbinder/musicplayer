@@ -1,12 +1,43 @@
 .o-track-box {
-  padding: 25px 15px;
-  background-color: #666666;
-  border: 1px solid #ccc;
-  margin-bottom: 5px;
-  color: white;
+  padding: 30px 15px;
+  border: 0.2px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 3px;
+  border-radius:3px;
+  color: black;
   display: flex;
-
+  &:hover{
+    background-color: rgba(0, 0, 0, 0.08);
+  }
   span {
+    margin: auto;
     flex: 1;
+    padding: 3px;
+  }
+  &__buttoncontainer{
+    margin: auto;
+      .o-track-box-button{
+        height: 32px;
+        width: 32px;
+        float: left;
+        background-size: cover;
+        &:hover{
+          cursor:pointer;
+        }
+      }
+      .o-track-box-button-play{
+        background:url('assets/images/play-button-small.png')center left no-repeat;
+        &:hover{
+          background:url('assets/images/play-button-small-green.png')center left no-repeat;
+        }
+      }
+  }
+  &__remove-button{
+    opacity: 0.7;
+    text-align: right;
+    font-size: 25px;
+    &:hover{
+      opacity: 1;
+      cursor:pointer;
+    }
   }
 }

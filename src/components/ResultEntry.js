@@ -31,9 +31,13 @@ const ResultEntry = props => {
       <p>{title}</p>
       <p>{artists}</p>
     </div>
-    <div className="o-result-entry__controls">
-      <div className="o-result-entry__icon o-result-entry__play"></div>
-      <div className="o-result-entry__icon o-result-entry__add">
+
+    <div className="o-result-entry__buttoncontainer">
+      <div
+        className="o-result-entry-button o-result-entry-button-play">
+      </div>
+      <div
+        className="o-result-entry-button o-result-entry-button-add">
         <Tooltip items={items} />
       </div>
     </div>
