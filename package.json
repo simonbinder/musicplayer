@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "webapp:dev": "./node_modules/.bin/webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --content-base build/ ./webpack.config.js",
-    "server:dev": "./node_modules/.bin/nodemon ./server/server.js"
+    "server:dev": "./node_modules/.bin/nodemon ./server/server.js",
+    "test:watch": "npm test -- --watch"
   },
   "author": "Simon Binder, Tim Tenckhoff, Jannik Lorenz",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "cookie-parser": "^1.4.3",
     "css-loader": "^0.28.7",
     "express": "^4.16.2",
+    "fetch-mock": "^6.0.0-beta.7",
     "jest": "^22.0.3",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.13.7",

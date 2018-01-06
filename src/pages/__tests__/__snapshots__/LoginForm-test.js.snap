@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`LoginForm Component Check if email is valid 1`] = `"Please enter a valid Username"`;
+
+exports[`LoginForm Component Check if password is valid 1`] = `"Please enter your password"`;
+
+exports[`LoginForm Component Correct email entered 1`] = `""`;
+
+exports[`LoginForm Component Correct password entered 1`] = `""`;
+
+exports[`LoginForm Component Error message displayed when error state set 1`] = `1`;
+
+exports[`LoginForm Component No error message displayed when no error state set 1`] = `0`;
+
 exports[`LoginForm Component renders correctly 1`] = `
 <div
   className="container"

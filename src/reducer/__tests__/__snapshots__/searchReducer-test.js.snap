@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`search reducer search entered 1`] = `
+Object {
+  "searchValue": "Test",
+}
+`;
+
+exports[`search reducer search error 1`] = `
+Object {
+  "error": "Test",
+}
+`;
+
+exports[`search reducer search successful 1`] = `
+Object {
+  "tracks": "Test",
+}
+`;

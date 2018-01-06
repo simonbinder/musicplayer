@@ -10,20 +10,20 @@ describe('search reducer', () => {
     expect(searchReducer({}, {
       type: SEARCH_VALUE_CHANGED,
       payload: "Test"
-    })).toEqual({searchValue: 'Test'})
+    })).toMatchSnapshot();
   })
 
   it('search successful', () => {
     expect(searchReducer({}, {
       type: SEARCH_TRACKS_SUCCESS,
       payload: "Test"
-    })).toEqual({tracks: 'Test'})
+    })).toMatchSnapshot();
   })
 
   it('search error', () => {
     expect(searchReducer({}, {
       type: SEARCH_TRACKS_ERROR,
       payload: "Test"
-    })).toEqual({error: 'Test'})
+    })).toMatchSnapshot();
   })
 })

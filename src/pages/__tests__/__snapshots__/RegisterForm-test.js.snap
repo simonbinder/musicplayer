@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RegisterForm Component Correct email entered 1`] = `""`;
+
+exports[`RegisterForm Component Correct password entered 1`] = `""`;
+
+exports[`RegisterForm Component Country domain in email missing 1`] = `"Email is not valid"`;
+
+exports[`RegisterForm Component Digit in password missing 1`] = `"Password must be between 4 and 8 digits long and include at least one numeric digit."`;
+
+exports[`RegisterForm Component Error message displayed when error state set 1`] = `1`;
+
+exports[`RegisterForm Component No error message displayed when no error state set 1`] = `0`;
+
+exports[`RegisterForm Component No url in email 1`] = `"Email is not valid"`;
+
+exports[`RegisterForm Component Password too long 1`] = `"Password must be between 4 and 8 digits long and include at least one numeric digit."`;
+
+exports[`RegisterForm Component password too short 1`] = `"Password must be between 4 and 8 digits long and include at least one numeric digit."`;
+
 exports[`RegisterForm Component renders correctly 1`] = `
 <div
   className="c-register-container"

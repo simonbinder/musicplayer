@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`search reducer play track 1`] = `
+Object {
+  "activeTrack": "Test",
+}
+`;
+
+exports[`search reducer remove playlist 1`] = `
+Object {
+  "activeTrack": null,
+  "playlists": Array [
+    Object {
+      "_id": 1,
+      "name": "test",
+    },
+  ],
+}
+`;
+
+exports[`search reducer save initial playlist 1`] = `
+Object {
+  "playlists": "Test",
+}
+`;
+
+exports[`search reducer save playlist 1`] = `
+Object {
+  "activeTrack": null,
+  "playlists": "testTest",
+}
+`;

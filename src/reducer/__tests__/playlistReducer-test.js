@@ -6,25 +6,48 @@ describe('search reducer', () => {
     expect(playlistReducer(undefined, {})).toEqual({activeTrack: null, playlists: []})
   })
 
-  // it('save initial playlist', () => {
-  //   expect(searchReducer({}, {
-  //
-  //     type: SAVE_PLAYLISTS_INITIAL,
-  //     payload: "Test"
-  //   })).toEqual({searchValue: 'Test'})
-  // })
-  //
-  // it('search successful', () => {
-  //   expect(searchReducer({}, {
-  //     type: SEARCH_TRACKS_SUCCESS,
-  //     payload: "Test"
-  //   })).toEqual({tracks: 'Test'})
-  // })
-  //
-  // it('search error', () => {
-  //   expect(searchReducer({}, {
-  //     type: SEARCH_TRACKS_ERROR,
-  //     payload: "Test"
-  //   })).toEqual({error: 'Test'})
-  // })
+  it('save initial playlist', () => {
+    expect(playlistReducer({}, {
+      type: SAVE_PLAYLISTS_INITIAL,
+      payload: "Test"
+    })).toMatchSnapshot();
+  })
+
+  it('play track', () => {
+    expect(playlistReducer({}, {
+      type: PLAY_TRACK,
+      payload: "Test"
+    })).toMatchSnapshot();
+  })
+
+  it('save playlist', () => {
+    const initialState = {
+      activeTrack: null,
+      playlists: "test"
+    };
+    expect(playlistReducer(initialState, {
+      type: SAVE_PLAYLIST,
+      payload: "Test"
+    })).toMatchSnapshot();
+  })
+
+  it('remove playlist', () => {
+    const initialState = {
+      activeTrack: null,
+      playlists: [
+        {
+          _id: 1,
+          name: "test"
+        }, {
+          _id: 2,
+          name: "test2"
+        }
+      ]
+
+    };
+    expect(playlistReducer(initialState, {
+      type: REMOVE_PLAYLIST,
+      payload: 2
+    })).toMatchSnapshot();
+  })
 })
