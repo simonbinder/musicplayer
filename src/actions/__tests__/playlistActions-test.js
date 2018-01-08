@@ -32,7 +32,7 @@ describe.skip('async actions', () => {
 
     const store = mockStore({})
 
-    return store.dispatch(actions.createNewPlaylist()).then(() => {
+    return store.dispatch(actions.createNewPlaylist("5a4a96c814c59c00c4f651ef", "Test-Playlist")).then(() => {
       // return of async actions
       expect(store.getActions()).toEqual(expectedActions)
     })
