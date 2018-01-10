@@ -3,47 +3,56 @@ import '../assets/Settings.scss';
 import {
   saveSpotifyAccessToken
 } from '../actions/credentialsActions';
+import { connect } from 'react-redux';
 
-export default class SettingsPage extends React.Component {
+class SettingsPage extends React.Component {
   constructor(props) {
     super(props);
   };
 
   componentDidMount() {
-    console.log('Mount');
+    console.log('Settingspage mount');
 
-    const {
-      api
-    } = this.props.location.query;
+    const { api } = this.props.location.query;
 
     switch(api) {
       case "spotify":
         console.log('Spotify');
         const {
-          access_token
+          access_token,
+          refresh_token
         } = this.props.location.query;
 
-        saveSpotifyAccessToken(access_token);
+        this.props.saveSpotifyAccessToken(access_token);
+
+        console.log('Store refresh_token');
+        localStorage.setItem('spotifyRefreshToken', refresh_token);
         break;
     }
   }
 
   render() {
     console.log('Query ', this.props.location.query);
+    console.log('Spotify connected', this.props.credentials.spotifyConnected);
 
     return <div>
       <div className="container">
         <h1 className="title">Activate and deactive our supported APIs</h1>
         <div className="row">
 
-          <div className="col-md-12 o-settings-block">
+          <div style={{ display: 'none' }} className="col-md-12 o-settings-block">
             <p>Connect to your soundcloud account:</p>
             <img src="assets/images/soundcloud-connect.png" />
           </div>
 
           <div className="col-md-12 o-settings-block">
-            <p>Connect to your spotify account:</p>
-            <a href="http://localhost:4000/spotify/login">Connect to spotify</a>
+            <div className="o-settings-block__description">
+              <p>Connect to your spotify account:</p>
+              <a href="http://localhost:4000/spotify/login">Connect to spotify</a>
+            </div>
+            <div className="o-settings-block__status">
+              <span style={{ color: 'green' }}>Connected</span>
+            </div>
           </div>
 
         </div>
@@ -51,3 +60,15 @@ export default class SettingsPage extends React.Component {
     </div>
   };
 };
+
+function mapStateToProps(store) {
+  return {
+    credentials: store.credentials,
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  saveSpotifyAccessToken: token => dispatch(saveSpotifyAccessToken(token)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);

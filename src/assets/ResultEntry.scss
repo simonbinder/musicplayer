@@ -21,6 +21,39 @@
     flex: 0 0 auto;
   }
 
+  &__icon {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin-left: 10px;
+    transition: background-color 0.8s, border-color 0.8s;
+
+    &:hover {
+      border-color: black;
+      background-color: #ccc;
+    }
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 24px;
+      line-height: 50px;
+    }
+  }
+
+  &__add::after {
+    content: "\2295";
+  }
+
+  &__play::after {
+    content: "\25B7";
+  }
+
   &--soundcloud {
     background-color: #ffb380;
     &:hover {
