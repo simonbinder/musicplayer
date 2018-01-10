@@ -23,13 +23,9 @@ const FooterBar = props => {
       </div>
       <div className="col-lg-4 col-md-4 col-sm-6">
         <div className="c-play-button-wrapper">
-          {/* <div className="invisibleYTPlayer"ref={(r) => { this.youtubePlayerAnchor = r }}></div>
-          <div className="c-button c-button-previous"></div>
-            <PlayButton
-              changePlayState={ev => this.switchPlayState(ev)}
-              play={this.state.play}
-            />
-            <div className="c-button c-button-next"></div> */}
+        <div className="c-button c-button-previous"></div>
+        <div className="c-button c-button-play"></div>
+        <div className="c-button c-button-next"></div>
         </div>
       </div>
     </div>

@@ -26,7 +26,11 @@ class IndexPage extends React.Component {
 
   render() {
 
-    const { tracks } = this.props.search;
+    const {
+      error,
+      tracks,
+      searchValue,
+    } = this.props.search;
 
     return <div>
 
@@ -36,26 +40,31 @@ class IndexPage extends React.Component {
           Eu est lorem facilisis rationibus, pro libris constituam te. Omnes exerci fabulas sea cu, an vis dicit assentior referrentur. Nam at constituto efficiantur, te nam tamquam volumus dignissim. Unum virtute temporibus et ius, mei et summo fabulas, est tation ceteros cotidieque no. Ea nibh primis argumentum sed.
         </p>
 
-        { tracks.length > 0 ?
-          <div className="row">
+        {/* search error */}
+        { error ?
+          <div className="alert alert-danger">{error}</div> :
+          searchValue != '' ?
+            <div className="row">
+              <h2>Search Results</h2>
+              { tracks.length > 0 ?
+                this.props.search.tracks.map((track, key) => {
+                  return <ResultEntry
+                    key={key}
+                    title={track.title}
+                    artists={track.artists}
+                    imageUrl={track.image}
+                    origin={track.origin}
+                    playlists={this.props.playlists}
+                    onTrackAdd={this.onTrackAdd}
+                    source={track.source}
+                    onPlay={ () => this.onSongPlay(track) }
+                  />
+                })
+              : <p>No tracks found for your query</p> }
+            </div>
+          : null }
 
-            <h2>Search results:</h2>
-            { this.props.search.tracks.map((track, key) => {
-              return <ResultEntry
-                key={key}
-                title={track.title}
-                artists={track.artists}
-                imageUrl={track.image}
-                origin={track.origin}
-                playlists={this.props.playlists}
-                onTrackAdd={this.onTrackAdd}
-                source={track.source}
-                onPlay={ () => this.onSongPlay(track) }
-              />
-            }) }
-          </div>
-          : null
-        }
+
 
       </div>
 

@@ -8,7 +8,8 @@ const HeaderBar = props => {
     onLogoTo,
     content,
     searchOnChange,
-    value
+    value,
+    searchBarActive
   } = props;
 
   return <div className="c-header">
@@ -16,13 +17,13 @@ const HeaderBar = props => {
       <div className="c-header__logo">Musicplayer</div>
     </Link>
 
-    <input
+    { searchBarActive ? <input
       type="text"
       className="c-header__search"
       placeholder="Insert your song title"
       value={value}
       onChange={ ev => searchOnChange(ev) }
-    />
+    /> : null }
 
     { content.map((dropdown, key) => {
       return <div key={key} className="c-header__dropdown">

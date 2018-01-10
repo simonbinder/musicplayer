@@ -59,14 +59,18 @@
 .c-play-button-wrapper .c-button :hover{
 
 }
-.c-play-button-wrapper .c-button-play{
+.c-play-button-wrapper .c-button-play {
   background:url('assets/images/play-button.png')center right no-repeat;;
 }
-.c-play-button-wrapper .c-button-pause{
+.c-play-button-wrapper .c-button-pause {
   background:url('assets/images/pause-button.png')center right no-repeat;;
 }
 
-.c-play-button-wrapper .c-button-previous{
+.c-button-shuffle {
+  //background: url('assets/images/ü')
+}
+
+.c-play-button-wrapper .c-button-previous {
   background:url('assets/images/previous-button.png') center right no-repeat;;
 }
 
