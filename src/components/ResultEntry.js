@@ -4,7 +4,14 @@ import Tooltip from './Tooltip';
 
 const ResultEntry = props => {
 
-  const { origin, title, artists, imageUrl, source } = props;
+  const {
+    origin,
+    title,
+    artists,
+    imageUrl,
+    source,
+    onPlay
+  } = props;
 
   let classes = 'col-md-12 o-result-entry';
   if(origin === 'soundcloud') {
@@ -32,12 +39,12 @@ const ResultEntry = props => {
       <p>{artists}</p>
     </div>
 
-    <div className="o-result-entry__buttoncontainer">
+    <div className="o-result-entry__controls">
       <div
-        className="o-result-entry-button o-result-entry-button-play">
+        className="o-result-entry__icon o-result-entry__play"
+        onClick={ onPlay }>
       </div>
-      <div
-        className="o-result-entry-button o-result-entry-button-add">
+      <div className="o-result-entry__icon o-result-entry__add">
         <Tooltip items={items} />
       </div>
     </div>

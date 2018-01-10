@@ -7,7 +7,7 @@ import {
 const initialState = {
   searchValue: '',
   tracks: [],
-  error: '',
+  error: null,
 };
 
 export default function searchReducer(state = initialState, action) {
@@ -19,10 +19,12 @@ export default function searchReducer(state = initialState, action) {
     case SEARCH_TRACKS_SUCCESS:
       return Object.assign({}, state, {
         tracks: action.payload,
+        error: null,
       });
     case SEARCH_TRACKS_ERROR:
       return Object.assign({}, state, {
         error: action.payload,
+        tracks: [],
       });
     default:
       return state;

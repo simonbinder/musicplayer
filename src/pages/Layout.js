@@ -54,12 +54,15 @@ class Layout extends React.Component {
       }];
     }
 
+    let searchBarActive = user != null;
+
     return <div>
       <HeaderBar
         onLogoTo='/'
         content={content}
         searchOnChange={this.searchOnChange}
         searchValue={searchValue}
+        searchBarActive={searchBarActive}
       />
 
       <div className="main">

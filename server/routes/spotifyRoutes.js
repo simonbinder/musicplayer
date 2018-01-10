@@ -164,26 +164,29 @@ router.post('/search', (req, res) => {
       return res.json(error);
     } else {
 
-      body.tracks.items.forEach(track => {
-        console.log('Track', track);
-        if(track.images) {
-          console.log('Images', track.images);
+      let tracks = [];
+      if(body.tracks) {
+        
+        let { items } = body.tracks;
+
+        if(items) {
+          tracks = body.tracks.items.map((track) => {
+            return {
+              origin: 'spotify',
+              title: track.name,
+              image: track.images ? track.images[0].url : '',
+              artists: track.artists.map((artist) => {
+                return artist.name;
+              }).join(', '),
+              id: track.id,
+              source: track.preview_url,
+            };
+          });
         }
-      });
+      }
 
       return res.json({
-        tracks: body.tracks.items.map((track) => {
-          return {
-            origin: 'spotify',
-            name: track.name,
-            image: track.images ? track.images[0].url : '',
-            artists: track.artists.map((artist) => {
-              return artist.name;
-            }).join(', '),
-            id: track.id,
-            source: track.preview_url,
-          };
-        }),
+        tracks: tracks,
       });
     }
   });

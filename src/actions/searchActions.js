@@ -31,23 +31,27 @@ export function searchValueChanged(value) {
     dispatch(push('/'));
 
     const accessToken = getState().credentials.spotifyAccessToken;
-    fetch('http://localhost:4000/spotify/search', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        access_token: accessToken,
-        q: value,
+    if(accessToken == null) {
+      dispatch(searchError('Spotify is not connected. Go to your settings page'));
+    } else {
+      fetch('http://localhost:4000/spotify/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_token: accessToken,
+          q: value,
+        })
       })
-    })
-    .then(response => response.json())
-    .then(response => {
-      dispatch(searchSuccess(response.tracks));
-    })
-    .catch(error => {
-      dispatch(searchError(error));
-    });
+      .then(response => response.json())
+      .then(response => {
+        dispatch(searchSuccess(response.tracks));
+      })
+      .catch(error => {
+        dispatch(searchError(error));
+      });
+    }  
   };
 };
