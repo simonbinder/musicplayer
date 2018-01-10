@@ -1,12 +1,25 @@
 .o-tooltip {
+  top:0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 130px;
+  overflow: scroll;
+  overflow-x: hidden;
   position: absolute;
-  background-color: #666666;
-  z-index: 100000;
   width: 100px;
+  opacity: 0;
+
+  &:hover{
+    opacity: 1;
+  }
 
   &__item {
     display: block;
     padding: 10px;
-    color: white;
+    color:white;
+    &:hover{
+      background-color: rgba(0, 0, 0, 0.4);
+
+    }
   }
 }

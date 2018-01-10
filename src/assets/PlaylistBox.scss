@@ -1,27 +1,56 @@
+@import 'variables.scss';
+
 .o-playlist-box {
   padding: 25px;
-  border: 1px solid #ccc;
-  margin-bottom: 25px;
   transition: background-color 0.8s, border-color 0.8s;
-  display: flex;
-
-  &:hover {
-    background-color: #ccc;
-    border-color: black;
-  }
-
   &__body {
-    flex: 1;
+    background-color: $formbackgroundgreen;
+    border-radius:3px;
+    margin: auto;
+    height: 225px;
+    max-width: 225px;
+    min-width: 225px;
+    &:hover {
+      box-shadow: $boxshadowgreen;
+    }
+    &:hover  .o-delete_icon{
+      opacity: 0.8;
+      cursor:pointer;
+    }
+  }
+  &__linkcontent{
+    height: 225px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover > .o-playlist_icon  {
+      width: 127px;
+      height: 127px;
+    }
   }
 
   &__controls {
-    flex: 0 0 auto;
+    z-index: 10;
+    opacity: 0;
+    color:black;
+    font-size: 35px;
+    position: absolute;
+    top: 4px;
+    margin-left: 206px;
   }
 
   &__title {
-    font-size: 24px;
-    margin: 0;
+    margin-top: 5px;
     padding: 0;
     color: black;
+    text-decoration: none;
+  }
+  &__logo {
+    position: absolute;
+    margin:auto;
+    width: 125px;
+    height: 125px;
+    background:url('assets/images/playlist_icon.png')center right no-repeat;
+    background-size: cover;
   }
 }
