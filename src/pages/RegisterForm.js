@@ -1,12 +1,12 @@
 import React from 'react';
-import '../assets/RegisterForm.scss';
 import InputFieldError from '../components/InputFieldError';
 import InputField from '../components/InputField';
 import { registerRequest } from '../services/accountService';
+import '../assets/RegisterForm.scss';
 import { connect } from 'react-redux';
 import { push} from 'react-router-redux';
 
-class RegisterForm extends React.Component {
+export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,7 +31,7 @@ class RegisterForm extends React.Component {
         break;
       }
       case 'password': {
-        if(checkValue && /^(?=.*\d).{4,8}/.test(checkValue)) {
+        if(checkValue && /^(?=.*\d).{4,8}$/.test(checkValue)) {
           return '';
         } else {
           return 'Password must be between 4 and 8 digits long and include at least one numeric digit.';
@@ -147,4 +147,5 @@ const mapDispatchToProps = dispatch => ({
   goToIndexPage: () => dispatch(push('/')),
 });
 
+//TODO: rename export
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
