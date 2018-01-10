@@ -9,11 +9,21 @@ Object {
 exports[`search reducer search error 1`] = `
 Object {
   "error": "Test",
+  "tracks": Array [],
 }
 `;
 
 exports[`search reducer search successful 1`] = `
 Object {
+  "error": null,
   "tracks": "Test",
+}
+`;
+
+exports[`search reducer should return the initial state 1`] = `
+Object {
+  "error": null,
+  "searchValue": "",
+  "tracks": Array [],
 }
 `;

@@ -89,5 +89,16 @@ exports[`RegisterForm Component renders correctly 1`] = `
       value="Registrieren"
     />
   </div>
+  <div
+    className="form-group"
+  >
+    Already have an account? 
+    <a
+      onClick={[Function]}
+      style={Object {}}
+    >
+      Go to login
+    </a>
+  </div>
 </div>
 `;
