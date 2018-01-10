@@ -47,11 +47,10 @@ class SettingsPage extends React.Component {
 
           <div className="col-md-12 o-settings-block">
             <div className="o-settings-block__description">
-              <p>Connect to your spotify account:</p>
-              <a href="http://localhost:4000/spotify/login">Connect to spotify</a>
+              <a className="btn btn-primary o-btn-sbt" href="http://localhost:4000/spotify/login">Connect to Spotify</a>
             </div>
             <div className="o-settings-block__status">
-              <span style={{ color: 'green' }}>Connected</span>
+              <span className={"glyphicon " + (this.props.credentials.spotifyConnected? "glyphicon-ok o-settings-block__connected" : "glyphicon-remove o-settings-block__connected")}></span>
             </div>
           </div>
 

@@ -26,7 +26,7 @@ html, body {
 .o-btn-sbt{
   background-color: $background-header;
   border-color: $background-header;
-  border-radius: 0px;
+  border-radius: 3px;
   &:hover, &:focus, &.focus, &.active, &:visited, &:active{
     background-color: $background-header;
   }
