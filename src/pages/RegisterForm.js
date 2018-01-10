@@ -85,7 +85,7 @@ export class RegisterForm extends React.Component {
   };
 
   render() {
-    return <div className="c-register-container">
+    return <div className="col align-self-center">
       <div className="form-group">
         <label>
           Username:
@@ -131,9 +131,9 @@ export class RegisterForm extends React.Component {
     <div className="form-group">
       <input
         type="submit"
-        className="btn btn-primary"
+        className="btn btn-primary o-btn-sbt"
         onClick={ this.handleSubmit }
-        value="Submit" />
+        value="Registrieren" />
       </div>
     </div>
   };

@@ -11,7 +11,7 @@ const InputField = props => {
 
   return <input
     type={ type }
-    className="form-control"
+    className="form-control o-input"
     placeholder={ placeHolder }
     value={ value }
     onChange={ handleChange }
