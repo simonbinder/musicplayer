@@ -3,7 +3,7 @@ import {SAVE_PLAYLISTS_INITIAL, SAVE_PLAYLIST, REMOVE_PLAYLIST, PLAY_TRACK} from
 
 describe('search reducer', () => {
   it('should return the initial state', () => {
-    expect(playlistReducer(undefined, {})).toEqual({activeTrack: null, playlists: []})
+    expect(playlistReducer(undefined, {})).toMatchSnapshot();
   })
 
   it('save initial playlist', () => {

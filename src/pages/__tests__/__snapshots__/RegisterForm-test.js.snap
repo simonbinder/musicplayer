@@ -20,7 +20,7 @@ exports[`RegisterForm Component password too short 1`] = `"Password must be betw
 
 exports[`RegisterForm Component renders correctly 1`] = `
 <div
-  className="c-register-container"
+  className="col align-self-center"
 >
   <div
     className="form-group"
@@ -29,7 +29,7 @@ exports[`RegisterForm Component renders correctly 1`] = `
       Username:
     </label>
     <input
-      className="form-control"
+      className="form-control o-input"
       onChange={[Function]}
       placeholder="Bitte den Usernamen eingeben"
       type="email"
@@ -48,7 +48,7 @@ exports[`RegisterForm Component renders correctly 1`] = `
       Passwort:
     </label>
     <input
-      className="form-control"
+      className="form-control o-input"
       onChange={[Function]}
       placeholder="Bitte das Passwort eingeben"
       type="password"
@@ -67,7 +67,7 @@ exports[`RegisterForm Component renders correctly 1`] = `
       Passwort wiederholen:
     </label>
     <input
-      className="form-control"
+      className="form-control o-input"
       onChange={[Function]}
       placeholder="Bitte das Passwort bestätigen"
       type="password"
@@ -83,10 +83,10 @@ exports[`RegisterForm Component renders correctly 1`] = `
     className="form-group"
   >
     <input
-      className="btn btn-primary"
+      className="btn btn-primary o-btn-sbt"
       onClick={[Function]}
       type="submit"
-      value="Submit"
+      value="Registrieren"
     />
   </div>
 </div>
