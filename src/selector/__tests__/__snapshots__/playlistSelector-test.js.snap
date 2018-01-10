@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`playlist selector should filter the playlists 1`] = `
+Object {
+  "_id": 1,
+  "name": "test",
+}
+`;

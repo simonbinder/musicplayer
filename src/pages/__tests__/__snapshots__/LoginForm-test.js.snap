@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm Component Check if email is valid 1`] = `"Please enter a valid Username"`;
+
+exports[`LoginForm Component Check if password is valid 1`] = `"Please enter your password"`;
+
+exports[`LoginForm Component Correct email entered 1`] = `""`;
+
+exports[`LoginForm Component Correct password entered 1`] = `""`;
+
+exports[`LoginForm Component Error message displayed when error state set 1`] = `1`;
+
+exports[`LoginForm Component No error message displayed when no error state set 1`] = `0`;
+
+exports[`LoginForm Component renders correctly 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="form-group"
+  >
+    <label>
+      Username:
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Bitte den Usernamen eingeben"
+      type="email"
+      value=""
+    />
+    <div
+      className="o-error"
+    >
+      
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label>
+      Password:
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Bitte das Passwort eingeben"
+      type="password"
+      value=""
+    />
+    <div
+      className="o-error"
+    >
+      
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <input
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="submit"
+      value="Submit"
+    />
+  </div>
+  <div>
+    <a
+      onClick={[Function]}
+      style={Object {}}
+    >
+      Don't have an account. Register here
+    </a>
+  </div>
+</div>
+`;

@@ -1,0 +1,57 @@
+@import 'variables.scss';
+
+.c-add-playlist{
+  &__wrapper{
+  padding: 15px;
+  width: 100%;
+  text-align: center;
+  }
+  &__box{
+      border-radius: 5px;
+      margin: auto;
+      .form-control{
+      border-right:0;
+      box-shadow:0 0 0;
+      border-color:#ccc;
+      font-size: 25px;
+      height: 60px;
+      &:hover +.input-group-addon{
+        background-color: $formbackgroundgreen;
+      }
+      &:focus{
+        box-shadow: $boxshadowgreen_light;
+      }
+      &:focus +.input-group-addon{
+        background-color: $formbackgroundgreen;
+        box-shadow: $boxshadowgreen_light;
+      }
+     }
+      .input-group-addon{
+        background-color: $formbackgroundgreen_light;
+        width: 80px;
+        &:hover{
+          background-color: $formbackgroundgreen;
+        }
+      }
+      button{
+          border:0;
+          background:transparent;
+          font-size: 25px;
+      }
+    }
+    &__goback{
+      margin-top:18px;
+      font-size: 15px;
+      a{
+        color:black;
+        text-decoration: none;
+        &:hover{
+          color: $gobackgrey;
+        }
+      }
+    }
+}
+.c-playlist-box-container{
+  width: 100%;
+  text-align: center;
+}
