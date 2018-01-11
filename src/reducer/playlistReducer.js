@@ -2,13 +2,15 @@ import {
   SAVE_PLAYLISTS_INITIAL,
   SAVE_PLAYLIST,
   REMOVE_PLAYLIST,
-  PLAY_TRACK
+  PLAY_TRACK,
+  SHUFFLE_STATE_CHANGED
 } from '../consts/playlistConsts';
 
 const initialState = {
   playStatus: 'paused',
   activeTrack: null,
   playlists: [],
+  shuffle: false,
 };
 
 export default function playlistReducer(state = initialState, action) {
@@ -30,6 +32,10 @@ export default function playlistReducer(state = initialState, action) {
     case PLAY_TRACK:
       return Object.assign({}, state, {
         activeTrack: action.payload,
+      });
+    case SHUFFLE_STATE_CHANGED:
+      return Object.assign({}, state, {
+        shuffle: !state.shuffle,
       });
     default:
       return state;

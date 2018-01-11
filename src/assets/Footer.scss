@@ -50,28 +50,34 @@
   justify-content: center;
   align-items: center;
 }
-.c-play-button-wrapper .c-button{
+.c-play-button-wrapper .c-button {
   background-size: contain;
   width: 100px;
   height: 100px;
 }
 
 .c-play-button-wrapper .c-button :hover{
-
+  
 }
+
 .c-play-button-wrapper .c-button-play {
-  background:url('assets/images/play-button.png')center right no-repeat;;
+  background:url('assets/images/play-button.png')center right no-repeat;
 }
 .c-play-button-wrapper .c-button-pause {
-  background:url('assets/images/pause-button.png')center right no-repeat;;
+  background:url('assets/images/pause-button.png')center right no-repeat;
 }
 
 .c-button-shuffle {
-  //background: url('assets/images/ü')
+  background: url('assets/images/shuffle-button.png') center right no-repeat;
+  background-size: 50% !important;
+}
+
+.c-button-shuffle-active {
+  background: url('assets/images/shuffle-button-green.png') center right no-repeat;
 }
 
 .c-play-button-wrapper .c-button-previous {
-  background:url('assets/images/previous-button.png') center right no-repeat;;
+  background:url('assets/images/previous-button.png') center right no-repeat;
 }
 
 .c-play-button-wrapper .c-button-next{

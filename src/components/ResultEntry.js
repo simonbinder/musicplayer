@@ -30,7 +30,7 @@ const ResultEntry = props => {
       onClick: () => props.onTrackAdd(playlist._id, title, artists, origin, source),
       title: playlist.name,
     };
-  })
+  });
 
   return <div className={classes}>
     <img src={imageUrl} />
@@ -39,12 +39,12 @@ const ResultEntry = props => {
       <p>{artists}</p>
     </div>
 
-    <div className="o-result-entry__controls">
+    <div className="o-result-entry__buttoncontainer">
       <div
-        className="o-result-entry__icon o-result-entry__play"
+        className="o-result-entry-button o-result-entry-button-play"
         onClick={ onPlay }>
       </div>
-      <div className="o-result-entry__icon o-result-entry__add">
+      <div className="o-result-entry-button o-result-entry-button-add">
         <Tooltip items={items} />
       </div>
     </div>

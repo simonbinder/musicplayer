@@ -7,12 +7,15 @@ import { searchValueChanged } from '../actions/searchActions';
 import { resetCredentials } from '../actions/credentialsActions';
 import { push } from 'react-router-redux';
 import { isEmpty } from '../utils';
+import { changeShuffleState, pauseCurrentSong } from '../actions/playlistActions';
 
 class Layout extends React.Component {
   constructor(props) {
     super(props);
     this.searchOnChange = this.searchOnChange.bind(this);
     this.logout = this.logout.bind(this);
+    this.onShuffleClicked = this.onShuffleClicked.bind(this);
+    this.onPauseClicked = this.onPauseClicked.bind(this);
   };
 
   logout() {
@@ -28,11 +31,19 @@ class Layout extends React.Component {
     this.props.onSearchValueChanged(ev.currentTarget.value);
   }
 
+  onShuffleClicked(ev) {
+    this.props.onShuffleStateChanged();
+  };
+
+  onPauseClicked(ev) {
+    this.props.onPauseClicked(ev);
+  };
+
   render() {
 
     const { searchValue } = this.props.search;
     const { user } = this.props.credentials;
-    const { activeTrack } = this.props.playlist;
+    const { activeTrack, shuffle } = this.props.playlist;
     let content = [];
 
     if(user) {
@@ -71,6 +82,8 @@ class Layout extends React.Component {
 
       <FooterBar
         activeTrack={activeTrack}
+        onShuffleClicked={this.onShuffleClicked}
+        shuffleState={shuffle}
       />
     </div>
   };
@@ -88,6 +101,8 @@ const mapDispatchToProps = dispatch => ({
   onSearchValueChanged: value => dispatch(searchValueChanged(value)),
   resetCredentials: () => dispatch(resetCredentials()),
   goToLoginPage: () => dispatch(push('/login')),
+  onShuffleStateChanged: () => dispatch(changeShuffleState()),
+  onPauseClicked: () => dispatch(pauseCurrentSong()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

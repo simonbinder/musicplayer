@@ -6,10 +6,17 @@ const FooterBar = props => {
 
   const {
     activeTrack,
+    onShuffleClicked,
+    shuffleState
   } = props;
 
   if(!activeTrack) {
     return null;
+  }
+
+  let shuffleClasses = "c-button c-button-shuffle";
+  if(shuffleState == true) {
+    shuffleClasses += " c-button-shuffle-active";
   }
 
   return <div className="c-footer">
@@ -23,9 +30,10 @@ const FooterBar = props => {
       </div>
       <div className="col-lg-4 col-md-4 col-sm-6">
         <div className="c-play-button-wrapper">
-        <div className="c-button c-button-previous"></div>
-        <div className="c-button c-button-play"></div>
-        <div className="c-button c-button-next"></div>
+          <div className={shuffleClasses} onClick={ onShuffleClicked }></div>
+          <div className="c-button c-button-previous"></div>
+          <div className="c-button c-button-play"></div>
+          <div className="c-button c-button-next"></div>
         </div>
       </div>
     </div>

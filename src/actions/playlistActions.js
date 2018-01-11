@@ -3,12 +3,26 @@ import {
   SAVE_PLAYLIST,
   REMOVE_PLAYLIST,
   UPDATE_PLAYLIST,
-  PLAY_TRACK
+  PLAY_TRACK,
+  SHUFFLE_STATE_CHANGED
 } from '../consts/playlistConsts';
 //
 export function pauseCurrentSong() {
   window.audioManager.pause();
 };
+
+export function playNextSong() {
+  return (dispatch, getState) => {
+    let state = getState();
+  };
+};
+
+export function playPreviousSong() {
+  return (dispatch, getState) => {
+    let state = getState();
+  };
+};
+
 //
 export function setNewActiveSong(track) {
   return {
@@ -21,9 +35,6 @@ export function startNewSong(track) {
   return (dispatch, getState) => {
     //set new ative track
     dispatch(setNewActiveSong(track));
-
-    console.log('source', track.source);
-    console.log('track', track);
 
     window.audioManager.src = track.source;
     window.audioManager.play();
@@ -56,6 +67,12 @@ export function updatePlaylist(playlist) {
   return {
     type: UPDATE_PLAYLIST,
     payload: playlist,
+  };
+};
+//
+export function changeShuffleState() {
+  return {
+    type: SHUFFLE_STATE_CHANGED,
   };
 };
 //
@@ -134,5 +151,11 @@ export function requestSaveTrack(playlistId, title, artists, origin, source) {
     .catch(error => {
       console.log('Error saving track', error);
     })
+  };
+};
+
+export function removeTrackFromPlaylist(playlistId, track) {
+  return (dispatch, getState) => {
+
   };
 };

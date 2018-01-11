@@ -40,7 +40,7 @@ class SettingsPage extends React.Component {
 
     return <div>
       <div className="container">
-        <h1>Settings page</h1>
+        <h1>Account details</h1>
 
         { user != null ?
           <div className="row">
@@ -59,10 +59,10 @@ class SettingsPage extends React.Component {
         <h1 className="title">Activate and deactive our supported APIs</h1>
         <div className="row">
 
-          <div className="col-md-12 o-settings-block o-settings-block--deactived">
+          {/* <div className="col-md-12 o-settings-block o-settings-block--deactived">
             <p>Connect to your soundcloud account:</p>
             <img src="assets/images/soundcloud-connect.png" />
-          </div>
+          </div> */}
 
           <div className="col-md-12 o-settings-block">
             <div className="o-settings-block__description">
