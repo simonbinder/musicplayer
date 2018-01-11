@@ -167,9 +167,7 @@ router.delete('/:id', (req, res) => {
     });
   }
 
-  Playlist.update({
-    '_id': req.params.id,
-  }, {
+  Playlist.findByIdAndUpdate(req.params.id, {
     $pull: {
       'tracks': req.body.trackId,
     },

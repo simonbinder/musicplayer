@@ -6,7 +6,8 @@ const TrackBox = props => {
   const {
     title,
     artists,
-    onPlay
+    onPlay,
+    onDelete
   } = props;
 
   return <div className="o-track-box">
@@ -22,7 +23,8 @@ const TrackBox = props => {
     <span>{artists}</span>
     <span>Spotify</span>
     <span
-      className="o-track-box__remove-button glyphicon glyphicon-remove-circle">
+      className="o-track-box__remove-button glyphicon glyphicon-remove-circle"
+      onClick={ onDelete }>
     </span>
   </div>
 };

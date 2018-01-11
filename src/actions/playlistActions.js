@@ -156,6 +156,24 @@ export function requestSaveTrack(playlistId, title, artists, origin, source) {
 
 export function removeTrackFromPlaylist(playlistId, track) {
   return (dispatch, getState) => {
-
+    fetch('http://localhost:4000/playlists/' + playlistId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        trackId: track._id,
+      }),
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.success) {
+        dispatch(updatePlaylist(response.playlist));
+      }
+    })
+    .catch(error => {
+      console.log('Error deleting track', error);
+    })
   };
 };
