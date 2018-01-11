@@ -5,6 +5,12 @@
   border-radius:3px;
   color: black;
   display: flex;
+
+  &--deactivated {
+    opacity: 0.2;
+  }
+
+
   &:hover{
     background-color: rgba(0, 0, 0, 0.08);
   }

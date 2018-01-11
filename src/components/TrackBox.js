@@ -7,10 +7,16 @@ const TrackBox = props => {
     title,
     artists,
     onPlay,
-    onDelete
+    onDelete,
+    deactivated,
   } = props;
 
-  return <div className="o-track-box">
+  let classes = "o-track-box";
+  if(deactivated == true) {
+    classes += " o-track-box--deactivated";
+  }
+
+  return <div className={classes}>
     <span>
       <div className="o-track-box__buttoncontainer">
         <div

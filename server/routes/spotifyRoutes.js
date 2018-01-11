@@ -166,11 +166,14 @@ router.post('/search', (req, res) => {
 
       let tracks = [];
       if(body.tracks) {
-        
+
         let { items } = body.tracks;
 
         if(items) {
           tracks = body.tracks.items.map((track) => {
+
+            console.log('Track', track);
+
             return {
               origin: 'spotify',
               title: track.name,

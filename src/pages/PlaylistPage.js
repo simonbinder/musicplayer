@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectPlaylist } from '../selector/playlistSelector';
 import TrackBox from '../components/TrackBox';
-import { startNewSong, removeTrackFromPlaylist } from '../actions/playlistActions';
+import {
+  startNewSong,
+  removeTrackFromPlaylist,
+  changeShuffleState
+} from '../actions/playlistActions';
 import '../assets/PlaylistPage.scss';
 import { Link } from 'react-router';
 
@@ -11,10 +15,12 @@ class PlaylistPage extends React.Component {
     super(props);
     this.onSongPlay = this.onSongPlay.bind(this);
     this.onSongDelete = this.onSongDelete.bind(this);
+    this.onPlaylistPlay = this.onPlaylistPlay.bind(this);
+    this.onShuffleClicked = this.onShuffleClicked.bind(this);
   };
 
-  onSongPlay(track) {
-    this.props.onSongPlay(track);
+  onSongPlay(track, playlist) {
+    this.props.onSongPlay(track, playlist);
   };
 
   onSongDelete(playlistId, track) {
@@ -22,10 +28,17 @@ class PlaylistPage extends React.Component {
     this.props.onSongDelete(playlistId, track);
   };
 
-  render() {
+  onPlaylistPlay() {
+    console.log('on playlist play');
+    this.props.onSongPlay(this.props.playlist.tracks[0], this.props.playlist.tracks);
+  };
 
-    console.log('Playlist', this.props.playlist);
-    console.log('ownProps', this.props.ownProps);
+  onShuffleClicked() {
+    console.log('on shuffle clicked');
+    this.props.onShuffleClicked();
+  };
+
+  render() {
 
     if(!this.props.playlist) {
       return <div className="container">
@@ -40,8 +53,14 @@ class PlaylistPage extends React.Component {
             <h2>{this.props.playlist.name}</h2>
           </div>
           <div className="c-playlist-page__buttoncontainer">
-            <div className="c-playlist-button c-playlist-button-play"></div>
-            <div className="c-playlist-button c-playlist-button-shuffle"></div>
+            <div
+              className="c-playlist-button c-playlist-button-play"
+              onClick={ () => this.onPlaylistPlay() }>
+            </div>
+            <div
+              className="c-playlist-button c-playlist-button-shuffle"
+              onClick={ () => this.onShuffleClicked() }
+            ></div>
           </div>
         <div className="c-playlist-page__coverbox">
         <div className="c-playlist-page__logo"></div>
@@ -56,10 +75,11 @@ class PlaylistPage extends React.Component {
       <div className="row c-playlist-page__content">
         { this.props.playlist.tracks.map((track, key) => {
           return <TrackBox
+            deactivated={track.source == null}
             title={track.title}
             artists={track.artists}
             key={key}
-            onPlay={ () => this.onSongPlay(track) }
+            onPlay={ () => this.onSongPlay(track, this.props.playlist.tracks) }
             onDelete={ () => this.onSongDelete(this.props.playlist._id, track) }
           />
         })}
@@ -75,8 +95,9 @@ function mapStateToProps(store, ownProps) {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSongPlay: track => dispatch(startNewSong(track)),
+  onSongPlay: (track, playlist) => dispatch(startNewSong(track, playlist)),
   onSongDelete: (playlistId, track) => dispatch(removeTrackFromPlaylist(playlistId, track)),
+  onShuffleClicked: () => dispatch(changeShuffleState()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistPage);
