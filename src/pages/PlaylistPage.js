@@ -5,7 +5,8 @@ import TrackBox from '../components/TrackBox';
 import {
   startNewSong,
   removeTrackFromPlaylist,
-  changeShuffleState
+  changeShuffleState,
+  pauseCurrentSong
 } from '../actions/playlistActions';
 import '../assets/PlaylistPage.scss';
 import { Link } from 'react-router';
@@ -17,6 +18,7 @@ class PlaylistPage extends React.Component {
     this.onSongDelete = this.onSongDelete.bind(this);
     this.onPlaylistPlay = this.onPlaylistPlay.bind(this);
     this.onShuffleClicked = this.onShuffleClicked.bind(this);
+    this.onPauseClicked = this.onPauseClicked.bind(this);
   };
 
   onSongPlay(track, playlist) {
@@ -38,7 +40,28 @@ class PlaylistPage extends React.Component {
     this.props.onShuffleClicked();
   };
 
+  onPauseClicked() {
+    this.props.onPauseClicked();
+  };
+
   render() {
+
+    let {
+      shuffle,
+      playStatus
+    } = this.props.playlistState;
+
+    let shuffleClasses = "c-playlist-button c-playlist-button-shuffle";
+    if(shuffle == true) {
+      shuffleClasses += "c-playlist-button c-playlist-button-shuffle c-playlist-button-shuffle--active";
+    }
+
+    let playlistPlayButtonProps = {
+      "className": playStatus == false ?
+        "c-playlist-button c-playlist-button-play" :
+        "c-playlist-button c-playlist-button-pause",
+      "onClick": playStatus == true ? this.onPauseClicked : this.onPlaylistPlay,
+    };
 
     if(!this.props.playlist) {
       return <div className="container">
@@ -54,11 +77,10 @@ class PlaylistPage extends React.Component {
           </div>
           <div className="c-playlist-page__buttoncontainer">
             <div
-              className="c-playlist-button c-playlist-button-play"
-              onClick={ () => this.onPlaylistPlay() }>
+              { ...playlistPlayButtonProps}>
             </div>
             <div
-              className="c-playlist-button c-playlist-button-shuffle"
+              className={shuffleClasses}
               onClick={ () => this.onShuffleClicked() }
             ></div>
           </div>
@@ -90,6 +112,7 @@ class PlaylistPage extends React.Component {
 
 function mapStateToProps(store, ownProps) {
   return {
+    playlistState: store.playlist,
     playlist: selectPlaylist(store.playlist.playlists, ownProps.location.query.id),
   };
 };
@@ -98,6 +121,7 @@ const mapDispatchToProps = dispatch => ({
   onSongPlay: (track, playlist) => dispatch(startNewSong(track, playlist)),
   onSongDelete: (playlistId, track) => dispatch(removeTrackFromPlaylist(playlistId, track)),
   onShuffleClicked: () => dispatch(changeShuffleState()),
+  onPauseClicked: () => dispatch(pauseCurrentSong()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlaylistPage);

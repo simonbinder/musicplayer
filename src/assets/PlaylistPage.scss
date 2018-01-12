@@ -60,10 +60,16 @@
           background:url('assets/images/play-button-green.png')center left no-repeat;
         }
       }
+
+      .c-playlist-button-pause {
+        background:url('assets/images/pause-button.png') center left no-repeat;
+      }
+
       .c-playlist-button-shuffle{
         background:url('assets/images/shuffle-button.png')center left no-repeat;
-        &:hover{
-          background:url('assets/images/shuffle-button-green.png')center left no-repeat;
+
+        &--active {
+          background:url('assets/images/shuffle-button-green.png') center left no-repeat;
         }
       }
   }

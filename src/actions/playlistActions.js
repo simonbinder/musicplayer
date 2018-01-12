@@ -96,17 +96,27 @@ function getNextSong(dispatch, getState, direction) {
   let {
     activeContainer,
     activeTrack,
+    shuffle,
   } = playlistState;
 
   if(activeContainer.length > 0) {
-    let index = activeContainer.findIndex(item => item._id == activeTrack._id);
-    if(index != -1) {
-      if(index == activeContainer.length - 1) {
-        //last one
-        //let nextIndex = direction == 'next' ? 0 : index - 1;
-        dispatch(startNewSong(activeContainer[ direction == 'next' ? 0 : index - 1], activeContainer));
-      } else {
-        dispatch(startNewSong(activeContainer[ direction == 'next' ? index + 1 : index - 1], activeContainer));
+
+    if(shuffle == true) {
+
+      let index = Math.floor(Math.random() * ((activeContainer.length - 1) - 0) + 0);
+      console.log('Index', index);
+      dispatch(startNewSong(activeContainer[index], activeContainer));
+
+    } else {
+      let index = activeContainer.findIndex(item => item._id == activeTrack._id);
+      if(index != -1) {
+        if(index == activeContainer.length - 1) {
+          //last one
+          //let nextIndex = direction == 'next' ? 0 : index - 1;
+          dispatch(startNewSong(activeContainer[ direction == 'next' ? 0 : index - 1], activeContainer));
+        } else {
+          dispatch(startNewSong(activeContainer[ direction == 'next' ? index + 1 : index - 1], activeContainer));
+        }
       }
     }
   }
