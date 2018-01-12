@@ -3,6 +3,7 @@ const router = express.Router();
 const Track = require('../models/Track');
 const Playlist = require('../models/Playlist');
 const User = require('../models/User');
+const utils = require('../utils');
 
 //actually not needed, get all playlists
 router.get('/', (req, res) => {
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
 
 //deletes are playlist
 router.delete('/', (req, res) => {
-  if(!req.body) {
+  if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
       error: 'No body specified',
     });
@@ -42,7 +43,7 @@ router.delete('/', (req, res) => {
 
 //creates a new playlist
 router.post('/', (req, res) => {
-  if(!req.body) {
+  if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
       error: 'No body specified',
     });
@@ -99,7 +100,7 @@ router.post('/', (req, res) => {
 });
 
 router.post('/:id', (req, res) => {
-  if(!req.body) {
+  if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
       error: 'No body specified',
     });

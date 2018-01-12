@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 4000;
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 const bodyParser = require('body-parser');
 const accountRoutes = require('./routes/accountRoutes');
 const spotifyRoutes = require('./routes/spotifyRoutes');
@@ -34,11 +35,13 @@ app.get('*', (req, res) => {
 
 mongoose.connect('mongodb://localhost:27017/data/db')
 .then(() => {
-  console.log('Successfully connected to mongodb');
+  //console.log('Successfully connected to mongodb');
   app.listen(port, () => {
-    console.log('Server is listening on port', port);
+    //console.log('Server is listening on port', port);
   });
 })
 .catch(err => {
-  console.log('Error connecting to mongodb', err);
+  //console.log('Error connecting to mongodb', err);
 })
+
+module.exports = app;
