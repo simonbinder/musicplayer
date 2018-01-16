@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # update api and run tests
-cd api && npm install && npm test
-cd ..
+# cd server && npm install && npm test
+#cd ..
 
 # update frontend and compile
-cd frontend && npm install && webpack
-cd ..
+#cd src && npm install && webpack
+#cd ..
+sudo npm install
+sudo npm test
 
 # build docker images
 docker-compose build
