@@ -106,11 +106,11 @@ router.post('/:id', (req, res) => {
     });
   } else {
 
-    console.log('Playlist id', req.params.id);
-    console.log('Origin', req.body.origin);
-    console.log('Title', req.body.title);
-    console.log('Artists', req.body.artists);
-    console.log('source', req.body.source);
+    // console.log('Playlist id', req.params.id);
+    // console.log('Origin', req.body.origin);
+    // console.log('Title', req.body.title);
+    // console.log('Artists', req.body.artists);
+    // console.log('source', req.body.source);
 
     var track = new Track({
       source: req.body.source,
@@ -121,6 +121,7 @@ router.post('/:id', (req, res) => {
 
     track.save(err => {
       if(err) {
+        console.log('save error');
         return res.status(501).json({
           error: err,
         });
@@ -135,6 +136,7 @@ router.post('/:id', (req, res) => {
           new: true,
         }).populate("tracks").exec((err, playlist) => {
           if(err || playlist == null) {
+            console.log('next error', err, playlist);
             return res.status(501).json({
               error: err ? err : 'playlist not found',
             });
@@ -142,6 +144,7 @@ router.post('/:id', (req, res) => {
             return res.json({
               success: true,
               playlist: playlist,
+              track: track,
             });
           }
         });

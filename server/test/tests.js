@@ -2,10 +2,10 @@ const assert = require('assert');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../server');
-const should = chai.should();
-chai.use(chaiHttp);
 const User = require('../models/User');
 const Playlist = require('../models/Playlist');
+const should = chai.should();
+chai.use(chaiHttp);
 
 let testUser = {
   email: 'backend-test@test.com',
@@ -14,6 +14,13 @@ let testUser = {
 
 let testPlaylist = {
   name: 'Backend-test-playlist',
+};
+
+let testTrack = {
+  artists: 'Dua Lipa',
+  source: null,
+  origin: 'spotify',
+  title: 'New Rules',
 };
 
 User.remove({ email: testUser.email }, (err, user) => {
@@ -150,7 +157,7 @@ describe('Tests for the accounting routes', () => {
 describe('Tests for the /playlists routes', () => {
 
   describe('All tests for the /playlists route', () => {
-    let route = '/playlists';
+    let route = '/playlists/';
 
     it('GET-Request to this route should return a list of all playlists', done => {
       chai.request(app).get(route).end((err, res) => {
@@ -212,6 +219,31 @@ describe('Tests for the /playlists routes', () => {
         res.should.have.status(400);
         done();
       });
+    });
+
+    it('POST-Request with valid request data should return statusCode 200', done => {
+      console.log('ID', testPlaylist._id);
+      let route = '/playlists/' + testPlaylist._id;
+      chai.request(app).post(route).send({
+        'origin': testTrack.origin,
+        'title': testTrack.title,
+        'artists': testTrack.artists,
+        'source': testTrack.source,
+      }).end((err, res) => {
+        res.should.have.status(200);
+        testTrack = res.body.track;
+        done();
+      })
+    });
+
+    it('DELETE-Request with a valid trackId should return statusCode 200', done => {
+      let route = '/playlists/' + testPlaylist._id;
+      chai.request(app).delete(route).send({
+        'trackId': testTrack._id,
+      }).end((err, res) => {
+        res.should.have.status(200);
+        done();
+      })
     });
 
     // it('DELETE-Request with a valid playlist id should return statusCode 200', done => {
