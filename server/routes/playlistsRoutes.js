@@ -132,7 +132,7 @@ router.post('/:id', (req, res) => {
           },
         }, {
           new: true,
-        }, (err, playlist) => {
+        }).populate("tracks").exec((err, playlist) => {
           if(err || playlist == null) {
             return res.status(501).json({
               error: err ? err : 'playlist not found',
@@ -173,7 +173,7 @@ router.delete('/:id', (req, res) => {
     },
   }, {
     new: true,
-  }, (err, playlist) => {
+  }).populate("tracks").exec((err, playlist) => {
     if(err) {
       return res.status(501).json({
         error: err,
