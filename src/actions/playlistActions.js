@@ -3,31 +3,123 @@ import {
   SAVE_PLAYLIST,
   REMOVE_PLAYLIST,
   UPDATE_PLAYLIST,
-  PLAY_TRACK
+  PLAY_TRACK,
+  SHUFFLE_STATE_CHANGED,
+  TRACK_PROGRESS,
+  CHANGE_PLAYSTATUS
 } from '../consts/playlistConsts';
 //
-export function pauseCurrentSong() {
-  window.audioManager.pause();
+export function changePlayStatus() {
+  return {
+    type: CHANGE_PLAYSTATUS,
+  };
 };
 //
-export function setNewActiveSong(track) {
+export function pauseCurrentSong() {
+  return (dispatch, getState) => {
+    window.audioManager.pause();
+    dispatch(changePlayStatus());
+  };
+};
+//
+export function playCurrentSong() {
+  return (dispatch, getState) => {
+    window.audioManager.play();
+    dispatch(changePlayStatus());
+  };
+}
+//
+export function playNextSong() {
+  return (dispatch, getState) => {
+    let activeTrack = getState().playlist.activeTrack;
+    if(activeTrack) {
+      getNextSong(dispatch, getState, 'next');
+    }
+  };
+};
+//
+export function playPreviousSong() {
+  return (dispatch, getState) => {
+    let activeTrack = getState().playlist.activeTrack;
+    if(activeTrack) {
+      getNextSong(dispatch, getState, 'previous');
+    }
+  };
+};
+//
+export function setNewActiveSong(track, activeContainer) {
   return {
     type: PLAY_TRACK,
-    payload: track,
+    payload: {
+      track: track,
+      activeContainer: activeContainer,
+    },
+  };
+};
+//
+export function setTrackProgress(progress) {
+  return {
+    type: TRACK_PROGRESS,
+    payload: progress,
   };
 };
 
-export function startNewSong(track) {
+export function startNewSong(track, activeContainer) {
   return (dispatch, getState) => {
     //set new ative track
-    dispatch(setNewActiveSong(track));
+    dispatch(setNewActiveSong(track, activeContainer));
 
-    console.log('source', track.source);
-    console.log('track', track);
-
-    window.audioManager.src = track.source;
-    window.audioManager.play();
+    if(track.source) {
+      window.audioManager.src = track.source;
+      //window.audioManager.play();
+      dispatch(playCurrentSong());
+      window.audioManager.ontimeupdate = () => {
+        let duration = window.audioManager.duration;
+        let currentTime = window.audioManager.currentTime;
+        let progress = currentTime / duration;
+        dispatch(setTrackProgress(progress.toFixed(2)));
+      };
+      window.audioManager.onended = () => {
+        //reset progress
+        dispatch(setTrackProgress(0));
+        //get state
+        getNextSong(dispatch, getState, 'next');
+      };
+    } else {
+      getNextSong(dispatch, getState, 'next');
+    }
   };
+};
+
+function getNextSong(dispatch, getState, direction) {
+  let playlistState = getState().playlist;
+  let {
+    activeContainer,
+    activeTrack,
+    shuffle,
+  } = playlistState;
+
+  if(activeContainer.length > 0) {
+
+    if(shuffle == true) {
+
+      let index = Math.floor(Math.random() * ((activeContainer.length - 1) - 0) + 0);
+      console.log('Index', index);
+      dispatch(startNewSong(activeContainer[index], activeContainer));
+
+    } else {
+      let index = activeContainer.findIndex(item => item._id == activeTrack._id);
+      if(index != -1) {
+        if(index == activeContainer.length - 1) {
+          //last one
+          //let nextIndex = direction == 'next' ? 0 : index - 1;
+          dispatch(startNewSong(activeContainer[ direction == 'next' ? 0 : index - 1], activeContainer));
+        } else {
+          dispatch(startNewSong(activeContainer[ direction == 'next' ? index + 1 : index - 1], activeContainer));
+        }
+      }
+    }
+  }
 };
 
 //
@@ -56,6 +148,12 @@ export function updatePlaylist(playlist) {
   return {
     type: UPDATE_PLAYLIST,
     payload: playlist,
+  };
+};
+//
+export function changeShuffleState() {
+  return {
+    type: SHUFFLE_STATE_CHANGED,
   };
 };
 //
@@ -133,6 +231,30 @@ export function requestSaveTrack(playlistId, title, artists, origin, source) {
     })
     .catch(error => {
       console.log('Error saving track', error);
+    })
+  };
+};
+
+export function removeTrackFromPlaylist(playlistId, track) {
+  return (dispatch, getState) => {
+    fetch('http://localhost:4000/playlists/' + playlistId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        trackId: track._id,
+      }),
+    })
+    .then(response => response.json())
+    .then(response => {
+      if(response.success) {
+        dispatch(updatePlaylist(response.playlist));
+      }
+    })
+    .catch(error => {
+      console.log('Error deleting track', error);
     })
   };
 };

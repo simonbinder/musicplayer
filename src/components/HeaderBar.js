@@ -8,7 +8,8 @@ const HeaderBar = props => {
     onLogoTo,
     content,
     searchOnChange,
-    value
+    value,
+    searchBarActive
   } = props;
 
   return <div className="c-header row">
@@ -20,23 +21,24 @@ const HeaderBar = props => {
     </Link>
     </div>
 
-<div className="col-lg-8 col-md-8 col-sm-10">
-    <div className="input-group c-header__search">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Insert your song title"
-            value={value}
-            onChange={ ev => searchOnChange(ev) }
-          />
-          <span className="input-group-addon">
-            <button
-              type="submit">
-                <span className="glyphicon glyphicon-search"></span>
-            </button>
-           </span>
-    </div>
-</div>
+
+    { searchBarActive ? <div className="col-lg-8 col-md-8 col-sm-10">
+      <div className="input-group c-header__search">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Insert your song title"
+              value={value}
+              onChange={ ev => searchOnChange(ev) }
+            />
+            <span className="input-group-addon">
+              <button
+                type="submit">
+                  <span className="glyphicon glyphicon-search"></span>
+              </button>
+             </span>
+      </div>
+    </div> : null }
 
     { content.map((dropdown, key) => {
       return <div key={key} className="c-header__dropdown col-lg-2 col-md-2 col-sm-12">

@@ -133,7 +133,7 @@ router.post('/:id', (req, res) => {
           },
         }, {
           new: true,
-        }, (err, playlist) => {
+        }).populate("tracks").exec((err, playlist) => {
           if(err || playlist == null) {
             return res.status(501).json({
               error: err ? err : 'playlist not found',
@@ -154,6 +154,49 @@ router.post('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   return res.json({
     success: true,
+  });
+});
+
+//deletes a track from the playlist
+router.delete('/:id', (req, res) => {
+  console.log('Playlist id:', req.params.id);
+  console.log('Track id:', req.body.trackId);
+
+  if(!req.body) {
+    return res.status(400).json({
+      error: 'No body specified',
+    });
+  }
+
+  Playlist.findByIdAndUpdate(req.params.id, {
+    $pull: {
+      'tracks': req.body.trackId,
+    },
+  }, {
+    new: true,
+  }).populate("tracks").exec((err, playlist) => {
+    if(err) {
+      return res.status(501).json({
+        error: err,
+      });
+    } else {
+
+      Track.remove({
+        '_id': req.body.trackId,
+      }, (err, track) => {
+        if(err) {
+          return res.status(501).json({
+            error: err,
+          });
+        } else {
+
+          return res.json({
+            success: true,
+            playlist: playlist,
+          })
+        }
+      });
+    }
   });
 });
 

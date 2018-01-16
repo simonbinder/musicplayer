@@ -4,12 +4,14 @@ import InputField from '../components/InputField';
 import { registerRequest } from '../services/accountService';
 import '../assets/RegisterForm.scss';
 import { connect } from 'react-redux';
-import { push} from 'react-router-redux';
+import { push } from 'react-router-redux';
+import { Link } from 'react-router';
 
 export class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      error: '',
       email: '',
       emailError: '',
       password: '',
@@ -58,29 +60,44 @@ export class RegisterForm extends React.Component {
 
     this.setState({
       [errorKey]: error,
-    })
+    });
   };
 
   handleSubmit(ev) {
     const {
       email,
-      password
+      password,
+      error,
+      emailError,
+      passwordError,
+      confirmPasswordError,
     } = this.state;
 
-    if((email != null || email != '') && (password != null || password != null)) {
-      registerRequest(email, password)
-      .then(response => {
-        console.log('Response', response);
-        //store token
-        localStorage.setItem('token', response.token);
-        //push to indexpage
-        this.props.goToIndexPage();
-      })
-      .catch(error => {
-        console.log('Error', error);
-      })
+    if(emailError != '' || passwordError != '' || confirmPasswordError != '') {
+      this.setState({
+        error: 'Some fields are not valid',
+      });
     } else {
-      console.log('Form not valid');
+      if((email != null || email != '') && (password != null || password != null)) {
+        registerRequest(email, password)
+        .then(response => {
+          console.log('Response', response);
+          //store token
+          localStorage.setItem('token', response.token);
+          //push to indexpage
+          this.props.goToIndexPage();
+        })
+        .catch(error => {
+          console.log('Error', error);
+          this.setState({
+            error: error,
+          })
+        })
+      } else {
+        this.setState({
+          error: 'Some fields are not valid',
+        });
+      }
     }
   };
 
@@ -134,7 +151,15 @@ export class RegisterForm extends React.Component {
         className="btn btn-primary"
         onClick={ this.handleSubmit }
         value="Submit" />
-      </div>
+    </div>
+
+    { this.state.error != '' ?
+      <span style={{ color: 'red' }}>{this.state.error}</span>
+    : null }
+
+    <div className="form-group">
+      Already have an account? <Link to="/login">Go to login</Link>
+    </div>
     </div>
   };
 };

@@ -4,6 +4,18 @@ const chaiHttp = require('chai-http');
 const app = require('../server');
 const should = chai.should();
 chai.use(chaiHttp);
+const User = require('../models/User');
+
+const testUser = {
+  email: 'backend-test@test.com',
+  password: 'test',
+};
+
+User.remove({ email: testUser.email }, (err, user) => {
+  if(err) {
+    console.log('Failed to remove testUser from the db');
+  }
+});
 
 describe('Tests for the accounting routes', () => {
 
@@ -37,6 +49,16 @@ describe('Tests for the accounting routes', () => {
       });
     });
 
+    it('request with valid user data should return statusCode 200', done => {
+      chai.request(app).post(route).send({
+        'email': testUser.email,
+        'password': testUser.password,
+      }).end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+    });
+
   });
 
   describe('All tests for the /login routes', () => {
@@ -65,6 +87,16 @@ describe('Tests for the accounting routes', () => {
         'password': '',
       }).end((err, res) => {
         res.should.have.status(400);
+        done();
+      });
+    });
+
+    it('Request with valid data of a registered user should return statusCode 200', done => {
+      chai.request(app).post(route).send({
+        'email': testUser.email,
+        'password': testUser.password,
+      }).end((err, res) => {
+        res.should.have.status(200);
         done();
       });
     });

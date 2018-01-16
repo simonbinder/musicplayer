@@ -6,30 +6,49 @@ const FooterBar = props => {
 
   const {
     activeTrack,
+    onShuffleClicked,
+    shuffleState,
+    progress,
+    onPreviousClicked,
+    onNextClicked,
+    onPauseClicked,
+    onPlayClicked,
+    playStatus
   } = props;
 
   if(!activeTrack) {
     return null;
   }
 
+  let shuffleClasses = "c-button c-button-shuffle";
+  if(shuffleState == true) {
+    shuffleClasses += " c-button-shuffle-active";
+  }
+
+  let playButtonProps = {
+    'className': playStatus == false ?
+      "c-button c-button-play" :
+      "c-button c-button-pause",
+    'onClick': playStatus == false ?
+      onPlayClicked :
+      onPauseClicked,
+  };
+
   return <div className="c-footer">
     <div className="c-audio-player-wrapper row">
       <div className="c-slider-wrapper col-lg-8 col-md-8 col-sm-6">
-          <div className="c-track-title">{activeTrack.title} <b>({activeTrack.artists})</b></div>
+          <div className="c-track-title">{activeTrack.title} - <b>({activeTrack.artists})</b></div>
           <div className="c-slider">
             <div className="c-progress-bar"></div>
-            <div className="c-progress"></div>
+            <div className="c-progress" style={{ width: progress * 100 + '%' }}></div>
           </div>
       </div>
       <div className="col-lg-4 col-md-4 col-sm-6">
         <div className="c-play-button-wrapper">
-          {/* <div className="invisibleYTPlayer"ref={(r) => { this.youtubePlayerAnchor = r }}></div>
-          <div className="c-button c-button-previous"></div>
-            <PlayButton
-              changePlayState={ev => this.switchPlayState(ev)}
-              play={this.state.play}
-            />
-            <div className="c-button c-button-next"></div> */}
+          <div className={shuffleClasses} onClick={ onShuffleClicked }></div>
+          <div className="c-button c-button-previous" onClick={ onPreviousClicked }></div>
+          <div {...playButtonProps} ></div>
+          <div className="c-button c-button-next" onClick={ onNextClicked }></div>
         </div>
       </div>
     </div>
