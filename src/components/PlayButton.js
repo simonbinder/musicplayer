@@ -2,9 +2,9 @@ import React from 'react';
 
 const PlayButton = props => {
 
-const {
-  changePlayState,
-} = props;
+  const {
+    changePlayState,
+  } = props;
 
   let classes = 'button ';
   if(props.play != 'Play') {

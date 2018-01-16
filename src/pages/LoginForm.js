@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { savePlaylistsInitial } from '../actions/playlistActions';
+import { verifySpotifyRefreshToken } from '../actions/credentialsActions';
 
 export class LoginForm extends React.Component {
   constructor(props) {
@@ -66,11 +67,18 @@ export class LoginForm extends React.Component {
         console.log('Login response', response);
         //save token
         localStorage.setItem('token', response.token);
+
+        var existingUserId = localStorage.getItem('userId');
+        if(existingUserId == response.user._id) {
+          console.log('Its the old user');
+          this.props.verifySpotifyRefreshToken();
+        }
+        //
+        localStorage.setItem('userId', response.user._id);
         //
         this.props.savePlaylistsInitial(response.playlists);
         //go to indexpage
         this.props.router.push('/');
-
       })
       .catch(error => {
         console.log('Error', error);
@@ -132,6 +140,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => ({
   goToIndexPage: () => dispatch(push('/')),
   savePlaylistsInitial: playlists => dispatch(savePlaylistsInitial(playlists)),
+  verifySpotifyRefreshToken: () => dispatch(verifySpotifyRefreshToken()),
 });
 
 //TODO: rename export

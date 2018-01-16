@@ -35,11 +35,16 @@ const onAuth = (nextState, replace, callback) => {
         store.dispatch(saveUser(response.user));
         //
         store.dispatch(savePlaylistsInitial(response.playlists));
+
+        localStorage.setItem('userId', response.user._id);
         //
         callback();
       })
       .catch(err => {
         console.log('Error verifying the token', err);
+
+        localStorage.removeItem('userId');
+
         store.dispatch(push('/login'));
         return;
       })
