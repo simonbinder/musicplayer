@@ -1,0 +1,87 @@
+@import 'variables.scss';
+.c-playlist-page{
+  &__head{
+    width: 100%;
+    margin-left: 15px;
+    border-radius:3px;
+  }
+  &__coverbox{
+    position: relative;
+    border-radius:3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    background-color: $formbackgroundgreen;
+    @media screen and (min-width: $screen-lg) {
+      left: -30px;
+  }
+  @media screen and (max-width: $screen-md) {
+    left: -30px;
+  }
+    @media screen and (max-width: $screen-sm) {
+      left: -20px;
+  }
+  }
+  &__logo {
+    position: absolute;
+    margin:auto;
+    width: 125px;
+    height: 125px;
+    background:url('assets/images/playlist_icon.png')center right no-repeat;
+    background-size: cover;
+  }
+  &__content{
+    padding-top: 10px;
+  }
+  &__title{
+    position: absolute;
+    margin-left: 160px;
+  }
+  &__buttoncontainer{
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 160px;
+    width: 250px;
+    height: 100px;
+      .c-playlist-button{
+        height: 100px;
+        width: 100px;
+        float: left;
+        background-size: cover;
+        &:hover{
+          cursor:pointer;
+        }
+      }
+      .c-playlist-button-play{
+        background:url('assets/images/play-button.png')center left no-repeat;
+        &:hover{
+          background:url('assets/images/play-button-green.png')center left no-repeat;
+        }
+      }
+
+      .c-playlist-button-pause {
+        background:url('assets/images/pause-button.png') center left no-repeat;
+      }
+
+      .c-playlist-button-shuffle{
+        background:url('assets/images/shuffle-button.png')center left no-repeat;
+
+        &--active {
+          background:url('assets/images/shuffle-button-green.png') center left no-repeat;
+        }
+      }
+  }
+  &__goback{
+    margin-top:15px;
+    font-size: 15px;
+    a{
+      color:black;
+      text-decoration: none;
+      &:hover{
+        color: $gobackgrey;
+      }
+    }
+  }
+}

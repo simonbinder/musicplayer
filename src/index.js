@@ -1,21 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import RootRouter from './router';
 
-import App from './app';
-import Utils from './utils';
-import Actions from './actions';
+import { Provider } from 'react-redux';
+import store from './store';
 
-// init
-document.addEventListener(
-  'DOMContentLoaded',
-  function() {
-    const store = Utils.createStore();
-    Actions.loadCourses(store);
-
-    ReactDOM.render(
-      React.createElement(App, { store: store }),
-      document.getElementById('app'),
-    );
-  },
-  false,
+ReactDOM.render(
+  <Provider store={store}>
+    <RootRouter />
+  </Provider>,
+  document.getElementById('app')
 );

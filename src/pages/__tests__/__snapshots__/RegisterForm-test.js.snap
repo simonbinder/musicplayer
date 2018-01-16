@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegisterForm Component Correct email entered 1`] = `""`;
+
+exports[`RegisterForm Component Correct password entered 1`] = `""`;
+
+exports[`RegisterForm Component Country domain in email missing 1`] = `"Email is not valid"`;
+
+exports[`RegisterForm Component Digit in password missing 1`] = `"Password must be between 4 and 8 digits long and include at least one numeric digit."`;
+
+exports[`RegisterForm Component Error message displayed when error state set 1`] = `1`;
+
+exports[`RegisterForm Component No error message displayed when no error state set 1`] = `0`;
+
+exports[`RegisterForm Component No url in email 1`] = `"Email is not valid"`;
+
+exports[`RegisterForm Component Password too long 1`] = `"Password must be between 4 and 8 digits long and include at least one numeric digit."`;
+
+exports[`RegisterForm Component password too short 1`] = `"Password must be between 4 and 8 digits long and include at least one numeric digit."`;
+
+exports[`RegisterForm Component renders correctly 1`] = `
+<div
+  className="c-register-container"
+>
+  <div
+    className="form-group"
+  >
+    <label>
+      Username:
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Bitte den Usernamen eingeben"
+      type="email"
+      value=""
+    />
+    <div
+      className="o-error"
+    >
+      
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label>
+      Passwort:
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Bitte das Passwort eingeben"
+      type="password"
+      value=""
+    />
+    <div
+      className="o-error"
+    >
+      
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <label>
+      Passwort wiederholen:
+    </label>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Bitte das Passwort bestätigen"
+      type="password"
+      value=""
+    />
+    <div
+      className="o-error"
+    >
+      
+    </div>
+  </div>
+  <div
+    className="form-group"
+  >
+    <input
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="submit"
+      value="Submit"
+    />
+  </div>
+</div>
+`;
