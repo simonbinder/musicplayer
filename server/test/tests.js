@@ -5,15 +5,26 @@ const app = require('../server');
 const should = chai.should();
 chai.use(chaiHttp);
 const User = require('../models/User');
+const Playlist = require('../models/Playlist');
 
-const testUser = {
+let testUser = {
   email: 'backend-test@test.com',
   password: 'test',
+};
+
+let testPlaylist = {
+  name: 'Backend-test-playlist',
 };
 
 User.remove({ email: testUser.email }, (err, user) => {
   if(err) {
     console.log('Failed to remove testUser from the db');
+  }
+});
+
+Playlist.remove({ name: testPlaylist.name }, (err, playlist) => {
+  if(err) {
+    console.log('Failed to remove testPlaylist from the db');
   }
 });
 
@@ -55,6 +66,7 @@ describe('Tests for the accounting routes', () => {
         'password': testUser.password,
       }).end((err, res) => {
         res.should.have.status(200);
+        testUser = res.body.user;
         done();
       });
     });
@@ -161,12 +173,33 @@ describe('Tests for the /playlists routes', () => {
       });
     });
 
+    it('POST-Request with valid data should return statusCode 200', done => {
+      chai.request(app).post(route).send({
+        name: testPlaylist.name,
+        id: testUser._id,
+      }).end((err, res) => {
+        res.should.have.status(200);
+        testPlaylist = res.body.playlist;
+        done();
+      });
+
+    });
+
+    it('DELETE-Request with a valid playlist id should return statusCode 200', done => {
+      chai.request(app).delete(route).send({
+        'id': testPlaylist._id,
+      }).end((err, res) => {
+        res.should.have.status(200);
+        done();
+      })
+    });
+
   });
 
   describe('All tests for the /playlists/:id route', () => {
-    let route = '/playlists/8313818183183183';
 
     it('POST-Request without a request body should return statusCode 400', done => {
+      let route = '/playlists/' + testPlaylist._id;
       chai.request(app).post(route).end((err, res) => {
         res.should.have.status(400);
         done();
@@ -174,11 +207,21 @@ describe('Tests for the /playlists routes', () => {
     });
 
     it('DELETE-Request without a request body should return statusCode 400', done => {
+      let route = '/playlists/' + testPlaylist._id;
       chai.request(app).delete(route).end((err, res) => {
         res.should.have.status(400);
         done();
       });
     });
+
+    // it('DELETE-Request with a valid playlist id should return statusCode 200', done => {
+    //   chai.request(app).delete(route).send({
+    //     'id': testPlaylist._id,
+    //   }).end((err, res) => {
+    //     res.should.have.status(200);
+    //     done();
+    //   })
+    // });
 
   });
 

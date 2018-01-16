@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
   });
 });
 
-//deletes are playlist
+//deletes a playlist
 router.delete('/', (req, res) => {
   if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
@@ -48,8 +48,8 @@ router.post('/', (req, res) => {
       error: 'No body specified',
     });
   } else {
-    console.log('User id', req.body.id);
-    console.log('Name', req.body.name);
+    //console.log('User id', req.body.id);
+    //console.log('Name', req.body.name);
 
     User.findOne({ '_id': req.body.id }, (err, user) => {
       if(err || user == null) {
@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
             });
           } else {
 
-            console.log('Id of new created playlist', playlist._id);
+            //console.log('Id of new created playlist', playlist._id);
 
             User.findOneAndUpdate({
               '_id': req.body.id,
@@ -159,14 +159,15 @@ router.put('/:id', (req, res) => {
 
 //deletes a track from the playlist
 router.delete('/:id', (req, res) => {
-  console.log('Playlist id:', req.params.id);
-  console.log('Track id:', req.body.trackId);
 
-  if(!req.body) {
+  if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
       error: 'No body specified',
     });
   }
+
+  //console.log('Playlist id:', req.params.id);
+  //console.log('Track id:', req.body.trackId);
 
   Playlist.findByIdAndUpdate(req.params.id, {
     $pull: {

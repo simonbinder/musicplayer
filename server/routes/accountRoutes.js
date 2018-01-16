@@ -105,6 +105,7 @@ router.post('/register', (req, res) => {
         return res.json({
           success: true,
           token: token,
+          user: user,
         });
       }
 
