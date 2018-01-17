@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "server:dev": "./node_modules/.bin/nodemon ./src/server.js",
-    "server:prod": "node server.js",
+    "server:prod": "node ./src/server.js",
     "server:test": "./node_modules/.bin/mocha ./src/test/"
   },
   "author": "",

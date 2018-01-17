@@ -1,8 +1,6 @@
 FROM node:8
 
-ADD . /src
-
-WORKDIR /src
+ADD . .
 
 RUN npm install
-cmd npm run webapp:dev
+cmd npm run webapp:prod

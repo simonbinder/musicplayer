@@ -6,13 +6,13 @@ import RegisterForm from "./pages/RegisterForm";
 import RegisterPage from "./pages/RegisterPage";
 import Layout from './pages/Layout';
 import SettingsPage from './pages/SettingsPage';
-import PlayListsOverviewPage from './pages/PlayListsOverviewPage';
+import PlayListsOverviewPage from './pages/PlaylistsOverviewPage';
 import { verifyToken } from './services/accountService';
 import store from './store';
 import { push } from 'react-router-redux';
 import { saveUser } from './actions/credentialsActions';
 import { savePlaylistsInitial } from './actions/playlistActions';
-import PlaylistPage from './pages/Playlistpage';
+import PlaylistPage from './pages/PlaylistPage';
 
 const onAuth = (nextState, replace, callback) => {
   setTimeout(() => {

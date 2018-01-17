@@ -1,8 +1,6 @@
 FROM node:8
 
-ADD . /src
-
-WORKDIR /src
+ADD . .
 
 RUN npm install
-cmd node server.js
+cmd npm run server:prod
