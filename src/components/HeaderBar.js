@@ -21,9 +21,8 @@ const HeaderBar = props => {
     </Link>
     </div>
 
-<<<<<<< HEAD
 
-    { searchBarActive ? <div className="col-lg-8 col-md-8 col-sm-10">
+    { searchBarActive ? <div className="col-lg-8 col-md-8 col-sm-10 col-xs-10">
       <div className="input-group c-header__search">
             <input
               type="text"
@@ -40,25 +39,7 @@ const HeaderBar = props => {
              </span>
       </div>
     </div> : null }
-=======
-<div className="col-lg-8 col-md-8 col-sm-8 col-xs-10">
-    <div className="input-group c-header__search">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Insert your song title"
-            value={value}
-            onChange={ ev => searchOnChange(ev) }
-          />
-          <span className="input-group-addon">
-            <button
-              type="submit">
-                <span className="glyphicon glyphicon-search"></span>
-            </button>
-           </span>
-    </div>
-</div>
->>>>>>> playlist
+
 
 
     { content.map((dropdown, key) => {
@@ -78,7 +59,7 @@ const HeaderBar = props => {
               case 'link':
                 return <Link {...childProps} to={child.to}>{child.title}</Link>
               case 'action':
-                return <div {...childProps} onClick={ child.onClick }>{child.title}  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></div>
+                return <div {...childProps} onClick={ child.onClick }>{child.title}  <span className="glyphicon glyphicon-log-out" aria-hidden="true"></span></div>
                   }
                 })}
               </div>
