@@ -120,8 +120,8 @@ export class LoginForm extends React.Component {
             value="Einloggen" />
           </div>
 
-          <div>
-            <Link className="btn btn-primary o-btn-sbt" to="/register">Don't have an account? Register here</Link>
+          <div className="form-group">
+            Don't have an account? <Link to="/register">Register here</Link>
           </div>
     </div>
     </div>
