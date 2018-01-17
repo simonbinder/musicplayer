@@ -6,33 +6,53 @@ const User = require('../models/User');
 const Playlist = require('../models/Playlist');
 const should = chai.should();
 chai.use(chaiHttp);
-
+//this object is used to register a new user and test the login
+//process
 let testUser = {
   email: 'backend-test@test.com',
   password: 'test',
 };
-
+//this object is used to the functionality of creating a playlists
+//and deleting it afterwards
 let testPlaylist = {
   name: 'Backend-test-playlist',
 };
-
+//this object is used to test the functionality of adding a track to a playlist
+//and delete it afterwards
 let testTrack = {
-  artists: 'Dua Lipa',
+  artists: 'Test-artists',
   source: null,
   origin: 'spotify',
-  title: 'New Rules',
+  title: 'Test-track',
 };
 
-User.remove({ email: testUser.email }, (err, user) => {
-  if(err) {
-    console.log('Failed to remove testUser from the db');
-  }
-});
+before(done => {
+  let promises = [];
+  //remove the test user if its already exists
+  promises.push(new Promise((resolve, reject) => {
+    User.remove({ email: testUser.email }, (err, user) => {
+      if(err) {
+        reject('Failed to remove testUser from the db');
+      } else {
+        resolve();
+      }
+    });
+  }));
 
-Playlist.remove({ name: testPlaylist.name }, (err, playlist) => {
-  if(err) {
-    console.log('Failed to remove testPlaylist from the db');
-  }
+  //remove the playlist if its already exists
+  promises.push(new Promise((resolve, reject) => {
+    Playlist.remove({ name: testPlaylist.name }, (err, playlist) => {
+      if(err) {
+        reject('Failed to remove testPlaylist from the db');
+      } else {
+        resolve();
+      }
+    });
+  }));
+
+  Promise.all(promises).then(() => {
+    done();
+  });
 });
 
 describe('Tests for the accounting routes', () => {
@@ -236,19 +256,10 @@ describe('Tests for the /playlists routes', () => {
       })
     });
 
-    it('DELETE-Request with a valid trackId should return statusCode 200', done => {
-      let route = '/playlists/' + testPlaylist._id;
-      chai.request(app).delete(route).send({
-        'trackId': testTrack._id,
-      }).end((err, res) => {
-        res.should.have.status(200);
-        done();
-      })
-    });
-
-    // it('DELETE-Request with a valid playlist id should return statusCode 200', done => {
+    // it('DELETE-Request with a valid trackId should return statusCode 200', done => {
+    //   let route = '/playlists/' + testPlaylist._id;
     //   chai.request(app).delete(route).send({
-    //     'id': testPlaylist._id,
+    //     'trackId': testTrack._id,
     //   }).end((err, res) => {
     //     res.should.have.status(200);
     //     done();

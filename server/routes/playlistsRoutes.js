@@ -134,7 +134,7 @@ router.post('/:id', (req, res) => {
           },
         }, {
           new: true,
-        }).populate("tracks").exec((err, playlist) => {
+        }).exec((err, playlist) => {
           if(err || playlist == null) {
             console.log('next error', err, playlist);
             return res.status(501).json({
