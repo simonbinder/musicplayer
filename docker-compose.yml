@@ -1,0 +1,18 @@
+version: "3"
+services:
+
+  src:
+    build:
+      context: src
+    volumes:
+        - .
+    ports:
+      - "8080:80"
+
+  server:
+    build:
+      context: server
+    volumes: 
+        - .
+    ports:
+      - "8081:8000"
