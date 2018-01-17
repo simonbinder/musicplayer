@@ -1,18 +1,14 @@
 version: "3"
 services:
 
-  src:
+  frontend:
     build:
-      context: src
-    volumes:
-        - .
+      context: frontend
     ports:
       - "8080:80"
 
-  server:
+  backend:
     build:
-      context: server
-    volumes: 
-        - .
+      context: backend
     ports:
       - "8081:8000"
