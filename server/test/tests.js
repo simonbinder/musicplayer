@@ -38,7 +38,6 @@ before(done => {
       }
     });
   }));
-
   //remove the playlist if its already exists
   promises.push(new Promise((resolve, reject) => {
     Playlist.remove({ name: testPlaylist.name }, (err, playlist) => {
@@ -49,7 +48,7 @@ before(done => {
       }
     });
   }));
-
+  //wait for all promises to finish
   Promise.all(promises).then(() => {
     done();
   });
@@ -174,7 +173,7 @@ describe('Tests for the accounting routes', () => {
 
 });
 
-describe('Tests for the /playlists routes', () => {
+describe('Tests for the /playlists routes (GET and POST-Request)', () => {
 
   describe('All tests for the /playlists route', () => {
     let route = '/playlists/';
@@ -212,15 +211,6 @@ describe('Tests for the /playlists routes', () => {
 
     });
 
-    it('DELETE-Request with a valid playlist id should return statusCode 200', done => {
-      chai.request(app).delete(route).send({
-        'id': testPlaylist._id,
-      }).end((err, res) => {
-        res.should.have.status(200);
-        done();
-      })
-    });
-
   });
 
   describe('All tests for the /playlists/:id route', () => {
@@ -242,7 +232,6 @@ describe('Tests for the /playlists routes', () => {
     });
 
     it('POST-Request with valid request data should return statusCode 200', done => {
-      console.log('ID', testPlaylist._id);
       let route = '/playlists/' + testPlaylist._id;
       chai.request(app).post(route).send({
         'origin': testTrack.origin,
@@ -256,15 +245,29 @@ describe('Tests for the /playlists routes', () => {
       })
     });
 
-    // it('DELETE-Request with a valid trackId should return statusCode 200', done => {
-    //   let route = '/playlists/' + testPlaylist._id;
-    //   chai.request(app).delete(route).send({
-    //     'trackId': testTrack._id,
-    //   }).end((err, res) => {
-    //     res.should.have.status(200);
-    //     done();
-    //   })
-    // });
+    it('DELETE-Request with a valid trackId should return statusCode 200', done => {
+      let route = '/playlists/' + testPlaylist._id;
+      chai.request(app).delete(route).send({
+        'trackId': testTrack._id,
+      }).end((err, res) => {
+        res.should.have.status(200);
+        done();
+      })
+    });
+
+  });
+
+  describe('Last tast for the /playlist route (DELETE-Request)', () => {
+    let route = '/playlists';
+
+    it('DELETE-Request with a valid playlist id should return statusCode 200', done => {
+      chai.request(app).delete(route).send({
+        'id': testPlaylist._id,
+      }).end((err, res) => {
+        res.should.have.status(200);
+        done();
+      })
+    });
 
   });
 

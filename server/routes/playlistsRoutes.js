@@ -48,8 +48,10 @@ router.post('/', (req, res) => {
       error: 'No body specified',
     });
   } else {
+
     //console.log('User id', req.body.id);
     //console.log('Name', req.body.name);
+    //console.log('Req body', req.body);
 
     User.findOne({ '_id': req.body.id }, (err, user) => {
       if(err || user == null) {
@@ -58,18 +60,14 @@ router.post('/', (req, res) => {
         });
       } else {
 
-        var playlist = new Playlist({
+        Playlist.create({
           name: req.body.name,
-        });
-
-        playlist.save(err => {
+        }, (err, playlist) => {
           if(err) {
             return res.status(501).json({
               error: err,
             });
           } else {
-
-            //console.log('Id of new created playlist', playlist._id);
 
             User.findOneAndUpdate({
               '_id': req.body.id,
@@ -106,7 +104,7 @@ router.post('/:id', (req, res) => {
     });
   } else {
 
-    // console.log('Playlist id', req.params.id);
+    //console.log('Playlist id', req.params.id);
     // console.log('Origin', req.body.origin);
     // console.log('Title', req.body.title);
     // console.log('Artists', req.body.artists);
@@ -121,7 +119,7 @@ router.post('/:id', (req, res) => {
 
     track.save(err => {
       if(err) {
-        console.log('save error');
+
         return res.status(501).json({
           error: err,
         });
@@ -136,7 +134,7 @@ router.post('/:id', (req, res) => {
           new: true,
         }).exec((err, playlist) => {
           if(err || playlist == null) {
-            console.log('next error', err, playlist);
+
             return res.status(501).json({
               error: err ? err : 'playlist not found',
             });
