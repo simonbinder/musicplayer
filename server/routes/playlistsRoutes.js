@@ -3,6 +3,7 @@ const router = express.Router();
 const Track = require('../models/Track');
 const Playlist = require('../models/Playlist');
 const User = require('../models/User');
+const utils = require('../utils');
 
 //actually not needed, get all playlists
 router.get('/', (req, res) => {
@@ -15,9 +16,9 @@ router.get('/', (req, res) => {
   });
 });
 
-//deletes are playlist
+//deletes a playlist
 router.delete('/', (req, res) => {
-  if(!req.body) {
+  if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
       error: 'No body specified',
     });
@@ -42,13 +43,15 @@ router.delete('/', (req, res) => {
 
 //creates a new playlist
 router.post('/', (req, res) => {
-  if(!req.body) {
+  if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
       error: 'No body specified',
     });
   } else {
-    console.log('User id', req.body.id);
-    console.log('Name', req.body.name);
+
+    //console.log('User id', req.body.id);
+    //console.log('Name', req.body.name);
+    //console.log('Req body', req.body);
 
     User.findOne({ '_id': req.body.id }, (err, user) => {
       if(err || user == null) {
@@ -57,18 +60,14 @@ router.post('/', (req, res) => {
         });
       } else {
 
-        var playlist = new Playlist({
+        Playlist.create({
           name: req.body.name,
-        });
-
-        playlist.save(err => {
+        }, (err, playlist) => {
           if(err) {
             return res.status(501).json({
               error: err,
             });
           } else {
-
-            console.log('Id of new created playlist', playlist._id);
 
             User.findOneAndUpdate({
               '_id': req.body.id,
@@ -99,17 +98,17 @@ router.post('/', (req, res) => {
 });
 
 router.post('/:id', (req, res) => {
-  if(!req.body) {
+  if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
       error: 'No body specified',
     });
   } else {
 
-    console.log('Playlist id', req.params.id);
-    console.log('Origin', req.body.origin);
-    console.log('Title', req.body.title);
-    console.log('Artists', req.body.artists);
-    console.log('source', req.body.source);
+    //console.log('Playlist id', req.params.id);
+    // console.log('Origin', req.body.origin);
+    // console.log('Title', req.body.title);
+    // console.log('Artists', req.body.artists);
+    // console.log('source', req.body.source);
 
     var track = new Track({
       source: req.body.source,
@@ -120,6 +119,7 @@ router.post('/:id', (req, res) => {
 
     track.save(err => {
       if(err) {
+
         return res.status(501).json({
           error: err,
         });
@@ -132,8 +132,9 @@ router.post('/:id', (req, res) => {
           },
         }, {
           new: true,
-        }).populate("tracks").exec((err, playlist) => {
+        }).exec((err, playlist) => {
           if(err || playlist == null) {
+
             return res.status(501).json({
               error: err ? err : 'playlist not found',
             });
@@ -141,6 +142,7 @@ router.post('/:id', (req, res) => {
             return res.json({
               success: true,
               playlist: playlist,
+              track: track,
             });
           }
         });
@@ -158,14 +160,15 @@ router.put('/:id', (req, res) => {
 
 //deletes a track from the playlist
 router.delete('/:id', (req, res) => {
-  console.log('Playlist id:', req.params.id);
-  console.log('Track id:', req.body.trackId);
 
-  if(!req.body) {
+  if(utils.isEmptyObject(req.body)) {
     return res.status(400).json({
       error: 'No body specified',
     });
   }
+
+  //console.log('Playlist id:', req.params.id);
+  //console.log('Track id:', req.body.trackId);
 
   Playlist.findByIdAndUpdate(req.params.id, {
     $pull: {

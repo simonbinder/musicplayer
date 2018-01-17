@@ -16,7 +16,7 @@ const generateToken = user => {
 //
 router.post('/verifyToken', (req, res) => {
   if(utils.isEmptyObject(req.body)) {
-    return res.status(401).json({
+    return res.status(400).json({
       error: 'No body specified',
     });
   }
@@ -25,10 +25,10 @@ router.post('/verifyToken', (req, res) => {
     token,
   } = req.body;
 
-  console.log('Received token', token);
+  //console.log('Received token', token);
 
   if(!token || token === 'undefined') {
-    return res.status(401).json({
+    return res.status(400).json({
       error: 'Pass token',
     });
   } else {
@@ -68,7 +68,6 @@ router.post('/verifyToken', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-  console.log('Req body', req.body);
 
   if(utils.isEmptyObject(req.body)) {
     return res.status(400).end();
@@ -106,13 +105,14 @@ router.post('/register', (req, res) => {
         return res.json({
           success: true,
           token: token,
+          user: user,
         });
       }
 
     });
 
   } else {
-    return res.status(200).json({
+    return res.status(400).json({
       error: 'Invalid request',
     });
   }
@@ -159,16 +159,10 @@ router.post('/login', (req, res) => {
 
 
   } else {
-    return res.json({
+    return res.status(400).json({
       error: 'Invalid request',
     });
   }
-});
-
-router.post('/verfiyToken', (req, res) => {
-  return res.json({
-    success: true,
-  });
 });
 
 module.exports = router;
