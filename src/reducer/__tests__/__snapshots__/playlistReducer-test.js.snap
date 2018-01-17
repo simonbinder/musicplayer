@@ -30,3 +30,11 @@ Object {
   "playlists": "testTest",
 }
 `;
+
+exports[`search reducer should return the initial state 1`] = `
+Object {
+  "activeTrack": null,
+  "playStatus": "paused",
+  "playlists": Array [],
+}
+`;

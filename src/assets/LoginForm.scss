@@ -1,0 +1,33 @@
+@import 'variables.scss';
+
+html, body {
+    height: 100%;
+}
+
+.o-error {
+  color: red;
+}
+
+.c-login-container {
+  width: 40%;
+}
+
+.c-login-form-container {
+  height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.o-input{
+  border-radius: 0px;
+}
+
+.o-btn-sbt{
+  background-color: $background-header;
+  border-color: $background-header;
+  border-radius: 3px;
+  &:hover, &:focus, &.focus, &.active, &:visited, &:active{
+    background-color: $background-header;
+  }
+}

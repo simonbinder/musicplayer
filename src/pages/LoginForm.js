@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { savePlaylistsInitial } from '../actions/playlistActions';
+import '../assets/LoginForm.scss';
 
 export class LoginForm extends React.Component {
   constructor(props) {
@@ -82,7 +83,8 @@ export class LoginForm extends React.Component {
 
   render() {
     return <div className="container">
-    <div className="form-group">
+    <div className="col align-self-center">
+      <div className="form-group">
       <label>
         Username:
       </label>
@@ -113,14 +115,15 @@ export class LoginForm extends React.Component {
         <div className="form-group">
           <input
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-primary o-btn-sbt"
             onClick={ this.handleSubmit }
-            value="Submit" />
+            value="Einloggen" />
           </div>
 
           <div>
-            <Link to="/register">Don't have an account. Register here</Link>
+            <Link className="btn btn-primary o-btn-sbt" to="/register">Don't have an account? Register here</Link>
           </div>
+    </div>
     </div>
   };
 };

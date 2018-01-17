@@ -3,7 +3,7 @@ import {SEARCH_VALUE_CHANGED, SEARCH_TRACKS_SUCCESS, SEARCH_TRACKS_ERROR} from '
 
 describe('search reducer', () => {
   it('should return the initial state', () => {
-    expect(searchReducer(undefined, {})).toEqual({searchValue: '', tracks: [], error: ''})
+    expect(searchReducer(undefined, {})).toMatchSnapshot();
   })
 
   it('search entered', () => {

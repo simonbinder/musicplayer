@@ -46,7 +46,7 @@ class SettingsPage extends React.Component {
           <div className="row">
 
             <div className="col-md-12">
-              <strong>E-mail: </strong>
+              <strong>Mail: </strong>
               <span>{user.email}</span>
             </div>
             <div className="col-md-12">
@@ -59,18 +59,19 @@ class SettingsPage extends React.Component {
         <h1 className="title">Activate and deactive our supported APIs</h1>
         <div className="row">
 
-          {/* <div className="col-md-12 o-settings-block o-settings-block--deactived">
-            <p>Connect to your soundcloud account:</p>
-            <img src="assets/images/soundcloud-connect.png" />
-          </div> */}
+          <div className="col-md-12 o-settings-block o-settings-block--deactived">
+            <div className="o-settings-block__description">
+              <a className="btn btn-primary o-btn-sbt" href="#">Connect to your Soundcloud Account</a>
+            </div>
+            {/* <img src="assets/images/soundcloud-connect.png" /> */}
+          </div>
 
           <div className="col-md-12 o-settings-block">
             <div className="o-settings-block__description">
-              <p>Connect to your spotify account:</p>
-              <a href="http://localhost:4000/spotify/login">Connect to spotify</a>
+              <a className="btn btn-primary o-btn-sbt" href="http://localhost:4000/spotify/login">Connect to Spotify</a>
             </div>
             <div className="o-settings-block__status">
-              <span>{ spotifyAccessToken != null ? 'Connected' : 'Not connected' }</span>
+              <span className={"glyphicon " + (spotifyAccessToken? "glyphicon-ok o-settings-block__connected" : "glyphicon-remove o-settings-block__connected")}></span>
             </div>
           </div>
 

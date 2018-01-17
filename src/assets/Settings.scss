@@ -1,4 +1,3 @@
-
 .o-settings-block {
   margin-bottom: 25px;
   border: 1px solid #ccc;
@@ -10,5 +9,10 @@
     flex: 1;
     align-items: center;
     align-content: center;
+  }
+
+  &__connected {
+    color: green;
+    font-size: 22px;
   }
 }
