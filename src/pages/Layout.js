@@ -78,15 +78,16 @@ class Layout extends React.Component {
         title: user.email,
         childs: [{
           type: 'link',
-          title: 'Account',
+          title: 'account',
+          class: 'bla',
           to: '/settings',
         }, {
           type: 'link',
-          title: 'My playlists',
+          title: 'my playlists',
           to: '/playlists',
         }, {
           type: 'action',
-          title: 'Logout',
+          title: 'logout',
           onClick: this.logout,
         }],
       }];
