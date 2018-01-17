@@ -35,13 +35,13 @@ app.get('*', (req, res) => {
 
 mongoose.connect('mongodb://localhost:27017/data/db')
 .then(() => {
-  //console.log('Successfully connected to mongodb');
+  console.log('Successfully connected to mongodb');
   app.listen(port, () => {
-    //console.log('Server is listening on port', port);
+    console.log('Server is listening on port', port);
   });
 })
 .catch(err => {
-  //console.log('Error connecting to mongodb', err);
+  console.log('Error connecting to mongodb', err);
 })
 
 module.exports = app;
