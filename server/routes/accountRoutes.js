@@ -152,6 +152,7 @@ router.post('/login', (req, res) => {
           success: true,
           token: token,
           playlists: user.playlists,
+          user: user,
         });
       }
 

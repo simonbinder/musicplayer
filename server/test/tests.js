@@ -7,7 +7,6 @@ const Playlist = require('../models/Playlist');
 const should = chai.should();
 chai.use(chaiHttp);
 //this object is used to register a new user and test the login
-//process
 let testUser = {
   email: 'backend-test@test.com',
   password: 'test',

@@ -18,7 +18,7 @@ const store = createStore(
   applyMiddleware(thunk, routerMiddleware(browserHistory), createLogger())
 );
 
-store.dispatch(verifySpotifyRefreshToken());
+//store.dispatch(verifySpotifyRefreshToken());
 //
 window.store = store;
 //
