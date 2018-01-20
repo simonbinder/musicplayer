@@ -33,10 +33,10 @@ app.get('*', (req, res) => {
   res.sendFile(__dirname + '/build/index.html');
 });
 
-mongoose.connect('mongodb://127.0.0.1:27018/data/db')
+mongoose.connect('mongodb://mongo:27018/data/db')
 .then(() => {
   console.log('Successfully connected to mongodb');
-  app.listen(port, () => {
+  app.listen("127.0.0.1", port, () => {
     console.log('Server is listening on port', port);
   });
 })

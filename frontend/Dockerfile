@@ -7,8 +7,6 @@ cmd npm run webapp:prod
 
 FROM nginx:latest
 
-EXPOSE 80
-
-COPY ./build /var/www
+COPY ./build /usr/share/nginx/html
 
 cmd ["nginx"]
