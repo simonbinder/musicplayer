@@ -9,4 +9,6 @@ FROM nginx:latest
 
 COPY ./build /usr/share/nginx/html
 
-cmd ["nginx"]
+EXPOSE 80
+
+cmd ["nginx" , "-g", "daemon off;"]
