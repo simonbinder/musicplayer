@@ -16,14 +16,24 @@ services:
   frontend:
     build:
       context: frontend
-    ports:
-      - "80:80"
 
   backend:
     build:
       context: backend
+    volumes:
+      - static-content:/usr/src/app
     ports:
       - "4000:8000"
 
+  nginx:
+    build:
+      context: frontend
+      dockerfile: Dockerfile-nginx
+    volumes:
+      - static-content:/usr/src/app
+    ports:
+      - "80:80"
+
 volumes:
   mongodata:
+  static-content:
