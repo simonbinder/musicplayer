@@ -9,6 +9,6 @@ FROM nginx:latest
 
 COPY ./build /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 8080
 
 cmd ["nginx" , "-g", "daemon off;"]
