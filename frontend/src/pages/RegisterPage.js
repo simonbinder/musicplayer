@@ -8,7 +8,7 @@ export default class RegisterPage extends React.Component {
   };
 
   render() {
-    return <div className="container">
+    return <div className="c-register-container">
         <RegisterForm></RegisterForm>
       </div>
   };

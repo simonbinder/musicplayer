@@ -20,85 +20,92 @@ exports[`RegisterForm Component password too short 1`] = `"Password must be betw
 
 exports[`RegisterForm Component renders correctly 1`] = `
 <div
-  className="col align-self-center"
+  className="c-register-box"
 >
   <div
-    className="form-group"
+    className="c-register-logo"
+  />
+  <div
+    className="col align-self-center"
   >
-    <label>
-      Username:
-    </label>
-    <input
-      className="form-control o-input"
-      onChange={[Function]}
-      placeholder="Bitte den Usernamen eingeben"
-      type="email"
-      value=""
-    />
     <div
-      className="o-error"
+      className="form-group"
     >
-      
+      <label>
+        Username:
+      </label>
+      <input
+        className="form-control o-input"
+        onChange={[Function]}
+        placeholder="Bitte den Usernamen eingeben"
+        type="email"
+        value=""
+      />
+      <div
+        className="o-error"
+      >
+        
+      </div>
     </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label>
-      Passwort:
-    </label>
-    <input
-      className="form-control o-input"
-      onChange={[Function]}
-      placeholder="Bitte das Passwort eingeben"
-      type="password"
-      value=""
-    />
     <div
-      className="o-error"
+      className="form-group"
     >
-      
+      <label>
+        Password:
+      </label>
+      <input
+        className="form-control o-input"
+        onChange={[Function]}
+        placeholder="Bitte das Passwort eingeben"
+        type="password"
+        value=""
+      />
+      <div
+        className="o-error"
+      >
+        
+      </div>
     </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <label>
-      Passwort wiederholen:
-    </label>
-    <input
-      className="form-control o-input"
-      onChange={[Function]}
-      placeholder="Bitte das Passwort bestätigen"
-      type="password"
-      value=""
-    />
     <div
-      className="o-error"
+      className="form-group"
     >
-      
+      <label>
+        Repeat password:
+      </label>
+      <input
+        className="form-control o-input"
+        onChange={[Function]}
+        placeholder="Bitte das Passwort bestätigen"
+        type="password"
+        value=""
+      />
+      <div
+        className="o-error"
+      >
+        
+      </div>
     </div>
-  </div>
-  <div
-    className="form-group"
-  >
-    <input
-      className="btn btn-primary o-btn-sbt"
-      onClick={[Function]}
-      type="submit"
-      value="Registrieren"
-    />
-  </div>
-  <div
-    className="form-group"
-  >
-    Already have an account? 
-    <a
-      onClick={[Function]}
-      style={Object {}}
+    <div
+      className="form-group"
     >
-      Go to login
-    </a>
+      <input
+        className="btn btn-primary o-btn-sbt"
+        onClick={[Function]}
+        type="submit"
+        value="Registrieren"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      Already have an account? 
+      <a
+        onClick={[Function]}
+        style={Object {}}
+      >
+        Go to login
+      </a>
+    </div>
   </div>
 </div>
 `;

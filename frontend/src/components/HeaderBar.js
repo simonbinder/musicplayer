@@ -21,8 +21,7 @@ const HeaderBar = props => {
     </Link>
     </div>
 
-
-    { searchBarActive ? <div className="col-lg-8 col-md-8 col-sm-10 col-xs-10">
+    { searchBarActive ? <div className="col-lg-8 col-md-8 col-sm-8 col-xs-10">
       <div className="input-group c-header__search">
             <input
               type="text"
@@ -40,11 +39,9 @@ const HeaderBar = props => {
       </div>
     </div> : null }
 
-
-
     { content.map((dropdown, key) => {
       return <div key={key} className="c-header__dropdown col-lg-2 col-md-2 col-sm-2 col-xs-2">
-      <Link to="/settings">
+      <Link to="/">
         <div className="glyphicon glyphicon-user c-header__dropdown_title"></div>
         </Link>
         <div className="c-header__dropdown__content">

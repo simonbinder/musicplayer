@@ -102,7 +102,9 @@ export class RegisterForm extends React.Component {
   };
 
   render() {
-    return <div className="col align-self-center">
+    return <div className="c-register-box">
+          <div className="c-register-logo"></div>
+    <div className="col align-self-center">
       <div className="form-group">
         <label>
           Username:
@@ -119,7 +121,7 @@ export class RegisterForm extends React.Component {
     </div>
     <div className="form-group">
       <label>
-        Passwort:
+        Password:
       </label>
       <InputField
         type="password"
@@ -133,7 +135,7 @@ export class RegisterForm extends React.Component {
     </div>
     <div className="form-group">
       <label>
-        Passwort wiederholen:
+        Repeat password:
       </label>
       <InputField
       type="password"
@@ -160,6 +162,7 @@ export class RegisterForm extends React.Component {
     <div className="form-group">
       Already have an account? <Link to="/login">Go to login</Link>
     </div>
+  </div>
   </div>
   };
 };

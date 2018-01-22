@@ -8,19 +8,32 @@ services:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
     volumes:
-      - ./data/db:/data/db
+      - mongodata:/data/db
     ports:
         - 27018:27018
-    command: mongod --port 27018 --logpath=/dev/null # --quiet
+    command: mongod --port 27018 # --quiet
 
   frontend:
     build:
       context: frontend
     ports:
-      - "80:8080"
+       - "8080:80"
+
+  frontend-test:
+    build:
+        context: frontend
+        dockerfile: Dockerfile-test
 
   backend:
     build:
       context: backend
     ports:
-      - "4000:8000"
+      - "4000:4000"
+
+  backend-test:
+    build:
+      context: backend
+      dockerfile: Dockerfile-test
+
+volumes:
+  mongodata:

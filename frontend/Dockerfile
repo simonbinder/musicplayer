@@ -1,12 +1,15 @@
-FROM node:8
+FROM node:8 as webpack
 
 ADD . .
-
+COPY ./build ./build
 RUN npm install
-cmd npm run webapp:prod
+RUN npm run webapp:prod
 
 FROM nginx:latest
 
-COPY ./build /usr/share/nginx/html
+COPY --from=webpack ./build /usr/share/nginx/html
 
-cmd ["nginx"]
+
+EXPOSE 80
+
+CMD ["nginx" , "-g", "daemon off;"]

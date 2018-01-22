@@ -8,26 +8,57 @@ html, body {
   color: red;
 }
 
-.c-login-container {
-  width: 40%;
+.c-login{
+
+&-container{
+  margin-top:-125px;
+  padding-top: 120px;
+  width: 100%;
+    background: url(assets/images/background.jpeg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+     height: 900px;
+}
+&-box{
+  background-color: $background-header;
+  border-radius: 3px;
+  padding: 20px;
+  width:45%;
+  margin:auto;
+  color:white;
+
+}
+&-logo{
+  background:url('assets/images/logo.png')center right no-repeat;
+  background-size: cover;
+  height: 190px;
+  resize: both;
+  @media screen and (max-width: $screen-md) {
+   background-position: center;
+   background:url('assets/images/logosmall.png')center no-repeat;
+}
 }
 
-.c-login-form-container {
-  height: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
 }
+
 
 .o-input{
   border-radius: 0px;
 }
 
 .o-btn-sbt{
-  background-color: $background-header;
+  background-color: white;
+  color: $background-header;
   border-color: $background-header;
   border-radius: 3px;
   &:hover, &:focus, &.focus, &.active, &:visited, &:active{
-    background-color: $background-header;
+    background-color: white;
+    color: $background-header;
+    box-shadow: $boxshadowgreen_light;
   }
 }
