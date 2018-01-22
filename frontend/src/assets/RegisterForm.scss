@@ -1,3 +1,4 @@
+@import 'variables.scss';
 html, body {
     height: 100%;
 }
@@ -6,13 +7,40 @@ html, body {
   color: red;
 }
 
-.c-register-container {
-  width: 40%;
+.c-register{
+
+&-container{
+  margin-top:-125px;
+  padding-top: 120px;
+  width: 100%;
+    background: url(assets/images/background.jpeg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+     height: 900px;
+}
+&-box{
+  background-color: $background-header;
+  border-radius: 3px;
+  padding: 20px;
+  width:45%;
+  margin:auto;
+  color:white;
+
+}
+&-logo{
+  background:url('assets/images/logo.png')center right no-repeat;
+  background-size: cover;
+  height: 190px;
+  resize: both;
+  @media screen and (max-width: $screen-md) {
+   background-position: center;
+   background:url('assets/images/logosmall.png')center no-repeat;
+}
 }
 
-.c-register-form-container {
-  height: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
 }

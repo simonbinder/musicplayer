@@ -90,8 +90,10 @@ export class LoginForm extends React.Component {
   };
 
   render() {
-    return <div className="container">
-    <div className="col align-self-center">
+    return <div className="c-login-container">
+    <div className="c-login-box">
+          <div className="c-login-logo"></div>
+        <div className="col align-self-center">
       <div className="form-group">
       <label>
         Username:
@@ -129,8 +131,10 @@ export class LoginForm extends React.Component {
           </div>
 
           <div className="form-group">
-            Don't have an account? <Link to="/register">Register here</Link>
+            Don't have an account? <Link to="/register">Register here
+            </Link>
           </div>
+    </div>
     </div>
     </div>
   };
