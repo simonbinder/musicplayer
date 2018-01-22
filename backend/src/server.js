@@ -27,13 +27,13 @@ app.use('/account', accountRoutes);
 app.use('/spotify', spotifyRoutes);
 app.use('/playlists', playlistsRoutes);
 
-app.use(express.static(__dirname + '/build'));
+// app.use(express.static(__dirname + '/build'));
+//
+// app.get('*', (req, res) => {
+//   res.sendFile(__dirname + '/build/index.html');
+// });
 
-app.get('*', (req, res) => {
-  res.sendFile(__dirname + '/build/index.html');
-});
-
-mongoose.connect('mongodb://mongo:27018/data/db')
+mongoose.connect('mongodb://mongodb:27018/data/db')
 .then(() => {
   console.log('Successfully connected to mongodb');
   app.listen(port, () => {
