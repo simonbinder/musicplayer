@@ -2,7 +2,8 @@
 
 exports[`search reducer play track 1`] = `
 Object {
-  "activeTrack": "Test",
+  "activeContainer": undefined,
+  "activeTrack": undefined,
 }
 `;
 
@@ -33,8 +34,11 @@ Object {
 
 exports[`search reducer should return the initial state 1`] = `
 Object {
+  "activeContainer": Array [],
   "activeTrack": null,
-  "playStatus": "paused",
+  "playStatus": false,
   "playlists": Array [],
+  "progress": 0,
+  "shuffle": false,
 }
 `;
