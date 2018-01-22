@@ -19,11 +19,21 @@ services:
     ports:
        - "8080:80"
 
+  frontend-test:
+    build:
+        context: frontend
+        dockerfile: Dockerfile-test
+
   backend:
     build:
       context: backend
     ports:
       - "4000:4000"
+
+  backend-test:
+    build:
+      context: backend
+      dockerfile: Dockerfile-test
 
 volumes:
   mongodata:
