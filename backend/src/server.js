@@ -36,7 +36,7 @@ app.get('*', (req, res) => {
 mongoose.connect('mongodb://mongo:27018/data/db')
 .then(() => {
   console.log('Successfully connected to mongodb');
-  app.listen("127.0.0.1", port, () => {
+  app.listen(port, () => {
     console.log('Server is listening on port', port);
   });
 })

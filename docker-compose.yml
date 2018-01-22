@@ -17,15 +17,13 @@ services:
     build:
       context: frontend
     ports:
-       - "80:80"
+       - "8080:80"
 
   backend:
     build:
       context: backend
-    volumes:
-      - static-content:/usr/src/app
     ports:
-      - "4000:8000"
+      - "4000:4000"
 
 volumes:
   mongodata:
