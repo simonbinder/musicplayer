@@ -9,6 +9,8 @@ import { 
   startNewSong
 } from '../actions/playlistActions';
 import Tag from '../components/Tag';
+import { Link } from 'react-router';
+
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -33,19 +35,23 @@ class IndexPage extends React.Component {
       searchValue,
     } = this.props.search;
 
-    return <div>
+    return <div className="o-index-container">
 
       <div className="container">
-        <p>The following libaries are connected:</p>
-        
+
+      <div className="o-index-container-welcomebar">
+        <h1>Welcome to unlimited music access!</h1>
+        <h3>The following platforms are connected:</h3>
+      </div>
+
         <Tag
           origin="spotify"
           text="Spotify connected"
         />
-        {/* <p>
-          Lorem ipsum dolor sit amet, in qui dico eros. In est error eloquentiam necessitatibus, sed dicant aperiri ex, eu duo postea equidem. Usu no eius movet omnium. Feugiat qualisque te ius. Vis justo urbanitas vulputate at.
-          Eu est lorem facilisis rationibus, pro libris constituam te. Omnes exerci fabulas sea cu, an vis dicit assentior referrentur. Nam at constituto efficiantur, te nam tamquam volumus dignissim. Unum virtute temporibus et ius, mei et summo fabulas, est tation ceteros cotidieque no. Ea nibh primis argumentum sed.
-        </p> */}
+        
+        {
+
+        }
 
         {/* search error */}
         { error ?
