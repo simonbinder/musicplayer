@@ -35,6 +35,10 @@ class IndexPage extends React.Component {
       searchValue,
     } = this.props.search;
 
+    const {
+      spotifyAccessToken,
+    } = this.props.credentials;
+
     return <div className="o-index-container">
 
       <div className="container">
@@ -44,14 +48,11 @@ class IndexPage extends React.Component {
         <h3>The following platforms are connected:</h3>
       </div>
 
-        <Tag
-          origin="spotify"
-          text="Spotify connected"
-        />
-        
-        {
-
-        }
+        { spotifyAccessToken != null ?
+          <Tag
+            origin="spotify"
+            text="Spotify connected"
+          /> : <p>No music provider connected, please go to <Link to="/settings">Settings</Link></p> }
 
         {/* search error */}
         { error ?
