@@ -1,11 +1,11 @@
 # AllMusic Player
-## README
+Stream music from different plattforms and create playlists
 
+## README
 - Jannik Lorenz
 - Simon Binder
 - Tim Tenckhoff
 
-Stream music from different plattforms and create playlists
 
 ## compile and run docker files
 
@@ -21,7 +21,8 @@ Stream music from different plattforms and create playlists
 
 ## run tests
 
-
+- docker-compose up backend-test (execute after mongo container is running)
+- docker-compose up frontend-test
 
 
 ## docker
