@@ -25,7 +25,10 @@ export function pauseCurrentSong() {
 export function playCurrentSong() {
   return (dispatch, getState) => {
     window.audioManager.play();
-    dispatch(changePlayStatus());
+    let state = getState().playlist;
+    if(state.playStatus == false) {
+      dispatch(changePlayStatus());
+    }    
   };
 }
 //
@@ -71,6 +74,7 @@ export function startNewSong(track, activeContainer) {
 
     if(track.source) {
       window.audioManager.src = track.source;
+
       //window.audioManager.play();
       dispatch(playCurrentSong());
       window.audioManager.ontimeupdate = () => {

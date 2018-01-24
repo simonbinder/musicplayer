@@ -23,8 +23,8 @@ class IndexPage extends React.Component {
     this.props.onTrackSave(playlistId, title, artists, origin, source);
   };
 
-  onSongPlay(track) {
-    this.props.onSongPlay(track);
+  onSongPlay(track, tracks) {
+    this.props.onSongPlay(track, tracks);
   };
 
   render() {
@@ -71,7 +71,7 @@ class IndexPage extends React.Component {
                     playlists={this.props.playlists}
                     onTrackAdd={this.onTrackAdd}
                     source={track.source}
-                    onPlay={ () => this.onSongPlay(track) }
+                    onPlay={ () => this.onSongPlay(track, this.props.search.tracks) }
                   />
                 })
               : <p>No tracks found for your query</p> }
@@ -96,7 +96,7 @@ function mapStateToProps(store, ownProps) {
 
 const mapDispatchToProps = dispatch => ({
   onTrackSave: (playlistId, title, artists, origin, source) => dispatch(requestSaveTrack(playlistId, title, artists, origin, source)),
-  onSongPlay: track => dispatch(startNewSong(track)),
+  onSongPlay: (track, tracks) => dispatch(startNewSong(track, tracks)),
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(IndexPage);
