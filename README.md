@@ -10,9 +10,9 @@ Stream music from different plattforms and create playlists
 ## compile and run docker files
 
 - docker-compose build 
-- dock-compose up -d mongo
-- dock-compose up -d backend
-- dock-compose up -d frontend
+- docker-compose up -d mongo
+- docker-compose up -d backend
+- docker-compose up -d frontend
 
 
 
