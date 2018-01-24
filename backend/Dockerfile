@@ -5,4 +5,4 @@ ADD . .
 EXPOSE 4000
 
 RUN npm install
-cmd npm run server:prod
+CMD npm run server:prod
