@@ -1,5 +1,13 @@
 # README
 
+#AllMusic Player
+-Jannik Lorenz
+-Simon Binder
+-Tim Tenckhoff
+
+Stream music from different plattforms and create playlists
+
+
 ## run tests
 
 Run `npm run test:watch` to run tests via jest in watch mode.
