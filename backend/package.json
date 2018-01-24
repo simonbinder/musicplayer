@@ -1,14 +1,14 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "a music player for all platforms",
   "main": "server.js",
   "scripts": {
     "server:dev": "./node_modules/.bin/nodemon ./src/server.js",
     "server:prod": "node ./src/server.js",
     "server:test": "./node_modules/.bin/mocha ./src/test/"
   },
-  "author": "",
+  "author": "Simon Binder, Tim Tenckhoff, Jannik Lorenz",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.3",
