@@ -1,5 +1,5 @@
 # AllMusic Player
-# README
+## README
 
 - Jannik Lorenz
 - Simon Binder
@@ -7,11 +7,21 @@
 
 Stream music from different plattforms and create playlists
 
+## compile and run docker files
+
+- docker-compose build 
+
+
+- dock-compose up -d mongo
+- dock-compose up -d backend
+- dock-compose up -d frontend
+
+
+
 
 ## run tests
 
-Run `npm run test:watch` to run tests via jest in watch mode.
-After changes update the snapshots by pressing `u` while in watch mode or executing `npm test -- -u`.
+
 
 
 ## docker
