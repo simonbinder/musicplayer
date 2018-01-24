@@ -1,9 +1,9 @@
+# AllMusic Player
 # README
 
-#AllMusic Player
--Jannik Lorenz
--Simon Binder
--Tim Tenckhoff
+- Jannik Lorenz
+- Simon Binder
+- Tim Tenckhoff
 
 Stream music from different plattforms and create playlists
 
